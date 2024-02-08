@@ -4,6 +4,7 @@ import styles from "./page.module.css"
 interface IDropdown
 {
     getVisibility: boolean,
+    right: boolean,
     children: React.ReactNode,
 }
 
@@ -13,6 +14,8 @@ export default function Dropdown(props: IDropdown)
 
     const className = cx({
         dropdown: true,
+        left: !props.right,
+        right: props.right,
         active: props.getVisibility,
     });
 

@@ -1,11 +1,9 @@
 'use client'
 
 import { useSession } from "next-auth/react"
-import Actions from "./Actions/page"
 import Avatar from "./Avatar/page"
 import styles from "./page.module.css"
 import IRole from "@/types/role.type"
-import { deleteUser } from "@/services/user"
 
 interface IPreview
 {
@@ -33,7 +31,7 @@ export default function Preview(props: IPreview)
 
                         if (abilities.length > 0) {
                             return (
-                                <Actions actions={actions} abilities={abilities} />
+                                null
                             )   
                         }
                     }

@@ -14,7 +14,7 @@ export default function Header()
                 <div className={styles.logo}>
                     <Link href="/"><h2>Nevermore</h2></Link>
                 </div>
-                <nav>
+                <nav>я
                     <ul>
                         <li><Link href="">Forum</Link></li>
                         <li><Link href="">Support</Link></li>

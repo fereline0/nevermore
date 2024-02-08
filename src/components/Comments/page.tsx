@@ -28,10 +28,9 @@ export default function Comments(props: IComments)
                                 <Member member={comment.writer} detail={comment.dateTime} />
                                 <a className={styles.actions}>
                                     <Button value={"Actions"} func={() => setStateVisibility(!stateVisibility)} />
-                                    <Dropdown getVisibility={stateVisibility} >
+                                    <Dropdown getVisibility={stateVisibility} right={true} >
                                         <Item value="Change" />
                                         <Item value="Delete" />
-                                        <Item value="Looooooong text" />
                                     </Dropdown>
                                 </a>
                             </div>

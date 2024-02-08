@@ -6,9 +6,16 @@
     border-radius: 5px;
     cursor: pointer;
     position: absolute;
-    right: 0;
     opacity: 0;
     transition: .3s;
+}
+
+.dropdown.left {
+    left: 0;
+}
+
+.dropdown.right {
+    right: 0;
 }
 
 .dropdown.active {
