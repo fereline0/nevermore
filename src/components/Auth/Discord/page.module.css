@@ -1,0 +1,13 @@
+.discord {
+    border: none;
+    background-color: rgb(88, 106, 234);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: .3s;
+}
+
+.discord:hover {
+    background-color: rgb(153, 164, 255);
+    cursor: pointer;
+}

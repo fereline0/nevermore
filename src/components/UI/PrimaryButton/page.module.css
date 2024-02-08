@@ -1,0 +1,18 @@
+.primaryButton {
+    width: 100%;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: .3s;
+}
+
+.primaryButton:hover {
+    background-color: rgb(110, 110, 110);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}

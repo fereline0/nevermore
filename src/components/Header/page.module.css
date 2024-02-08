@@ -1,0 +1,21 @@
+.header {
+    background-color: white;
+}
+
+.header .elements {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1700px;
+    padding: 15px 10px;
+    margin: 0 auto;
+}
+
+.header .elements nav ul li {
+    float: left;
+}
+
+.header .elements nav ul li:not(:last-child) {
+    padding-right: 50px;
+}

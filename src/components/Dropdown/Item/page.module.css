@@ -1,0 +1,11 @@
+.item {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: rgb(110, 110, 110);
+    transition: .3s;
+}
+
+.item:hover {
+    background-color: rgb(218, 218, 218);
+    color: black;
+}

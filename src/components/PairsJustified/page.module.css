@@ -1,0 +1,10 @@
+.row>div {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.row .label {
+    float: left;
+    width: 165px;
+}

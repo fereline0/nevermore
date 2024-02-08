@@ -1,0 +1,11 @@
+.preview {
+    text-align: center;
+}
+
+.preview>div:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.role {
+    border-radius: 5px;
+}

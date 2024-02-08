@@ -1,0 +1,28 @@
+.pagination {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+}
+
+.pagination>.page {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.pagination>.page.active {
+    pointer-events: none;
+    color: white;
+    background-color: rgb(110, 110, 110);
+}
+
+.pagination>.page:hover {
+    color: white;
+    background-color: rgb(110, 110, 110);
+}

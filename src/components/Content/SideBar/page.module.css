@@ -1,0 +1,19 @@
+.sideBar {
+    width: 240px;
+    word-wrap: break-word;
+    transition: .3s;
+}
+
+.sideBar>div {
+    top: 10px;
+    position: sticky;
+    background-color: white;
+    border-radius: 9px;
+    padding: 10px 10px;
+}
+
+@media screen and (max-width: 800px) {
+    .sideBar {
+        width: 100%;
+    }
+}

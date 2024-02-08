@@ -1,0 +1,9 @@
+.member {
+    display: flex;
+}
+
+.member .about {
+    margin-left: 10px;
+    overflow: hidden;
+    word-wrap: break-word;
+}
