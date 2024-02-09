@@ -4,6 +4,8 @@ import Main from "@/components/Content/Main/page";
 import Comments from "@/components/Comments/page";
 import Preview from "@/components/Content/SideBar/Preview/page";
 import AboutUser from "@/components/Content/Main/AboutUser/page";
+import SecondaryContent from "@/components/Content/SideBar/SecondaryContent/page";
+import MemberList from "@/components/MemberList/page";
 import { getUser } from "@/services/user";
 
 export const dynamic = 'force-dynamic'
@@ -18,6 +20,9 @@ export default async function currentUser({ params, searchParams } : { params : 
         <Content>
             <SideBar>
                 <Preview role={currentUser.role} image={currentUser.image} />
+                <SecondaryContent title="Subscribers">
+                    <MemberList members={currentUser.subscribers} columnName="subscriber" />
+                </SecondaryContent>
             </SideBar>
             <Main>
                 <AboutUser user={currentUser} />

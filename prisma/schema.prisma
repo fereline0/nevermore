@@ -43,10 +43,21 @@ model User {
   roleId            Int?
   role              Role?                  @relation(fields: [roleId], references: [id])
   detailInformation UserDetailInformation?
+  subscribed        UserSubscribers[]      @relation("subscriber")
+  subscribers       UserSubscribers[]      @relation("user")
   comments          UserComments[]         @relation("user")
   writerComments    UserComments[]         @relation("writer")
   accounts          Account[]
   sessions          Session[]
+}
+
+model UserSubscribers {
+  id  Int   @id @default(autoincrement())
+
+  subscriberId Int
+  subscriber   User @relation("subscriber", fields: [subscriberId], references: [id], onDelete: Cascade)
+  userId Int
+  user   User @relation("user", fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Role {

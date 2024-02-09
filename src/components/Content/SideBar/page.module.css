@@ -5,8 +5,6 @@
 }
 
 .sideBar>div {
-    top: 10px;
-    position: sticky;
     background-color: white;
     border-radius: 9px;
     padding: 10px 10px;

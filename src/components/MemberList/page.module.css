@@ -1,3 +1,3 @@
-.memberList ul li:not(:last-child) {
+.memberList ul>div:not(:last-child) {
     margin-bottom: 10px;
 }

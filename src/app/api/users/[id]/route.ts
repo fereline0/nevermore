@@ -1,5 +1,5 @@
-import {NextRequest, NextResponse} from "next/server";
-import {prisma} from "../../../../utils/prisma";
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/utils/prisma";
 
 export async function GET(req: NextRequest, { params } : { params : {id: number} })
 {
@@ -14,6 +14,15 @@ export async function GET(req: NextRequest, { params } : { params : {id: number}
             },
             include: {
                 detailInformation: true,
+                subscribers: {
+                    select: {
+                        subscriber: {
+                            include: {
+                                role: true,
+                            }
+                        },
+                    }
+                },
                 role: true,
                 comments: {
                     skip: pageToSkip,

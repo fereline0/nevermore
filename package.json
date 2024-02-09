@@ -18,10 +18,14 @@
     "react-dom": "^18"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^20.11.17",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "prisma": "^5.7.1",
-    "typescript": "^5"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   }
 }
