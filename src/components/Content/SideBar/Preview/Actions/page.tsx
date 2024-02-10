@@ -28,7 +28,7 @@ export default function Actions(props: IActions)
                         return (
                             <div>
                                 <Button value={action.name} func={openWinodw} />
-                                <ModalWindow title={action.name} description={action.description} func={async() => await action.func()} getVisibility={stateVisibility} setVisibility={setStateVisibility} />
+                                <ModalWindow title={action.name} description={action.description} func={action.func} getVisibility={stateVisibility} setVisibility={setStateVisibility} />
                             </div>
                         )
                     })

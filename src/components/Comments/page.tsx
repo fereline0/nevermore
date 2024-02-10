@@ -1,13 +1,13 @@
 'use client'
 
-import Pagination from "../Pagination/page";
+import Pagination from "@/components/Pagination/page";
 import styles from "./page.module.css"
-import Member from "@/components/MemberList/Member/page";
+import Member from "@/components/Member/page";
 import IPagination from "@/types/pagination.type"
 import Dropdown from "@/components/Dropdown/page";
 import Item from "@/components/Dropdown/Item/page";
 import { useState } from "react";
-import Button from "../UI/Button/page";
+import Button from "@/components/UI/Button/page";
 
 interface IComments extends IPagination
 {

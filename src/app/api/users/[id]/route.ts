@@ -23,6 +23,15 @@ export async function GET(req: NextRequest, { params } : { params : {id: number}
                         },
                     }
                 },
+                subscribed: {
+                    select: {
+                        user: {
+                            include: {
+                                role: true,
+                            }
+                        },
+                    }
+                },
                 role: true,
                 comments: {
                     skip: pageToSkip,

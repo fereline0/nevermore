@@ -4,6 +4,8 @@ import { useSession } from "next-auth/react"
 import Avatar from "./Avatar/page"
 import styles from "./page.module.css"
 import IRole from "@/types/role.type"
+import User from "@/actions/user"
+import Actions from "./Actions/page"
 
 interface IPreview
 {
@@ -31,7 +33,7 @@ export default function Preview(props: IPreview)
 
                         if (abilities.length > 0) {
                             return (
-                                null
+                                <Actions actions={User} abilities={abilities}  />
                             )   
                         }
                     }
