@@ -1,17 +1,17 @@
 .sideBar {
-    width: 240px;
-    word-wrap: break-word;
-    transition: .3s;
+  width: 240px;
+  word-wrap: break-word;
+  transition: 0.3s;
 }
 
-.sideBar>div {
-    background-color: white;
-    border-radius: 9px;
-    padding: 10px 10px;
+.sideBar > div {
+  background-color: white;
+  border-radius: 9px;
+  padding: 10px 10px;
 }
 
 @media screen and (max-width: 800px) {
-    .sideBar {
-        width: 100%;
-    }
+  .sideBar {
+    width: 100%;
+  }
 }
