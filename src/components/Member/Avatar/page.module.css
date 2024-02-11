@@ -1,7 +1,7 @@
 .image {
-    width: 45px;
-    height: 45px;
-    border-radius: 30px;
-    object-fit: cover;
-    vertical-align: bottom;
+  width: 45px;
+  height: 45px;
+  border-radius: 30px;
+  object-fit: cover;
+  vertical-align: bottom;
 }

@@ -1,28 +1,28 @@
 .pagination {
-    display: flex;
-    gap: 15px;
-    list-style: none;
+  display: flex;
+  gap: 15px;
+  list-style: none;
 }
 
 .page {
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 35px;
-    height: 35px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: .3s;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .page.active {
-    pointer-events: none;
-    color: white;
-    background-color: #6e6e6e;
+  pointer-events: none;
+  color: white;
+  background-color: #6e6e6e;
 }
 
 .page:hover {
-    color: white;
-    background-color: #6e6e6e;
+  color: white;
+  background-color: #6e6e6e;
 }

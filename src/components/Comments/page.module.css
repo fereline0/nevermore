@@ -1,27 +1,27 @@
-.comments>div:not(:last-child) {
-    margin-bottom: 10px;
+.comments > div:not(:last-child) {
+  margin-bottom: 10px;
 }
 
-.commentsList>.comment {
-    background-color: white;
-    border-radius: 9px;
-    padding: 10px 10px;
+.commentsList > .comment {
+  background-color: white;
+  border-radius: 9px;
+  padding: 10px 10px;
 }
 
 .comment:not(:last-child) {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .aboutWriter {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 
 .actions {
-    text-align: right;
+  text-align: right;
 }
 
-.aboutWriter>div {
-    overflow: hidden;
+.aboutWriter > div {
+  overflow: hidden;
 }

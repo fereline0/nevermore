@@ -1,21 +1,21 @@
 .header {
-    background-color: white;
+  background-color: white;
 }
 
 .elements {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 1700px;
-    padding: 15px 10px;
-    margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1700px;
+  padding: 15px 10px;
+  margin: 0 auto;
 }
 
 .link {
-    float: left;
+  float: left;
 }
 
 .link:not(:last-child) {
-    padding-right: 50px;
+  padding-right: 50px;
 }

@@ -1,26 +1,21 @@
 import Row from "./Row/page";
 
-function toSentenceCase(text: string)
-{
-    const result = text.replace(/([A-Z])/g, " $1")
-    return result[0].toUpperCase() + result.substring(1).toLowerCase();
+function toSentenceCase(text: string) {
+  const result = text.replace(/([A-Z])/g, " $1");
+  return result[0].toUpperCase() + result.substring(1).toLowerCase();
 }
 
-interface IPairsJustified
-{
-    data: any,
+interface IPairsJustified {
+  data: any;
 }
 
-export default function PairsJustified(props: IPairsJustified)
-{
-    return (
-        <div>
-            {Object.keys(props.data).map((key) => {
-                if (props.data[key] != null)
-                    return (
-                        <Row label={toSentenceCase(key)} value={props.data[key]} />
-                    )
-            })}
-        </div>
-    )
+export default function PairsJustified(props: IPairsJustified) {
+  return (
+    <div>
+      {Object.keys(props.data).map((key) => {
+        if (props.data[key] != null)
+          return <Row label={toSentenceCase(key)} value={props.data[key]} />;
+      })}
+    </div>
+  );
 }

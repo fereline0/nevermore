@@ -8,7 +8,7 @@
   opacity: 0;
   backdrop-filter: blur(5px);
   background-color: #00000080;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .overlay.active {

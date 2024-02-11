@@ -8,10 +8,8 @@ const role = prisma.role.upsert({
         name: "User",
     },
     update: {},
-    create: { name: "User", color: "ffffaa" },
+    create: { name: "User", color: "ffffaa", abilities: {} },
 })
-
-console.log(role)
 
 }
 

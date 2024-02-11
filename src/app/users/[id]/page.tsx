@@ -9,40 +9,61 @@ import { getUser } from "@/services/user";
 import Member from "@/components/Member/page";
 import IUser from "@/types/user.type";
 
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 
-export default async function currentUser({ params, searchParams } : { params : { id: number }, searchParams: { page: number } })
-{
-    const page = searchParams.page || 1;
-    const limit = 20;
-    const currentUser = await getUser(params.id, page, limit);
-    const comments = currentUser.comments;
+export default async function currentUser({
+  params,
+  searchParams,
+}: {
+  params: { id: number };
+  searchParams: { page: number };
+}) {
+  const page = searchParams.page || 1;
+  const limit = 20;
+  const currentUser = await getUser(params.id, page, limit);
+  const comments = currentUser.comments;
 
-    return (
-        <Content>
-            <SideBar>
-                <Preview id={params.id} role={currentUser.role} image={currentUser.image} />
-                <SecondaryContent title="Subscribers">
-                    {currentUser.subscribers.map((subscriber: { subscriber: IUser }) => {
-                        return (
-                            <Member member={subscriber.subscriber} detail={subscriber.subscriber.role.name} />
-                        )
-                    })}
-                </SecondaryContent>
-                <SecondaryContent title="Subscribed">
-                    {currentUser.subscribed.map((subscriber: { user: IUser }) => {
-                        return (
-                            <Member member={subscriber.user} detail={subscriber.user.role.name} />
-                        )
-                    })}
-                </SecondaryContent>
-            </SideBar>
-            <Main>
-                <AboutUser user={currentUser} />
-                {comments.length > 0 && 
-                    <Comments total={currentUser._count.comments} limit={limit} pastPagesCount={2} futurePagesCount={4} comments={comments} />
-                }
-            </Main>
-        </Content>
-    )
+  return (
+    <Content>
+      <SideBar>
+        <Preview
+          id={params.id}
+          role={currentUser.role}
+          image={currentUser.image}
+        />
+        <SecondaryContent title="Subscribers">
+          {currentUser.subscribers.map((subscriber: { subscriber: IUser }) => {
+            return (
+              <Member
+                member={subscriber.subscriber}
+                detail={subscriber.subscriber.role.name}
+              />
+            );
+          })}
+        </SecondaryContent>
+        <SecondaryContent title="Subscribed">
+          {currentUser.subscribed.map((subscriber: { user: IUser }) => {
+            return (
+              <Member
+                member={subscriber.user}
+                detail={subscriber.user.role.name}
+              />
+            );
+          })}
+        </SecondaryContent>
+      </SideBar>
+      <Main>
+        <AboutUser user={currentUser} />
+        {comments.length > 0 && (
+          <Comments
+            total={currentUser._count.comments}
+            limit={limit}
+            pastPagesCount={2}
+            futurePagesCount={4}
+            comments={comments}
+          />
+        )}
+      </Main>
+    </Content>
+  );
 }

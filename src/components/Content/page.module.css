@@ -1,22 +1,22 @@
 .content {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
-.content>div {
-    word-wrap: break-word;
+.content > div {
+  word-wrap: break-word;
 }
 
-.content>div>div:not(:last-child) {
-    margin-bottom: 15px;
+.content > div > div:not(:last-child) {
+  margin-bottom: 15px;
 }
 
 @media screen and (max-width: 800px) {
-    .content {
-        display: block;
-    }
+  .content {
+    display: block;
+  }
 
-    .content>div:not(:last-child) {
-        margin-bottom: 15px;
-    }
+  .content > div:not(:last-child) {
+    margin-bottom: 15px;
+  }
 }

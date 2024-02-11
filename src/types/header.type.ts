@@ -1,5 +1,4 @@
-export default interface IHeader
-{
-    name: string,
-    link: string,
+export default interface IHeader {
+  name: string;
+  link: string;
 }

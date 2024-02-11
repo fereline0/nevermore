@@ -52,12 +52,12 @@ model User {
 }
 
 model UserSubscribers {
-  id  Int   @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
   subscriberId Int
   subscriber   User @relation("subscriber", fields: [subscriberId], references: [id], onDelete: Cascade)
-  userId Int
-  user   User @relation("user", fields: [userId], references: [id], onDelete: Cascade)
+  userId       Int
+  user         User @relation("user", fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Role {

@@ -1,9 +1,9 @@
 .aboutUser {
-    background-color: white;
-    border-radius: 9px;
-    padding: 5px 10px;
+  background-color: white;
+  border-radius: 9px;
+  padding: 5px 10px;
 }
 
-.aboutUser>div:not(:last-child) {
-    margin-bottom: 15px;
+.aboutUser > div:not(:last-child) {
+  margin-bottom: 15px;
 }
