@@ -4,7 +4,7 @@
     list-style: none;
 }
 
-.pagination>.page {
+.page {
     background-color: white;
     display: flex;
     justify-content: center;
@@ -16,13 +16,13 @@
     transition: .3s;
 }
 
-.pagination>.page.active {
+.page.active {
     pointer-events: none;
     color: white;
-    background-color: rgb(110, 110, 110);
+    background-color: #6e6e6e;
 }
 
-.pagination>.page:hover {
+.page:hover {
     color: white;
-    background-color: rgb(110, 110, 110);
+    background-color: #6e6e6e;
 }

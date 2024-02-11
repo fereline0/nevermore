@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import styles from "./page.module.css"
+import header from "./header";
+import IHeader from "@/types/header.type";
 import { useSession } from "next-auth/react";
 
 export default function Header()
 {
-    const { data: session } = useSession();
+    const { data: session, status } = useSession();
 
     return (
         <header className={styles.header}>
@@ -16,22 +18,26 @@ export default function Header()
                 </div>
                 <nav>
                     <ul>
-                        <li><Link href="">Forum</Link></li>
-                        <li><Link href="">Support</Link></li>
-                        <li><Link href="">Market</Link></li>
+                        {
+                            header.map((element: IHeader) => {
+                                return (
+                                    <li className={styles.link}><Link href={element.link}>{element.name}</Link></li>
+                                )
+                            })
+                        }
                     </ul>
                 </nav>
                 <nav>
                     <ul>
                         {
-                        session ? (
-                            <li>
+                        status == "authenticated" ? (
+                            <li className={styles.link}>
                                 <Link href={`/users/${session.user?.id}`}>
                                     {session.user?.name}
                                 </Link>
                             </li>
                         ) : (
-                            <li><Link href="/signIn">Sign in</Link></li>
+                            <li className={styles.link}><Link href="/signIn">Sign in</Link></li>
                         )}
                     </ul>
                 </nav>

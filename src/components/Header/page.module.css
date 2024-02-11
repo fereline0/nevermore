@@ -2,7 +2,7 @@
     background-color: white;
 }
 
-.header .elements {
+.elements {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -12,10 +12,10 @@
     margin: 0 auto;
 }
 
-.header .elements nav ul li {
+.link {
     float: left;
 }
 
-.header .elements nav ul li:not(:last-child) {
+.link:not(:last-child) {
     padding-right: 50px;
 }

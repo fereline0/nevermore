@@ -1,6 +1,6 @@
 .discord {
     border: none;
-    background-color: rgb(88, 106, 234);
+    background-color: #586aea;
     color: white;
     padding: 5px 10px;
     border-radius: 3px;
@@ -8,6 +8,6 @@
 }
 
 .discord:hover {
-    background-color: rgb(153, 164, 255);
+    background-color: #99a4ff;
     cursor: pointer;
 }

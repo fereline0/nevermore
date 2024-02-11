@@ -8,17 +8,17 @@
     padding: 10px 10px;
 }
 
-.commentsList>.comment:not(:last-child) {
+.comment:not(:last-child) {
     margin-bottom: 15px;
 }
 
-.comment .aboutWriter {
+.aboutWriter {
     position: relative;
     display: flex;
     justify-content: space-between;
 }
 
-.aboutWriter .actions {
+.actions {
     text-align: right;
 }
 

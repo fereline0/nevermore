@@ -10,7 +10,7 @@
 }
 
 .button:hover {
-    background-color: rgb(110, 110, 110);
+    background-color: #6e6e6e;
     color: white;
     border: none;
     padding: 5px 10px;

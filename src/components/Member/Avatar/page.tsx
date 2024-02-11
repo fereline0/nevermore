@@ -9,7 +9,7 @@ interface IAvatar
 export default function Avatar(props: IAvatar)
 {
     return (
-        <div className={styles.avatar}>
+        <div>
             <Image className={styles.image} src={props.url ? props.url : '/noAvatar.jpg'} width="90" height="90" alt="user avatar" />
         </div>
     )

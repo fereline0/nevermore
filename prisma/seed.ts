@@ -15,20 +15,8 @@ console.log(role)
 
 }
 
-main()
-
-.then(async () => {
-
-    await prisma.$disconnect()
-
-})
-
-.catch(async (e) => {
-
+main().catch(async (e) => {
     console.error(e)
-
     await prisma.$disconnect()
-
     process.exit(1)
-
 })

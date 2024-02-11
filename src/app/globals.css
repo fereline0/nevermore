@@ -14,11 +14,11 @@ li {
 }
 
 body {
-  background-color: rgb(243, 244, 246);
+  background-color: #f3f4f6;
 }
 
 a {
-  color: rgb(110, 110, 110);
+  color: #6e6e6e;
   text-decoration: none;
   transition: .3s;
 }

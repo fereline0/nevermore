@@ -51,7 +51,7 @@ const handler = NextAuth({
                 },
                 select: {
                     role: {
-                        select: {
+                        include: {
                             abilities: true,
                         }
                     },

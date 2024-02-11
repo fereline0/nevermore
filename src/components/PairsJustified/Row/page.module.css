@@ -4,7 +4,7 @@
     text-overflow: ellipsis;
 }
 
-.row .label {
+.label {
     float: left;
     width: 165px;
 }

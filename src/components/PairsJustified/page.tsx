@@ -1,4 +1,3 @@
-import styles from "./page.module.css"
 import Row from "./Row/page";
 
 function toSentenceCase(text: string)
@@ -15,7 +14,7 @@ interface IPairsJustified
 export default function PairsJustified(props: IPairsJustified)
 {
     return (
-        <div className={styles.pairsJustified}>
+        <div>
             {Object.keys(props.data).map((key) => {
                 if (props.data[key] != null)
                     return (

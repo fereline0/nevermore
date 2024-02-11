@@ -10,7 +10,7 @@
 }
 
 .dangerButton:hover {
-    background-color: rgb(255, 110, 110);
+    background-color: #ff6e6e;
     color: white;
     border: none;
     padding: 5px 10px;
