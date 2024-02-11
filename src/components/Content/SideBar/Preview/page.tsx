@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import Avatar from "./Avatar/page";
 import styles from "./page.module.css";
 import IRole from "@/types/role.type";
-import Action from "./Action/page";
+import DangerAction from "./DangerAction/page";
 import { deleteUser } from "@/services/user";
 
 interface IPreview {
@@ -32,13 +32,13 @@ export default function Preview(props: IPreview) {
           {props.role.name}
         </h3>
       </div>
-      {props.id != session?.user.id &&
-        status === "authenticated" &&
+      {status === "authenticated" &&
+        props.id != session?.user.id &&
         props.role.id < session?.user.role.id &&
         session?.user.role.abilities.map((ability: any) => {
           if (ability.slug == "deleteUser") {
             return (
-              <Action
+              <DangerAction
                 name="Delete user"
                 description="You are sure"
                 func={async () =>
@@ -51,7 +51,7 @@ export default function Preview(props: IPreview) {
           }
           if (ability.slug == "ban") {
             return (
-              <Action
+              <DangerAction
                 name="Ban"
                 description="You are sure"
                 func={async () =>

@@ -8,6 +8,8 @@ import Dropdown from "@/components/Dropdown/page";
 import Item from "@/components/Dropdown/Item/page";
 import { useState } from "react";
 import Button from "@/components/UI/Button/page";
+import Separator from "../Dropdown/Separator/page";
+import DangerItem from "../Dropdown/DangerItem/page";
 
 interface IComments extends IPagination {
   comments: any;
@@ -31,7 +33,9 @@ export default function Comments(props: IComments) {
                   />
                   <Dropdown getVisibility={stateVisibility} right={true}>
                     <Item value="Change" />
-                    <Item value="Delete" />
+                    <Item value="Viewers" />
+                    <Separator />
+                    <DangerItem value="Delete" />
                   </Dropdown>
                 </a>
               </div>

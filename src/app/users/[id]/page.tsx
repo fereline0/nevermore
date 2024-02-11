@@ -31,7 +31,12 @@ export default async function currentUser({
           role={currentUser.role}
           image={currentUser.image}
         />
-        <SecondaryContent title="Subscribers">
+
+        <SecondaryContent
+          title="Subscribers"
+          link="/"
+          counter={currentUser._count.subscribers}
+        >
           {currentUser.subscribers.map((subscriber: { subscriber: IUser }) => {
             return (
               <Member
@@ -41,7 +46,11 @@ export default async function currentUser({
             );
           })}
         </SecondaryContent>
-        <SecondaryContent title="Subscribed">
+        <SecondaryContent
+          title={"Subscribed"}
+          link="/"
+          counter={currentUser._count.subscribed}
+        >
           {currentUser.subscribed.map((subscriber: { user: IUser }) => {
             return (
               <Member

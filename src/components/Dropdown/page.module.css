@@ -1,4 +1,5 @@
 .dropdown {
+  min-width: 180px;
   margin-top: 5px;
   visibility: hidden;
   background-color: white;

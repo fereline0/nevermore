@@ -1,11 +1,11 @@
-.item {
+.dangerItem {
   padding: 5px 10px;
   border-radius: 5px;
   color: #6e6e6e;
   transition: 0.3s;
 }
 
-.item:hover {
-  background-color: #dadada;
-  color: black;
+.dangerItem:hover {
+  background-color: #ffdada;
+  color: red;
 }

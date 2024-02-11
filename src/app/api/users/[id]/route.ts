@@ -17,6 +17,14 @@ export async function GET(
       include: {
         detailInformation: true,
         subscribers: {
+          orderBy: {
+            subscriber: {
+              subscribers: {
+                _count: "desc",
+              },
+            },
+          },
+          take: 5,
           select: {
             subscriber: {
               include: {
@@ -26,6 +34,7 @@ export async function GET(
           },
         },
         subscribed: {
+          take: 5,
           select: {
             user: {
               include: {
@@ -43,7 +52,11 @@ export async function GET(
           },
         },
         _count: {
-          select: { comments: true },
+          select: {
+            comments: true,
+            subscribers: true,
+            subscribed: true,
+          },
         },
       },
     });
