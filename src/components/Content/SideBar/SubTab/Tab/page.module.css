@@ -1,0 +1,15 @@
+.tab {
+  display: block;
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 9px;
+}
+
+.tab.active {
+  color: black;
+  pointer-events: none;
+}
+
+.tab:not(:last-child) {
+  margin-bottom: 5px;
+}

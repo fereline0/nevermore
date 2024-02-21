@@ -1,7 +1,7 @@
 import Content from "@/components/Content/page";
 import SideBar from "@/components/Content/SideBar/page";
 import Main from "@/components/Content/Main/page";
-import Comments from "@/components/Comments/page";
+import UserComments from "@/components/Content/Main/UserComments/page";
 import Preview from "@/components/Content/SideBar/Preview/page";
 import AboutUser from "@/components/Content/Main/AboutUser/page";
 import SecondaryContent from "@/components/Content/SideBar/SecondaryContent/page";
@@ -11,7 +11,7 @@ import IUser from "@/types/user.type";
 
 export const dynamic = "force-dynamic";
 
-export default async function currentUser({
+export default async function user({
   params,
   searchParams,
 }: {
@@ -27,7 +27,7 @@ export default async function currentUser({
     <Content>
       <SideBar>
         <Preview
-          id={params.id}
+          id={currentUser.id}
           role={currentUser.role}
           image={currentUser.image}
         />
@@ -64,7 +64,7 @@ export default async function currentUser({
       <Main>
         <AboutUser user={currentUser} />
         {comments.length > 0 && (
-          <Comments
+          <UserComments
             total={currentUser._count.comments}
             limit={limit}
             pastPagesCount={2}

@@ -2,7 +2,7 @@ import styles from "./page.module.css";
 
 interface IButton {
   value: string;
-  func: React.MouseEventHandler<HTMLButtonElement>;
+  func?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export default function Button(props: IButton) {

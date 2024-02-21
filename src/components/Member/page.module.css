@@ -8,6 +8,6 @@
 
 .about {
   margin-left: 10px;
-  overflow: hidden;
+  overflow-x: hidden;
   word-wrap: break-word;
 }

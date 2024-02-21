@@ -1,5 +1,5 @@
 export default interface IAbility {
-  name: string;
+  value: string;
   description: string;
-  func: React.MouseEventHandler<HTMLButtonElement>;
+  func: React.MouseEventHandler<HTMLElement>;
 }

@@ -12,7 +12,6 @@ export default function Dropdown(props: IDropdown) {
 
   const className = cx({
     dropdown: true,
-    left: !props.right,
     right: props.right,
     active: props.getVisibility,
   });

@@ -1,7 +1,7 @@
 .pagination {
   display: flex;
+  flex-wrap: wrap;
   gap: 15px;
-  list-style: none;
 }
 
 .page {

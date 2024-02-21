@@ -5,8 +5,10 @@ import { useSession } from "next-auth/react";
 import Avatar from "./Avatar/page";
 import styles from "./page.module.css";
 import IRole from "@/types/role.type";
+import Action from "./Action/page";
 import DangerAction from "./DangerAction/page";
 import { deleteUser } from "@/services/user";
+import { signOut } from "next-auth/react";
 
 interface IPreview {
   id: number;
@@ -15,9 +17,8 @@ interface IPreview {
 }
 
 export default function Preview(props: IPreview) {
-  const router = useRouter();
-
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   return (
     <div className={styles.preview}>
@@ -34,35 +35,27 @@ export default function Preview(props: IPreview) {
       </div>
       {status === "authenticated" &&
         props.id != session?.user.id &&
-        props.role.id < session?.user.role.id &&
-        session?.user.role.abilities.map((ability: any) => {
-          if (ability.slug == "deleteUser") {
-            return (
-              <DangerAction
-                name="Delete user"
-                description="You are sure"
-                func={async () =>
-                  await deleteUser(props.id).then(() => {
-                    router.refresh();
-                  })
-                }
-              />
-            );
-          }
-          if (ability.slug == "ban") {
-            return (
-              <DangerAction
-                name="Ban"
-                description="You are sure"
-                func={async () =>
-                  await deleteUser(props.id).then(() => {
-                    router.refresh();
-                  })
-                }
-              />
-            );
-          }
-        })}
+        session?.user.role.abilities.some(
+          (ability: any) => ability.slug === "deleteUser"
+        ) &&
+        props.role.id < session?.user.role.id && (
+          <DangerAction
+            value="Delete account"
+            description="You are sure"
+            func={async () =>
+              await deleteUser(props.id).then(() => {
+                router.refresh();
+              })
+            }
+          />
+        )}
+      {props.id == session?.user.id && (
+        <Action
+          value="Sign out"
+          description="You are sure"
+          func={() => signOut({ callbackUrl: "/" })}
+        />
+      )}
     </div>
   );
 }

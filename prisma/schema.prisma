@@ -1,10 +1,11 @@
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 model Account {
@@ -35,20 +36,22 @@ model Session {
 }
 
 model User {
-  id                Int                    @id @default(autoincrement())
-  name              String?
-  email             String?                @unique
-  emailVerified     DateTime?
-  image             String?
-  roleId            Int?
-  role              Role?                  @relation(fields: [roleId], references: [id])
-  detailInformation UserDetailInformation?
-  subscribed        UserSubscribers[]      @relation("subscriber")
-  subscribers       UserSubscribers[]      @relation("user")
-  comments          UserComments[]         @relation("user")
-  writerComments    UserComments[]         @relation("writer")
-  accounts          Account[]
-  sessions          Session[]
+  id                    Int                    @id @default(autoincrement())
+  name                  String?
+  email                 String?                @unique
+  emailVerified         DateTime?
+  image                 String?
+  roleId                Int?
+  role                  Role?                  @relation(fields: [roleId], references: [id])
+  detailInformation     UserDetailInformation?
+  subscribed            UserSubscribers[]      @relation("subscriber")
+  subscribers           UserSubscribers[]      @relation("user")
+  comments              UserComments[]         @relation("user")
+  writerComments        UserComments[]         @relation("writer")
+  articles              Article[]
+  accounts              Account[]
+  sessions              Session[]
+  writerArticleComments ArticleComments[]
 }
 
 model UserSubscribers {
@@ -77,14 +80,18 @@ model Ability {
 }
 
 model UserComments {
-  id       Int      @id @default(autoincrement())
-  value    String
-  dateTime DateTime
+  id        Int      @id @default(autoincrement())
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
+  parentId Int?
+  parent   UserComments?  @relation("UserComments", fields: [parentId], references: [id])
+  childs   UserComments[] @relation("UserComments")
   writerId Int
-  writer   User @relation("writer", fields: [writerId], references: [id], onDelete: Cascade)
+  writer   User           @relation("writer", fields: [writerId], references: [id], onDelete: Cascade)
   userId   Int
-  user     User @relation("user", fields: [userId], references: [id], onDelete: Cascade)
+  user     User           @relation("user", fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model UserDetailInformation {
@@ -97,6 +104,52 @@ model UserDetailInformation {
 
   userId Int  @unique
   user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Section {
+  id         Int        @id @default(autoincrement())
+  name       String
+  categories Category[]
+}
+
+model Category {
+  id        Int       @id @default(autoincrement())
+  name      String
+  articles  Article[]
+  section   Section   @relation(fields: [sectionId], references: [id])
+  sectionId Int
+}
+
+model Article {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  published Boolean  @default(false)
+  title     String
+  value     String
+
+  comments   ArticleComments[]
+  authorId   Int
+  author     User              @relation(fields: [authorId], references: [id])
+  Category   Category          @relation(fields: [categoryId], references: [id])
+  categoryId Int
+
+  @@fulltext([title, value])
+}
+
+model ArticleComments {
+  id        Int      @id @default(autoincrement())
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  parentId  Int?
+  parent    ArticleComments?  @relation("ArticleComments", fields: [parentId], references: [id])
+  childs    ArticleComments[] @relation("ArticleComments")
+  writerId  Int
+  writer    User              @relation(fields: [writerId], references: [id], onDelete: Cascade)
+  articleId Int
+  article   Article           @relation(fields: [articleId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {

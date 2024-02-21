@@ -15,9 +15,9 @@ export default function Actions(props: IAbility) {
 
   return (
     <div className={styles.action}>
-      <Button value={props.name} func={openWinodw} />
+      <Button value={props.value} func={openWinodw} />
       <ModalWindow
-        title={props.name}
+        title={props.value}
         description={props.description}
         func={props.func}
         getVisibility={stateVisibility}

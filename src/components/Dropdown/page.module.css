@@ -8,14 +8,15 @@
   cursor: pointer;
   position: absolute;
   opacity: 0;
+  left: 0;
+  text-align: left;
+  z-index: 1;
   transition: 0.3s;
 }
 
-.dropdown.left {
-  left: 0;
-}
-
 .dropdown.right {
+  left: unset;
+  text-align: right;
   right: 0;
 }
 

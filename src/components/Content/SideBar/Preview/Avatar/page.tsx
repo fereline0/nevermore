@@ -10,7 +10,7 @@ export default function Avatar(props: IAvatar) {
     <div className={styles.avatar}>
       <Image
         className={styles.image}
-        src={props.url ? props.url : "/noAvatar.jpg"}
+        src={props.url ? props.url : "/no-avatar.jpg"}
         width="440"
         height="440"
         alt="user avatar"

@@ -19,3 +19,68 @@
 .link:not(:last-child) {
   padding-right: 50px;
 }
+
+.menu {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .overlay {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    backdrop-filter: blur(5px);
+    background-color: #00000080;
+    z-index: 99999;
+    transition: 0.3s;
+  }
+
+  .overlay.active {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .navigation {
+    visibility: hidden;
+    transform: translateX(-100%);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 280px;
+    background-color: white;
+    z-index: 99999;
+    transition: 0.3s;
+  }
+
+  .navigation.active {
+    visibility: visible;
+    transform: translateX(0);
+  }
+
+  .link {
+    float: none;
+  }
+
+  .link:not(:last-child) {
+    padding-bottom: 10px;
+  }
+
+  .menu {
+    display: block;
+    font-size: 1.7em;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .navigation {
+    width: 80%;
+  }
+}

@@ -45,10 +45,26 @@ export async function GET(
         },
         role: true,
         comments: {
+          where: {
+            parent: null,
+          },
           skip: pageToSkip,
           take: limit,
           include: {
-            writer: true,
+            writer: {
+              include: {
+                role: true,
+              },
+            },
+            childs: {
+              include: {
+                writer: {
+                  include: {
+                    role: true,
+                  },
+                },
+              },
+            },
           },
         },
         _count: {

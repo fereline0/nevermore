@@ -15,9 +15,9 @@ export default function DangerAction(props: IAbility) {
 
   return (
     <div className={styles.dangerAction}>
-      <DangerButton value={props.name} func={openWinodw} />
+      <DangerButton value={props.value} func={openWinodw} />
       <ModalWindow
-        title={props.name}
+        title={props.value}
         description={props.description}
         func={props.func}
         getVisibility={stateVisibility}
