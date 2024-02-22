@@ -2,7 +2,7 @@ import Pagination from "@/components/Pagination/page";
 import styles from "./page.module.css";
 import IPagination from "@/types/pagination.type";
 import IComment from "@/types/comment.type";
-import Comment from "./Comment/page";
+import Comment from "../Comment/page";
 
 interface IUserComments extends IPagination {
   comments: IComment[];

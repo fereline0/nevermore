@@ -20,7 +20,6 @@ interface Comment {
 export default function Comment(props: Comment) {
   const { data: session, status } = useSession();
   const router = useRouter();
-
   const [stateVisibility, setStateVisibility] = useState(false);
 
   return (
@@ -41,7 +40,7 @@ export default function Comment(props: Comment) {
             {status === "authenticated" &&
               (props.comment.writer.id == session?.user.id ||
                 (session?.user.role.abilities.some(
-                  (ability: any) => ability.slug === "deleteUserComment"
+                  (ability: any) => ability.slug === "deleteComment"
                 ) &&
                   props.comment.writer.role.id < session?.user.role.id)) && (
                 <>
