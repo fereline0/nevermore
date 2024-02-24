@@ -1,4 +1,4 @@
-import Discord from "@/components/Auth/Discord/page";
+import Discord from "@/components/screens/Auth/Discord/page";
 
 export default function signIn() {
   return (
