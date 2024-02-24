@@ -1,8 +1,8 @@
-import Content from "@/components/Content/page";
-import SideBar from "@/components/Content/SideBar/page";
-import Main from "@/components/Content/Main/page";
+import Content from "@/components/shared/Content/page";
+import SideBar from "@/components/shared/Content/SideBar/page";
+import Main from "@/components/shared/Content/Main/page";
 import { getSections } from "@/services/forum";
-import SubTab from "@/components/Content/SideBar/SubTab/page";
+import SubTab from "@/components/screens/SubTab/page";
 
 interface IForum {
   children: React.ReactNode;

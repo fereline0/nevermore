@@ -1,0 +1,14 @@
+.main {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.main > div:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 800px) {
+  .main {
+    overflow-x: unset;
+  }
+}

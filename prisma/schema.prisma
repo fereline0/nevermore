@@ -130,8 +130,8 @@ model Article {
 
   comments   ArticleComments[]
   authorId   Int
-  author     User              @relation(fields: [authorId], references: [id])
-  Category   Category          @relation(fields: [categoryId], references: [id])
+  author     User              @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  Category   Category          @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId Int
 
   @@fulltext([title, value])

@@ -1,0 +1,7 @@
+.avatar .image {
+  width: 220px;
+  height: 220px;
+  border-radius: 3px;
+  object-fit: cover;
+  vertical-align: bottom;
+}

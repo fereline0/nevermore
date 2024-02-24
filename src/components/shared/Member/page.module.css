@@ -1,0 +1,13 @@
+.member {
+  display: flex;
+}
+
+.member:not(:last-child) {
+  margin-bottom: 7.5px;
+}
+
+.about {
+  margin-left: 10px;
+  overflow-x: hidden;
+  word-wrap: break-word;
+}

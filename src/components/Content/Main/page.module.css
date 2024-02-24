@@ -1,7 +1,0 @@
-.main {
-  width: 100%;
-}
-
-.main > div:not(:last-child) {
-  margin-bottom: 20px;
-}

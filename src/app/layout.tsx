@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/Header/page";
-import Provider from "@/components/Auth/Provider/page";
+import Header from "@/components/screens/Header/page";
+import Provider from "@/components/screens/Auth/Provider/page";
 
 export const metadata: Metadata = {
   title: "Nevermore",

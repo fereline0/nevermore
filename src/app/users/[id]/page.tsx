@@ -1,13 +1,13 @@
-import Content from "@/components/Content/page";
-import SideBar from "@/components/Content/SideBar/page";
-import Main from "@/components/Content/Main/page";
-import UserComments from "@/components/UserComments/page";
-import Preview from "@/components/Content/SideBar/Preview/page";
-import AboutUser from "@/components/Content/Main/AboutUser/page";
-import SecondaryContent from "@/components/Content/SideBar/SecondaryContent/page";
+import Content from "@/components/shared/Content/page";
+import SideBar from "@/components/shared/Content/SideBar/page";
+import Main from "@/components/shared/Content/Main/page";
+import Preview from "@/components/screens/Preview/page";
+import AboutUser from "@/components/screens/AboutUser/page";
+import SecondaryContent from "@/components/shared/Content/SideBar/SecondaryContent/page";
 import { getUser } from "@/services/user";
-import Member from "@/components/Member/page";
+import Member from "@/components/shared/Member/page";
 import IUser from "@/types/user.type";
+import UserComments from "@/components/screens/UserComments/page";
 
 export const dynamic = "force-dynamic";
 
