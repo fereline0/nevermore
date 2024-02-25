@@ -4,6 +4,7 @@ const classNames = require("classnames/bind");
 import styles from "./page.module.css";
 import { useRouter, useSearchParams } from "next/navigation";
 import IPagination from "@/types/pagination.type";
+import { useCallback } from "react";
 
 export default function Pagination(props: IPagination) {
   const router = useRouter();
@@ -20,6 +21,16 @@ export default function Pagination(props: IPagination) {
     return Array.from({ length: length }, (_, i) => i + start);
   };
 
+  const pushSearchParams = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
   return (
     <div>
       <ul className={styles.pagination}>
@@ -34,7 +45,9 @@ export default function Pagination(props: IPagination) {
           return (
             <li
               className={className}
-              onClick={() => router.push(`?page=${page}`)}
+              onClick={() =>
+                router.push(`?${pushSearchParams("page", page.toString())}`)
+              }
             >
               {page}
             </li>

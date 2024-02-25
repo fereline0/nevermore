@@ -8,6 +8,13 @@ export async function GET(req: NextRequest) {
   const query = req.nextUrl.searchParams.get("q")?.toString();
 
   try {
+    const newUsers = await prisma.user.findMany({
+      take: 5,
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
     const users = await prisma.user.findMany({
       take: limit,
       skip: pageToSkip,
@@ -34,7 +41,7 @@ export async function GET(req: NextRequest) {
       },
     });
 
-    const res = { users, count };
+    const res = { newUsers, users, count };
 
     return NextResponse.json(res, { status: 200 });
   } catch {
