@@ -18,7 +18,7 @@ export default async function users({
   searchParams: { q: any; page: number };
 }) {
   const page = searchParams.page || 1;
-  const limit = 1;
+  const limit = 20;
   const res: { newUsers: IUser[]; users: IUser[]; count: number } =
     await getUsers(page, limit, searchParams.q);
 
