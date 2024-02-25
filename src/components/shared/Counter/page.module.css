@@ -1,0 +1,11 @@
+.counter:not(:last-child) {
+  margin-right: 15px;
+}
+
+.counter > span:not(:last-child) {
+  margin-right: 5px;
+}
+
+.icon {
+  vertical-align: sub;
+}

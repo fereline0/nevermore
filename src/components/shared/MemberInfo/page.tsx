@@ -2,15 +2,13 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import Avatar from "./Avatar/page";
 import IUser from "@/types/user.type";
-import { BiCommentDetail } from "react-icons/bi";
-import Counter from "@/components/shared/Counter/page";
 
-interface IMember {
+interface IMemberInfo {
   member: IUser;
   detail: string;
 }
 
-export default function Member(props: IMember) {
+export default function MemberInfo(props: IMemberInfo) {
   return (
     <div className={styles.member}>
       <Avatar url={props.member.image} />
@@ -18,11 +16,6 @@ export default function Member(props: IMember) {
         <Link href={`/users/${props.member.id}`}>{props.member.name}</Link>
         <div className={styles.detail}>
           <span>{props.detail}</span>
-        </div>
-        <div className={styles.counters}>
-          <Counter count={props.member._count.writerComments}>
-            <BiCommentDetail />
-          </Counter>
         </div>
       </div>
     </div>

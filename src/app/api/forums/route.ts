@@ -13,6 +13,9 @@ export async function GET(req: NextRequest) {
       where: {
         published: true,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
       include: {
         author: {
           include: {
@@ -36,7 +39,16 @@ export async function GET(req: NextRequest) {
         },
       },
     });
-    return NextResponse.json(forums, { status: 200 });
+
+    const count = await prisma.article.count({
+      where: {
+        published: true,
+      },
+    });
+
+    const res = { forums, count };
+
+    return NextResponse.json(res, { status: 200 });
   } catch {
     return NextResponse.json(
       { error: "Failed to fetch data" },

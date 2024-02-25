@@ -5,7 +5,7 @@ import Preview from "@/components/screens/Preview/page";
 import AboutUser from "@/components/screens/AboutUser/page";
 import SecondaryContent from "@/components/shared/Content/SideBar/SecondaryContent/page";
 import { getUser } from "@/services/user";
-import Member from "@/components/shared/Member/page";
+import MemberInfo from "@/components/shared/MemberInfo/page";
 import IUser from "@/types/user.type";
 import UserComments from "@/components/screens/UserComments/page";
 
@@ -39,7 +39,7 @@ export default async function user({
         >
           {currentUser.subscribers.map((subscriber: { subscriber: IUser }) => {
             return (
-              <Member
+              <MemberInfo
                 member={subscriber.subscriber}
                 detail={subscriber.subscriber.role.name}
               />
@@ -53,7 +53,7 @@ export default async function user({
         >
           {currentUser.subscribed.map((subscriber: { user: IUser }) => {
             return (
-              <Member
+              <MemberInfo
                 member={subscriber.user}
                 detail={subscriber.user.role.name}
               />

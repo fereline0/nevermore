@@ -18,6 +18,9 @@ export async function GET(
       select: {
         name: true,
         articles: {
+          orderBy: {
+            createdAt: "desc",
+          },
           where: {
             title: {
               search: query,

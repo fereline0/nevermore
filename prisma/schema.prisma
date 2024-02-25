@@ -52,6 +52,8 @@ model User {
   accounts              Account[]
   sessions              Session[]
   writerArticleComments ArticleComments[]
+
+  @@fulltext(name)
 }
 
 model UserSubscribers {

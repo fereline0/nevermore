@@ -1,8 +1,5 @@
 .member {
   display: flex;
-  background-color: white;
-  padding: 10px 10px;
-  border-radius: 9px;
 }
 
 .member:not(:last-child) {
@@ -13,8 +10,4 @@
   margin-left: 10px;
   overflow-x: hidden;
   word-wrap: break-word;
-}
-
-.counters {
-  display: flex;
 }

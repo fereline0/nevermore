@@ -1,4 +1,4 @@
-import Member from "@/components/shared/Member/page";
+import MemberInfo from "@/components/shared/MemberInfo/page";
 import styles from "./page.module.css";
 import Link from "next/link";
 import Separator from "@/components/screens/Articles/Separator/page";
@@ -30,7 +30,7 @@ export default function Article(props: Article) {
         </div>
       </div>
       <div className={styles.aboutLastWriter}>
-        <Member
+        <MemberInfo
           member={
             props.article.comments[0]
               ? props.article.comments[0].writer

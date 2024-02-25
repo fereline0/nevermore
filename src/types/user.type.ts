@@ -6,4 +6,5 @@ export default interface IUser {
   email: string;
   image: string;
   role: IRole;
+  _count: any;
 }

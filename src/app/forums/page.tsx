@@ -1,5 +1,6 @@
 import { getForums } from "@/services/forum";
 import Articles from "@/components/screens/Articles/page";
+import IArticle from "@/types/article.type";
 
 export const dynamic = "force-dynamic";
 
@@ -10,12 +11,15 @@ export default async function Forum({
 }) {
   const page = searchParams.page || 1;
   const limit = 20;
-  const category = await getForums(page, limit);
+  const res: { forums: IArticle[]; count: number } = await getForums(
+    page,
+    limit
+  );
 
   return (
     <Articles
-      articles={category}
-      total={50}
+      articles={res.forums}
+      total={res.count}
       limit={limit}
       pastPagesCount={2}
       futurePagesCount={4}
