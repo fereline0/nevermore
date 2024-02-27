@@ -8,7 +8,20 @@ export async function GET(req: NextRequest) {
         categories: true,
       },
     });
-    return NextResponse.json(sections, { status: 200 });
+
+    const articles = await prisma.article.count({
+      where: {
+        published: true,
+      },
+    });
+
+    const comments = await prisma.articleComments.count();
+
+    const count = { articles, comments };
+
+    const res = { sections, count };
+
+    return NextResponse.json(res, { status: 200 });
   } catch {
     return NextResponse.json(
       { error: "Failed to fetch data" },

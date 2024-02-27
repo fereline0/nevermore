@@ -1,3 +1,4 @@
+import styles from "./page.module.css";
 import Row from "./Row/page";
 import { formatISO9075 } from "date-fns";
 
@@ -17,7 +18,7 @@ interface IPairsJustified {
 
 export default function PairsJustified(props: IPairsJustified) {
   return (
-    <div>
+    <div className={styles.pairsJustified}>
       {Object.keys(props.data).map((key) => {
         if (props.data[key] != null)
           return (

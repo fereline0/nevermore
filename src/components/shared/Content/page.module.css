@@ -7,7 +7,8 @@
   word-wrap: break-word;
 }
 
-.content > div > div:not(:last-child) {
+.content > div > div,
+.content > div > ul:not(:last-child) {
   margin-bottom: 15px;
 }
 
