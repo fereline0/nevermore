@@ -6,9 +6,9 @@ function toSentenceCase(text: string) {
   return result[0].toUpperCase() + result.substring(1).toLowerCase();
 }
 
-function isValidDate(dateString: string): boolean {
-  const date = new Date(dateString);
-  return !isNaN(date.getTime());
+function isValidDateTime(dateTimeString: string): boolean {
+  const regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
+  return regex.test(dateTimeString);
 }
 
 interface IPairsJustified {
@@ -24,7 +24,7 @@ export default function PairsJustified(props: IPairsJustified) {
             <Row
               label={toSentenceCase(key)}
               value={
-                isValidDate(props.data[key])
+                isValidDateTime(props.data[key])
                   ? formatISO9075(props.data[key])
                   : props.data[key]
               }

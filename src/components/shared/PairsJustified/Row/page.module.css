@@ -6,5 +6,9 @@
 
 .label {
   float: left;
-  width: 165px;
+}
+
+.value {
+  text-align: right;
+  max-width: 280px;
 }
