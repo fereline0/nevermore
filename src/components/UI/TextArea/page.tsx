@@ -1,18 +1,16 @@
 import styles from "./page.module.css";
 
-interface IInput {
-  placeholder: string;
+interface ITextArea {
+  placeholder?: string;
   name?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-export default function Input(props: IInput) {
+export default function TextArea(props: ITextArea) {
   return (
-    <input
-      className={styles.input}
+    <textarea
       name={props.name}
-      type="text"
-      onChange={props.onChange}
+      className={styles.textArea}
       placeholder={props.placeholder}
     />
   );

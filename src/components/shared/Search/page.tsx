@@ -1,10 +1,9 @@
 "use client";
 
-import styles from "./page.module.css";
 import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Input from "@/components/UI/Input/page";
-import PrimaryButton from "@/components/UI/PrimaryButton/page";
+import Form from "@/components/shared/Form/page";
 
 export default function Search() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -21,16 +20,12 @@ export default function Search() {
 
   return (
     <div>
-      <form onSubmit={onSearch} className={styles.search}>
+      <Form onSubmit={onSearch} submitValue="Search">
         <Input
-          value={searchQuery}
           placeholder="Search"
           onChange={(event) => setSearchQuery(event.target.value)}
         />
-        <div>
-          <PrimaryButton value="Search" />
-        </div>
-      </form>
+      </Form>
     </div>
   );
 }

@@ -41,7 +41,7 @@ export default function Preview(props: IPreview) {
         props.role.id < session?.user.role.id && (
           <DangerAction
             value="Delete account"
-            description="You are sure"
+            description="Are you sure you want to delete the user account from the database, this action is irreversible!"
             func={async () =>
               await deleteUser(props.id).then(() => {
                 router.refresh();
@@ -52,7 +52,7 @@ export default function Preview(props: IPreview) {
       {props.id == session?.user.id && (
         <Action
           value="Sign out"
-          description="You are sure"
+          description="Are you sure you want to sign out of your account?"
           func={() => signOut({ callbackUrl: "/" })}
         />
       )}

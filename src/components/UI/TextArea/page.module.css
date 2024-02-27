@@ -1,0 +1,7 @@
+.textArea {
+  background-color: white;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  border-radius: 9px;
+  width: 100%;
+}

@@ -63,15 +63,14 @@ export default async function user({
       </SideBar>
       <Main>
         <AboutUser user={currentUser} />
-        {comments.length > 0 && (
-          <UserComments
-            total={currentUser._count.comments}
-            limit={limit}
-            pastPagesCount={2}
-            futurePagesCount={4}
-            comments={comments}
-          />
-        )}
+        <UserComments
+          total={currentUser._count.comments}
+          limit={limit}
+          pastPagesCount={2}
+          futurePagesCount={4}
+          userId={params.id}
+          comments={comments}
+        />
       </Main>
     </Content>
   );

@@ -48,6 +48,9 @@ export async function GET(
           where: {
             parent: null,
           },
+          orderBy: {
+            createdAt: "desc",
+          },
           skip: pageToSkip,
           take: limit,
           include: {

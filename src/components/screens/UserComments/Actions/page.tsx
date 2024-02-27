@@ -39,7 +39,7 @@ export default function Actions(props: IActions) {
               <Separator />
               <DangerItem
                 value="Delete"
-                description="You are sure"
+                description="Are you sure you want to permanently delete this comment?"
                 func={async () =>
                   await deleteUserComment(props.comment.id)
                     .then(() => {

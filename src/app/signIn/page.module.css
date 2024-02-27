@@ -1,0 +1,25 @@
+.signIn {
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-right: -50%;
+  padding: 10px;
+  border-radius: 9px;
+  background-color: white;
+}
+
+.signIn > div:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+@media screen and (max-width: 800px) {
+  .signIn {
+    position: unset;
+    top: unset;
+    left: unset;
+    transform: unset;
+    margin-right: unset;
+  }
+}

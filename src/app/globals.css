@@ -13,7 +13,8 @@ li {
   list-style: none;
 }
 
-input {
+input,
+textarea {
   all: unset;
 }
 

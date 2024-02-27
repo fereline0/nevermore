@@ -1,6 +1,6 @@
-.discord {
+.gitHub {
   border: none;
-  background-color: #586aea;
+  background-color: black;
   color: white;
   width: 175px;
   height: 30px;
@@ -8,7 +8,7 @@
   transition: 0.3s;
 }
 
-.discord:hover {
-  background-color: #99a4ff;
+.gitHub:hover {
+  background-color: rgb(113, 113, 113);
   cursor: pointer;
 }
