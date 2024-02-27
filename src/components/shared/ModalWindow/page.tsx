@@ -32,16 +32,29 @@ export default function ModalWindow(props: IModalWinodw) {
     return () => window.removeEventListener("keydown", closeOnEscapePressed);
   }, []);
 
+  function closeWindow() {
+    props.setVisibility(false);
+  }
+
   return (
-    <div className={className} onClick={() => props.setVisibility(false)}>
-      <div className={styles.modalWinodw} onClick={(e) => e.stopPropagation()}>
+    <div className={className} onClick={closeWindow}>
+      <div
+        className={styles.modalWinodw}
+        onClick={(event) => event.stopPropagation()}
+      >
         <div className={styles.title}>
           <h3>{props.title}</h3>
         </div>
         <div className={styles.description}>{props.description}</div>
         <div className={styles.solution}>
-          <DangerButton value={props.title} func={props.func} />
-          <Button value="Cancel" func={() => props.setVisibility(false)} />
+          <DangerButton
+            value={props.title}
+            func={(event) => {
+              props.func(event);
+              closeWindow;
+            }}
+          />
+          <Button value="Cancel" func={closeWindow} />
         </div>
       </div>
     </div>
