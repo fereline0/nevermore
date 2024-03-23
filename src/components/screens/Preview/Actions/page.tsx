@@ -35,11 +35,17 @@ export default function Actions(props: IActions) {
         />
       )}
       {pageBelong && (
-        <Action
-          value="Sign out"
-          description="Are you sure you want to sign out of your account?"
-          func={() => signOut({ callbackUrl: "/" })}
-        />
+        <>
+          <Action
+            value="Change information"
+            func={() => router.push("/users/edit/general")}
+          />
+          <DangerAction
+            value="Sign out"
+            description="Are you sure you want to sign out of your account?"
+            func={() => signOut({ callbackUrl: "/" })}
+          />
+        </>
       )}
     </div>
   );

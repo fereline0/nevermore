@@ -1,11 +1,7 @@
 import styles from "./page.module.css";
 import Row from "./Row/page";
 import { formatISO9075 } from "date-fns";
-
-function toSentenceCase(text: string) {
-  const result = text.replace(/([A-Z])/g, " $1");
-  return result[0].toUpperCase() + result.substring(1).toLowerCase();
-}
+import { toSentenceCase } from "@/utils/caseConverter";
 
 function isValidDateTime(dateTimeString: string): boolean {
   const regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
