@@ -14,6 +14,7 @@ import Form from "@/components/shared/Form/page";
 
 interface IUserComments extends IPagination {
   userId: number;
+  parentId?: number;
   comments: IComment[];
 }
 
@@ -27,9 +28,12 @@ export default function UserComments(props: IUserComments) {
         <div>
           <Form
             onSubmit={(event) =>
-              createUserComment(event, props.userId, session.user.id).then(
-                router.refresh
-              )
+              createUserComment(
+                event,
+                props.userId,
+                session.user.id,
+                props.parentId
+              ).then(router.refresh)
             }
             submitValue="Publish"
           >

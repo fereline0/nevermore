@@ -1,5 +1,6 @@
 .main {
   width: 100%;
+  overflow: hidden;
 }
 
 .main > div:not(:last-child) {
@@ -8,6 +9,6 @@
 
 @media screen and (max-width: 800px) {
   .main {
-    overflow-x: unset;
+    overflow: unset;
   }
 }

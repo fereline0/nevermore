@@ -26,12 +26,7 @@ export default async function user({
   return (
     <Content>
       <SideBar>
-        <Preview
-          id={currentUser.id}
-          role={currentUser.role}
-          image={currentUser.image}
-        />
-
+        <Preview user={currentUser} />
         <SecondaryContent
           title="Subscribers"
           link="/"

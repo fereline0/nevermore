@@ -10,8 +10,8 @@ interface IModalWinodw {
   title: string;
   description: string;
   func: React.MouseEventHandler<HTMLButtonElement>;
-  getVisibility: boolean;
-  setVisibility: any;
+  visibility: boolean;
+  setVisibility: (visible: boolean) => void;
 }
 
 export default function ModalWindow(props: IModalWinodw) {
@@ -19,13 +19,13 @@ export default function ModalWindow(props: IModalWinodw) {
 
   const className = cx({
     overlay: true,
-    active: props.getVisibility,
+    active: props.visibility,
   });
 
   useEffect(() => {
     const closeOnEscapePressed = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        props.setVisibility(false);
+        closeWindow;
       }
     };
     window.addEventListener("keydown", closeOnEscapePressed);
@@ -50,8 +50,8 @@ export default function ModalWindow(props: IModalWinodw) {
           <DangerButton
             value={props.title}
             func={(event) => {
+              closeWindow();
               props.func(event);
-              closeWindow;
             }}
           />
           <Button value="Cancel" func={closeWindow} />

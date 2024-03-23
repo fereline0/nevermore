@@ -1,11 +1,23 @@
 import commentRequest from "@/requests/comment.request";
+import { notFound } from "next/navigation";
 import { FormEvent } from "react";
 import toast from "react-hot-toast";
+
+export async function getUserComment(id: number, page: number, limit: number) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/users/comments/${id}?page=${page}&limit=${limit}`
+  );
+
+  if (!res.ok) notFound();
+
+  return res.json();
+}
 
 export async function createUserComment(
   event: FormEvent<HTMLFormElement>,
   userId: number,
-  writerId: number
+  writerId: number,
+  parentId?: number
 ) {
   event.preventDefault();
   const formData = new FormData(event.currentTarget);
@@ -13,6 +25,7 @@ export async function createUserComment(
 
   formData.append("userId", userId.toString());
   formData.append("writerId", writerId.toString());
+  parentId ? formData.append("parentId", parentId.toString()) : null;
 
   const formObject: { [key: string]: string } = {};
   formData.forEach((value, key) => {
@@ -30,7 +43,7 @@ export async function createUserComment(
   }
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/userComments`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/users/comments`,
     { method: "POST", body: formData }
   );
 
@@ -39,7 +52,7 @@ export async function createUserComment(
 
 export async function deleteUserComment(id: number) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/userComments/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/users/comments/${id}`,
     {
       method: "DELETE",
     }

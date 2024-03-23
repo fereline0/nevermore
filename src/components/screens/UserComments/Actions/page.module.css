@@ -1,0 +1,10 @@
+.icon {
+  fill: #6e6e6e;
+  font-size: 1.4em;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.icon:hover {
+  fill: black;
+}

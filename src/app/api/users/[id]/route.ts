@@ -59,15 +59,6 @@ export async function GET(
                 role: true,
               },
             },
-            childs: {
-              include: {
-                writer: {
-                  include: {
-                    role: true,
-                  },
-                },
-              },
-            },
           },
         },
         _count: {

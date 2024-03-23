@@ -1,11 +1,12 @@
 "use client";
 
 import styles from "./page.module.css";
+import Button from "@/components/UI/Button/page";
 import ModalWindow from "@/components/shared/ModalWindow/page";
-import IAbility from "@/types/ability.type";
 import { useState } from "react";
+import IAbility from "@/types/ability.type";
 
-export default function DangerItem(props: IAbility) {
+export default function Actions(props: IAbility) {
   const [visibility, setVisibility] = useState(false);
 
   function openWinodw() {
@@ -13,10 +14,8 @@ export default function DangerItem(props: IAbility) {
   }
 
   return (
-    <>
-      <li onClick={openWinodw} className={styles.dangerItem}>
-        {props.value}
-      </li>
+    <div className={styles.action}>
+      <Button value={props.value} func={openWinodw} />
       <ModalWindow
         title={props.value}
         description={props.description}
@@ -24,6 +23,6 @@ export default function DangerItem(props: IAbility) {
         visibility={visibility}
         setVisibility={setVisibility}
       />
-    </>
+    </div>
   );
 }

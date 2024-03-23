@@ -6,4 +6,5 @@ export default interface IComment {
   createdAt: string;
   updatedAt: string;
   writer: IUser;
+  childs: IComment[];
 }
