@@ -1,5 +1,6 @@
 .item {
   padding: 5px 10px;
+  cursor: pointer;
   border-radius: 5px;
   color: #6e6e6e;
   transition: 0.3s;
