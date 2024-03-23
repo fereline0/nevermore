@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Nevermore - форум для разработчиков
 
-## Getting Started
-
-First, run the development server:
+Для того, что бы протестировать проект необходимо иметь локально развернутую базу данных MySQL и NodeJS.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Для начала необходимо установить Node модули
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+После необходимо заполнить .env файл подобно экземпляру, который можно найти в дериктории проекта.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Далее выполняем миграцию в запущенную базу данных
+npx prisma migrate dev --name init
+# И запускаем проект на локальном хосте
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Форум содержит в себе
 
-## Learn More
+- гибкую систему ролей и полномочий
+- удобную систему комментирования с бесконечным уровнем вложенности
 
-To learn more about Next.js, take a look at the following resources:
+При его разработке учитывалась поддержка всех устройств, поэтому форум полностью адаптивен
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![alt text](https://github.com/fereline0/nevermore/blob/main/public/preview/users[id].png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![alt text](https://github.com/fereline0/nevermore/blob/main/public/preview/users.png)
 
-## Deploy on Vercel
+![alt text](https://github.com/fereline0/nevermore/blob/main/public/preview/modal.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![alt text](https://github.com/fereline0/nevermore/blob/main/public/preview/forums[id].png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![alt text](https://github.com/fereline0/nevermore/blob/main/public/preview/users[id](mobile).png)
