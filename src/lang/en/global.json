@@ -38,7 +38,12 @@
       "subscribed": "Subscribed"
     },
     "users": {
-      "newUsers": "New users"
+      "newUsers": "New users",
+      "edit": {
+        "general": "General",
+        "security": "Security",
+        "detailInformation": "Detail information"
+      }
     },
     "comments": {
       "publish": "Publish",
