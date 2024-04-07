@@ -1,37 +1,9 @@
-"use client";
+import Edit from "@/components/screens/Users/Edit/layout";
 
-import Tab from "@/components/shared/Tab/page";
-import Main from "@/components/shared/Content/Main/page";
-import SideBar from "@/components/shared/Content/SideBar/page";
-import Content from "@/components/shared/Content/page";
-import edit from "./edit";
-import { ITab } from "@/types/tab.type";
-
-export const dynamic = "force-dynamic";
-
-interface IEdit {
+interface ILayout {
   children: React.ReactNode;
 }
 
-export default async function Edit(props: IEdit) {
-  const menuItems = edit();
-
-  return (
-    <Content>
-      <SideBar>
-        <ul>
-          {menuItems.map((element: ITab, index) => {
-            return (
-              <Tab
-                key={index}
-                name={element.name}
-                link={`/users/edit/${element.link}`}
-              />
-            );
-          })}
-        </ul>
-      </SideBar>
-      <Main>{props.children}</Main>
-    </Content>
-  );
+export default async function Layout(props: ILayout) {
+  return <Edit>{props.children}</Edit>;
 }

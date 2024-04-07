@@ -1,16 +1,16 @@
-import Forums from "@/components/screens/Forums/layout";
+import Forum from "@/components/screens/Forums/layout";
 import { getSections } from "@/services/forum";
 import ISection from "@/types/section.type";
 
-interface IForum {
+interface ILayout {
   children: React.ReactNode;
 }
 
-export default async function Forum(props: IForum) {
+export default async function Layout(props: ILayout) {
   const res: {
     sections: ISection[];
     count: { articles: number; comments: number };
   } = await getSections();
 
-  return <Forums res={res}>{props.children}</Forums>;
+  return <Forum res={res}>{props.children}</Forum>;
 }
