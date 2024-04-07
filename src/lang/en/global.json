@@ -22,7 +22,10 @@
             "value": "Delete account",
             "description": "Are you sure you want to delete the user account from the database, this action is irreversible!"
           },
-          "signOut": "Sign out"
+          "signOut": {
+            "value": "Sign out",
+            "description": "Are you sure you want to sign out of your account?"
+          }
         }
       },
       "about": {

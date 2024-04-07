@@ -19,7 +19,11 @@ export default function SectionList(props: ISectionList) {
             <ul className={styles.categoriesList}>
               {section.categories.map((category: ICategory) => {
                 return (
-                  <Tab name={category.name} link={`/forums/${category.id}`} />
+                  <Tab
+                    key={category.id}
+                    name={category.name}
+                    link={`/forums/${category.id}`}
+                  />
                 );
               })}
             </ul>

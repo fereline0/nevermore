@@ -45,8 +45,8 @@ export default function Actions(props: IActions) {
             func={() => router.push("/users/edit/general")}
           />
           <DangerAction
-            value={t("screens:user:preview:actions:signOut")}
-            description="Are you sure you want to sign out of your account?"
+            value={t("screens:user:preview:actions:signOut:value")}
+            description={t("screens:user:preview:actions:signOut:description")}
             func={() => signOut({ callbackUrl: "/" })}
           />
         </>
