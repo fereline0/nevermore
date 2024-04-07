@@ -1,9 +1,9 @@
 import Main from "@/components/shared/Content/Main/page";
 import Content from "@/components/shared/Content/page";
 import Comment from "@/components/shared/Comment/page";
-import Actions from "@/components/screens/UserComments/Actions/page";
+import Actions from "@/components/screens/User/Comments/Actions/page";
 import { getUserComment } from "@/services/userComment";
-import UserComments from "@/components/screens/UserComments/page";
+import Comments from "@/components/screens/User/Comments/page";
 
 export const dynamic = "force-dynamic";
 
@@ -24,7 +24,7 @@ export default async function comment({
         <Comment comment={comment}>
           <Actions comment={comment} />
         </Comment>
-        <UserComments
+        <Comments
           total={comment._count.childs}
           limit={limit}
           pastPagesCount={2}

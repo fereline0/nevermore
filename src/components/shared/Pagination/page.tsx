@@ -34,7 +34,7 @@ export default function Pagination(props: IPagination) {
   return (
     <div>
       <ul className={styles.pagination}>
-        {range(startPoint, endPoint).map((page) => {
+        {range(startPoint, endPoint).map((page, index) => {
           const cx = classNames.bind(styles);
 
           const className = cx({
@@ -44,6 +44,7 @@ export default function Pagination(props: IPagination) {
 
           return (
             <li
+              key={index}
               className={className}
               onClick={() =>
                 router.push(`?${pushSearchParams("page", page.toString())}`)

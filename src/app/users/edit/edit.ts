@@ -1,11 +1,27 @@
-export default [
+import { useTranslation } from "react-i18next";
+
+interface TranslationFunction {
+  (key: string): string;
+}
+
+const getMenuItems = (t: TranslationFunction) => [
   {
-    slug: "general",
+    name: t("screens:users:edit:general"),
+    link: "general",
   },
   {
-    slug: "security",
+    name: t("screens:users:edit:security"),
+    link: "security",
   },
   {
-    slug: "detailInformation",
+    name: t("screens:users:edit:detailInformation"),
+    link: "detailInformation",
   },
 ];
+
+export default function edit() {
+  const { t } = useTranslation();
+  const items = getMenuItems(t);
+
+  return items;
+}

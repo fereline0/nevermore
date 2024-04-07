@@ -57,7 +57,17 @@ export async function GET(
         },
         _count: {
           select: {
-            articles: true,
+            articles: {
+              where: {
+                title: {
+                  search: query,
+                },
+                value: {
+                  search: query,
+                },
+                published: true,
+              },
+            },
           },
         },
       },

@@ -1,20 +1,20 @@
 "use client";
 
 import ISection from "@/types/section.type";
-import Tab from "./Tab/page";
+import Tab from "../../../shared/Tab/page";
 import styles from "./page.module.css";
 import ICategory from "@/types/category.type";
 
-interface ISubTab {
-  sections: any;
+interface ISectionList {
+  data: ISection[];
 }
 
-export default function SubTab(props: ISubTab) {
+export default function SectionList(props: ISectionList) {
   return (
     <ul>
-      {props.sections.map((section: ISection) => {
+      {props.data.map((section) => {
         return (
-          <li className={styles.section}>
+          <li key={section.id} className={styles.section}>
             {section.name}
             <ul className={styles.categoriesList}>
               {section.categories.map((category: ICategory) => {

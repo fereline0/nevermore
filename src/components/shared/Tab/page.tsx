@@ -4,11 +4,7 @@ const classNames = require("classnames/bind");
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import styles from "./page.module.css";
-
-interface ITab {
-  name: string;
-  link: string;
-}
+import { ITab } from "@/types/tab.type";
 
 export default function Tab(props: ITab) {
   const path = usePathname();

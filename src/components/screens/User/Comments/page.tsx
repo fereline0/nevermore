@@ -11,16 +11,19 @@ import { useSession } from "next-auth/react";
 import { createUserComment } from "@/services/userComment";
 import { useRouter } from "next/navigation";
 import Form from "@/components/shared/Form/page";
+import { useTranslation } from "react-i18next";
 
-interface IUserComments extends IPagination {
+interface IComments extends IPagination {
   userId: number;
   parentId?: number;
   comments: IComment[];
 }
 
-export default function UserComments(props: IUserComments) {
+export default function Comments(props: IComments) {
   const { data: session, status } = useSession();
   const router = useRouter();
+
+  const { t } = useTranslation();
 
   return (
     <div className={styles.comments}>
@@ -35,7 +38,7 @@ export default function UserComments(props: IUserComments) {
                 props.parentId
               ).then(router.refresh)
             }
-            submitValue="Publish"
+            submitValue={t("screens:comments:publish")}
           >
             <TextArea name="comment" />
           </Form>
@@ -44,7 +47,7 @@ export default function UserComments(props: IUserComments) {
       <div className={styles.commentsList}>
         {props.comments.map((comment: IComment) => {
           return (
-            <Comment comment={comment}>
+            <Comment key={comment.id} comment={comment}>
               <Actions comment={comment} />
             </Comment>
           );

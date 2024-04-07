@@ -4,6 +4,7 @@ import DangerAction from "./DangerAction/page";
 import { deleteUser } from "@/services/user";
 import { signOut, useSession } from "next-auth/react";
 import IUser from "@/types/user.type";
+import { useTranslation } from "react-i18next";
 
 interface IActions {
   user: IUser;
@@ -20,13 +21,16 @@ export default function Actions(props: IActions) {
     props.user.role.id < session?.user.role.id;
   const pageBelong = props.user.id == session?.user.id;
   const router = useRouter();
+  const { t } = useTranslation();
 
   return (
     <div>
       {canDelete && (
         <DangerAction
-          value="Delete account"
-          description="Are you sure you want to delete the user account from the database, this action is irreversible!"
+          value={t("screens:user:preview:actions:deleteAccount:value")}
+          description={t(
+            "screens:user:preview:actions:deleteAccount:description"
+          )}
           func={async () =>
             await deleteUser(props.user.id).then(() => {
               router.refresh();
@@ -37,11 +41,11 @@ export default function Actions(props: IActions) {
       {pageBelong && (
         <>
           <Action
-            value="Change information"
+            value={t("screens:user:preview:actions:changeInformation")}
             func={() => router.push("/users/edit/general")}
           />
           <DangerAction
-            value="Sign out"
+            value={t("screens:user:preview:actions:signOut")}
             description="Are you sure you want to sign out of your account?"
             func={() => signOut({ callbackUrl: "/" })}
           />

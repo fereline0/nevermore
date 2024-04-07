@@ -1,0 +1,65 @@
+{
+  "screens": {
+    "header": {
+      "forum": "Форум",
+      "market": "Маркет",
+      "support": "Поддержка"
+    },
+    "forum": {
+      "statistics": {
+        "title": "Статистика форума",
+        "data": {
+          "articlesCount": "Колличество статей",
+          "commentsCount": "Колличество комментариев"
+        }
+      }
+    },
+    "user": {
+      "preview": {
+        "actions": {
+          "changeInformation": "Изменить информацию",
+          "deleteAccount": {
+            "value": "Удалить аккаунт",
+            "description": "Вы уверены, что хотите удалить учетную запись пользователя из базы данных, это действие необратимо!"
+          },
+          "signOut": "Выйти"
+        }
+      },
+      "about": {
+        "detailInformation": {
+          "aboutMe": "Обо мне",
+          "occupation": "Род деятельности",
+          "interests": "Интересы",
+          "gender": "Пол",
+          "bithday": "День рождения"
+        }
+      },
+      "subscribers": "Подписчики",
+      "subscribed": "Подписан"
+    },
+    "users": {
+      "newUsers": "Новые пользователи",
+      "edit": {
+        "general": "Общая",
+        "security": "Безопасность",
+        "detailInformation": "Детальная информация"
+      }
+    },
+    "comments": {
+      "publish": "Опубликовать",
+      "actions": {
+        "replys": "Ответы",
+        "delete": {
+          "value": "Удалить",
+          "description": "Вы уверены, что хотите перманентно удалить этот комментарий?"
+        }
+      }
+    }
+  },
+  "shared": {
+    "search": "Искать",
+    "modalWindow": {
+      "cancel": "Отмена"
+    }
+  }
+}

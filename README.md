@@ -19,7 +19,7 @@ npm run dev
 Форум содержит в себе
 
 - гибкую систему ролей и полномочий
-- удобную систему комментирования с бесконечным уровнем вложенности
+- поддержку мультиязычности
 
 При его разработке учитывалась поддержка всех устройств, поэтому форум полностью адаптивен
 
@@ -31,4 +31,4 @@ npm run dev
 
 ![alt text](https://github.com/fereline0/nevermore/blob/main/public/preview/forums[id].png)
 
-![alt text](https://github.com/fereline0/nevermore/blob/main/public/preview/users[id](mobile).png)
+![alt text](<https://github.com/fereline0/nevermore/blob/main/public/preview/users[id](mobile).png>)

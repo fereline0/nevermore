@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Input from "@/components/UI/Input/page";
 import Form from "@/components/shared/Form/page";
+import { useTranslation } from "react-i18next";
 
 export default function Search() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -18,11 +19,13 @@ export default function Search() {
       : router.push(pathname);
   }
 
+  const { t } = useTranslation();
+
   return (
     <div>
-      <Form onSubmit={onSearch} submitValue="Search">
+      <Form onSubmit={onSearch} submitValue={t("shared:search")}>
         <Input
-          placeholder="Search"
+          placeholder={t("shared:search")}
           onChange={(event) => setSearchQuery(event.target.value)}
         />
       </Form>

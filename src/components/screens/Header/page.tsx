@@ -6,8 +6,8 @@ const classNames = require("classnames/bind");
 import Link from "next/link";
 import styles from "./page.module.css";
 import header from "./header";
-import IHeader from "@/types/header.type";
 import { useSession } from "next-auth/react";
+import { ITab } from "@/types/tab.type";
 
 export default function Header() {
   const { data: session, status } = useSession();
@@ -34,6 +34,8 @@ export default function Header() {
     active: stateVisibility,
   });
 
+  const menuItems = header();
+
   return (
     <>
       <div className={overlay} onClick={closeWindow} />
@@ -47,9 +49,9 @@ export default function Header() {
           </div>
           <nav className={navigation}>
             <ul>
-              {header.map((element: IHeader) => {
+              {menuItems.map((element: ITab, index) => {
                 return (
-                  <li className={styles.link}>
+                  <li key={index} className={styles.link}>
                     <Link href={element.link} onClick={closeWindow}>
                       {element.name}
                     </Link>

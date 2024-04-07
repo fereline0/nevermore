@@ -1,6 +1,6 @@
 import styles from "./page.module.css";
 import { getForum } from "@/services/forum";
-import Articles from "@/components/screens/Articles/page";
+import Articles from "@/components/screens/Forums/Articles/page";
 import Search from "@/components/shared/Search/page";
 
 export const dynamic = "force-dynamic";

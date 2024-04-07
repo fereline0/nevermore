@@ -1,9 +1,5 @@
+import { IRow } from "@/types/row.type";
 import styles from "./page.module.css";
-
-interface IRow {
-  label: string;
-  value: string;
-}
 
 export default function Row(props: IRow) {
   return (

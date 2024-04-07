@@ -1,5 +1,5 @@
 import { getForums } from "@/services/forum";
-import Articles from "@/components/screens/Articles/page";
+import Articles from "@/components/screens/Forums/Articles/page";
 import IArticle from "@/types/article.type";
 
 export const dynamic = "force-dynamic";

@@ -1,0 +1,60 @@
+{
+  "screens": {
+    "header": {
+      "forum": "Forum",
+      "market": "Market",
+      "support": "Support"
+    },
+    "forum": {
+      "statistics": {
+        "title": "Forum statistics",
+        "data": {
+          "articlesCount": "Articles count",
+          "commentsCount": "Comments count"
+        }
+      }
+    },
+    "user": {
+      "preview": {
+        "actions": {
+          "changeInformation": "Change information",
+          "deleteAccount": {
+            "value": "Delete account",
+            "description": "Are you sure you want to delete the user account from the database, this action is irreversible!"
+          },
+          "signOut": "Sign out"
+        }
+      },
+      "about": {
+        "detailInformation": {
+          "aboutMe": "About me",
+          "occupation": "Occupation",
+          "interests": "Interests",
+          "gender": "Gender",
+          "bithday": "Bithday"
+        }
+      },
+      "subscribers": "Subscribers",
+      "subscribed": "Subscribed"
+    },
+    "users": {
+      "newUsers": "New users"
+    },
+    "comments": {
+      "publish": "Publish",
+      "actions": {
+        "replys": "Replys",
+        "delete": {
+          "value": "Delete",
+          "description": "Are you sure you want to permanently delete this comment?"
+        }
+      }
+    }
+  },
+  "shared": {
+    "search": "Search",
+    "modalWindow": {
+      "cancel": "Cancel"
+    }
+  }
+}

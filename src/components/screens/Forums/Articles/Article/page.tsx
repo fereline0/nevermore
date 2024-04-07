@@ -1,15 +1,20 @@
+"use client";
+
 import MemberInfo from "@/components/shared/MemberInfo/page";
 import styles from "./page.module.css";
 import Link from "next/link";
-import Separator from "@/components/screens/Articles/Separator/page";
+import Separator from "@/components/screens/Forums/Articles/Separator/page";
 import IArticle from "@/types/article.type";
 import { formatDistance } from "date-fns";
+import { currentLocale } from "@/utils/currentLocale";
 
 interface Article {
   article: IArticle;
 }
 
 export default function Article(props: Article) {
+  const locale = currentLocale();
+
   return (
     <div className={styles.article}>
       <div className={styles.aboutArticle}>
@@ -25,6 +30,7 @@ export default function Article(props: Article) {
             {formatDistance(props.article.createdAt, new Date(), {
               includeSeconds: true,
               addSuffix: true,
+              locale,
             })}
           </span>
         </div>
@@ -44,6 +50,7 @@ export default function Article(props: Article) {
             {
               includeSeconds: true,
               addSuffix: true,
+              locale,
             }
           )}
         />

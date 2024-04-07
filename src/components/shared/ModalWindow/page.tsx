@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 import DangerButton from "@/components/UI/DangerButton/page";
 import Button from "@/components/UI/Button/page";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 interface IModalWinodw {
   title: string;
@@ -15,6 +16,8 @@ interface IModalWinodw {
 }
 
 export default function ModalWindow(props: IModalWinodw) {
+  const { t } = useTranslation();
+
   const cx = classNames.bind(styles);
 
   const className = cx({
@@ -54,7 +57,7 @@ export default function ModalWindow(props: IModalWinodw) {
               props.func(event);
             }}
           />
-          <Button value="Cancel" func={closeWindow} />
+          <Button value={t("shared:modalWindow:cancel")} func={closeWindow} />
         </div>
       </div>
     </div>

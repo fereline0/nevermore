@@ -1,3 +1,4 @@
+import IComment from "./comment.type";
 import IRole from "./role.type";
 
 export default interface IUser {
@@ -7,6 +8,10 @@ export default interface IUser {
   image: string;
   createdAt: string;
   updatedAt: string;
+  detailInformation: any;
   role: IRole;
+  subscribers: any[];
+  subscribed: any[];
+  comments: IComment[];
   _count: any;
 }

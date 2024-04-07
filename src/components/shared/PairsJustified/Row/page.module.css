@@ -6,6 +6,7 @@
 
 .label {
   float: left;
+  max-width: calc(100% - 40px);
 }
 
 .value {

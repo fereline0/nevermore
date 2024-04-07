@@ -2,7 +2,8 @@
   text-align: center;
 }
 
-.preview > div:not(:last-child) {
+.preview > div:not(:last-child),
+.preview > div > div:not(:last-child) {
   margin-bottom: 5px;
 }
 

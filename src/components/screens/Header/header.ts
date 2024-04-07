@@ -1,14 +1,27 @@
-export default [
+import { useTranslation } from "react-i18next";
+
+interface TranslationFunction {
+  (key: string): string;
+}
+
+const getMenuItems = (t: TranslationFunction) => [
   {
-    name: "Forum",
+    name: t("screens:header:forum"),
     link: "/forums",
   },
   {
-    name: "Support",
+    name: t("screens:header:support"),
     link: "/support",
   },
   {
-    name: "Market",
+    name: t("screens:header:market"),
     link: "/market",
   },
 ];
+
+export default function header() {
+  const { t } = useTranslation();
+  const items = getMenuItems(t);
+
+  return items;
+}
