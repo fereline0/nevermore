@@ -1,12 +1,5 @@
 .comment {
   position: relative;
-  background-color: white;
-  border-radius: 9px;
-  padding: 10px 10px;
-}
-
-.comment:not(:last-child) {
-  margin-bottom: 15px;
 }
 
 .aboutWriter {

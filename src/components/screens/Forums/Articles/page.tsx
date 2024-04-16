@@ -1,8 +1,8 @@
-import styles from "./page.module.css";
 import IArticle from "@/types/article.type";
 import Article from "./Article/page";
 import Pagination from "@/components/shared/Pagination/page";
 import IPagination from "@/types/pagination.type";
+import MarginBottom from "@/components/shared/MarginBottom/page";
 
 interface IArticles extends IPagination {
   articles: IArticle[];
@@ -10,18 +10,18 @@ interface IArticles extends IPagination {
 
 export default function Articles(props: IArticles) {
   return (
-    <div className={styles.articles}>
-      <div>
+    <MarginBottom gap={10}>
+      <MarginBottom gap={10}>
         {props.articles.map((article: IArticle) => {
           return <Article article={article} />;
         })}
-      </div>
+      </MarginBottom>
       <Pagination
         total={props.total}
         limit={props.limit}
         pastPagesCount={props.pastPagesCount}
         futurePagesCount={props.futurePagesCount}
       />
-    </div>
+    </MarginBottom>
   );
 }

@@ -1,3 +1,9 @@
 .pairsJustified {
   max-width: 400px;
 }
+
+@media screen and (max-width: 800px) {
+  .pairsJustified {
+    max-width: 100%;
+  }
+}

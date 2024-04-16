@@ -1,7 +1,0 @@
-.section:not(:last-child) {
-  margin-bottom: 15px;
-}
-
-.categoriesList {
-  margin-top: 5px;
-}

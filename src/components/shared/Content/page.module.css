@@ -7,11 +7,6 @@
   word-wrap: break-word;
 }
 
-.content > div > div,
-.content > div > ul:not(:last-child) {
-  margin-bottom: 15px;
-}
-
 @media screen and (max-width: 800px) {
   .content {
     display: block;

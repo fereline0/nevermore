@@ -3,10 +3,6 @@
   overflow: hidden;
 }
 
-.main > div:not(:last-child) {
-  margin-bottom: 20px;
-}
-
 @media screen and (max-width: 800px) {
   .main {
     overflow: unset;

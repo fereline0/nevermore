@@ -1,13 +1,6 @@
 .article {
   display: flex;
   justify-content: space-between;
-  background-color: white;
-  border-radius: 9px;
-  padding: 10px 10px;
-}
-
-.article:not(:last-child) {
-  margin-bottom: 15px;
 }
 
 .aboutArticle {
@@ -26,10 +19,6 @@
 @media screen and (max-width: 600px) {
   .article {
     display: block;
-  }
-
-  .article > div:not(:last-child) {
-    margin-bottom: 15px;
   }
 
   .aboutLastWriter {

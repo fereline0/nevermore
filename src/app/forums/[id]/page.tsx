@@ -1,11 +1,11 @@
-import styles from "./page.module.css";
 import { getForum } from "@/services/forum";
 import Articles from "@/components/screens/Forums/Articles/page";
 import Search from "@/components/shared/Search/page";
+import MarginBottom from "@/components/shared/MarginBottom/page";
 
 export const dynamic = "force-dynamic";
 
-export default async function Forum({
+export default async function forum({
   params,
   searchParams,
 }: {
@@ -17,8 +17,8 @@ export default async function Forum({
   const category = await getForum(params.id, page, limit, searchParams.q);
 
   return (
-    <div className={styles.forum}>
-      <div className={styles.title}>
+    <MarginBottom gap={10}>
+      <div>
         <h1>{category.name}</h1>
       </div>
       <Search />
@@ -29,6 +29,6 @@ export default async function Forum({
         pastPagesCount={2}
         futurePagesCount={4}
       />
-    </div>
+    </MarginBottom>
   );
 }

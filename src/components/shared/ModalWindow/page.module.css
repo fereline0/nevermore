@@ -26,9 +26,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
   margin-right: -50%;
-  padding: 5px 10px;
-  border-radius: 9px;
-  background-color: white;
 }
 
 .solution {

@@ -29,28 +29,32 @@ export default function User(props: User) {
           link="/"
           counter={props.user._count.subscribers}
         >
-          {props.user.subscribers.map((subscriber: { subscriber: IUser }) => {
-            return (
-              <MemberInfo
-                member={subscriber.subscriber}
-                detail={subscriber.subscriber.role.name}
-              />
-            );
-          })}
+          {props.user.subscribers.length > 0
+            ? props.user.subscribers.map(
+                (subscriber: { subscriber: IUser }) => (
+                  <MemberInfo
+                    key={subscriber.subscriber.id}
+                    member={subscriber.subscriber}
+                    detail={subscriber.subscriber.role.name}
+                  />
+                )
+              )
+            : null}
         </SecondaryContent>
         <SecondaryContent
           title={t("screens:user:subscribed")}
           link="/"
           counter={props.user._count.subscribed}
         >
-          {props.user.subscribed.map((subscriber: { user: IUser }) => {
-            return (
-              <MemberInfo
-                member={subscriber.user}
-                detail={subscriber.user.role.name}
-              />
-            );
-          })}
+          {props.user.subscribed.length > 0
+            ? props.user.subscribed.map((subscriber: { user: IUser }) => (
+                <MemberInfo
+                  key={subscriber.user.id}
+                  member={subscriber.user}
+                  detail={subscriber.user.role.name}
+                />
+              ))
+            : null}
         </SecondaryContent>
       </SideBar>
       <Main>

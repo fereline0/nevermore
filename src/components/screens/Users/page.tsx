@@ -4,6 +4,7 @@ import Main from "@/components/shared/Content/Main/page";
 import SecondaryContent from "@/components/shared/Content/SideBar/SecondaryContent/page";
 import SideBar from "@/components/shared/Content/SideBar/page";
 import Content from "@/components/shared/Content/page";
+import MarginBottom from "@/components/shared/MarginBottom/page";
 import Member from "@/components/shared/Member/page";
 import MemberInfo from "@/components/shared/MemberInfo/page";
 import Pagination from "@/components/shared/Pagination/page";

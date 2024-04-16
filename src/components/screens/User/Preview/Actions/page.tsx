@@ -1,10 +1,11 @@
 import { useRouter } from "next/navigation";
-import Action from "./Action/page";
 import DangerAction from "./DangerAction/page";
 import { deleteUser } from "@/services/user";
 import { signOut, useSession } from "next-auth/react";
 import IUser from "@/types/user.type";
 import { useTranslation } from "react-i18next";
+import Button from "@/components/UI/Button/page";
+import MarginBottom from "@/components/shared/MarginBottom/page";
 
 interface IActions {
   user: IUser;
@@ -25,32 +26,36 @@ export default function Actions(props: IActions) {
 
   return (
     <div>
-      {canDelete && (
-        <DangerAction
-          value={t("screens:user:preview:actions:deleteAccount:value")}
-          description={t(
-            "screens:user:preview:actions:deleteAccount:description"
-          )}
-          func={async () =>
-            await deleteUser(props.user.id).then(() => {
-              router.refresh();
-            })
-          }
-        />
-      )}
-      {pageBelong && (
-        <>
-          <Action
-            value={t("screens:user:preview:actions:changeInformation")}
-            func={() => router.push("/users/edit/general")}
-          />
+      <MarginBottom gap={5}>
+        {canDelete && (
           <DangerAction
-            value={t("screens:user:preview:actions:signOut:value")}
-            description={t("screens:user:preview:actions:signOut:description")}
-            func={() => signOut({ callbackUrl: "/" })}
+            value={t("screens:user:preview:actions:deleteAccount:value")}
+            description={t(
+              "screens:user:preview:actions:deleteAccount:description"
+            )}
+            func={async () =>
+              await deleteUser(props.user.id).then(() => {
+                router.refresh();
+              })
+            }
           />
-        </>
-      )}
+        )}
+        {pageBelong && (
+          <MarginBottom gap={5}>
+            <Button
+              value={t("screens:user:preview:actions:changeInformation")}
+              func={() => router.push(`/users/${props.user.id}/edit/general`)}
+            />
+            <DangerAction
+              value={t("screens:user:preview:actions:signOut:value")}
+              description={t(
+                "screens:user:preview:actions:signOut:description"
+              )}
+              func={() => signOut({ callbackUrl: "/" })}
+            />
+          </MarginBottom>
+        )}
+      </MarginBottom>
     </div>
   );
 }

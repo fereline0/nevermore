@@ -2,8 +2,8 @@
 
 import ISection from "@/types/section.type";
 import Tab from "../../../shared/Tab/page";
-import styles from "./page.module.css";
 import ICategory from "@/types/category.type";
+import MarginBottom from "@/components/shared/MarginBottom/page";
 
 interface ISectionList {
   data: ISection[];
@@ -12,24 +12,26 @@ interface ISectionList {
 export default function SectionList(props: ISectionList) {
   return (
     <ul>
-      {props.data.map((section) => {
-        return (
-          <li key={section.id} className={styles.section}>
-            {section.name}
-            <ul className={styles.categoriesList}>
-              {section.categories.map((category: ICategory) => {
-                return (
-                  <Tab
-                    key={category.id}
-                    name={category.name}
-                    link={`/forums/${category.id}`}
-                  />
-                );
-              })}
-            </ul>
-          </li>
-        );
-      })}
+      <MarginBottom gap={10}>
+        {props.data.map((section, index) => {
+          return (
+            <MarginBottom key={index} gap={5}>
+              {section.name}
+              <MarginBottom gap={5}>
+                {section.categories.map((category: ICategory) => {
+                  return (
+                    <Tab
+                      key={category.id}
+                      name={category.name}
+                      link={`/forums/${category.id}`}
+                    />
+                  );
+                })}
+              </MarginBottom>
+            </MarginBottom>
+          );
+        })}
+      </MarginBottom>
     </ul>
   );
 }

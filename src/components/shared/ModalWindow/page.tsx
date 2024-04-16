@@ -6,6 +6,7 @@ import DangerButton from "@/components/UI/DangerButton/page";
 import Button from "@/components/UI/Button/page";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import Section from "@/components/shared/Content/Section/page";
 
 interface IModalWinodw {
   title: string;
@@ -41,10 +42,7 @@ export default function ModalWindow(props: IModalWinodw) {
 
   return (
     <div className={className} onClick={closeWindow}>
-      <div
-        className={styles.modalWinodw}
-        onClick={(event) => event.stopPropagation()}
-      >
+      <Section className={styles.modalWinodw} padding="5px 10px">
         <div className={styles.title}>
           <h3>{props.title}</h3>
         </div>
@@ -59,7 +57,7 @@ export default function ModalWindow(props: IModalWinodw) {
           />
           <Button value={t("shared:modalWindow:cancel")} func={closeWindow} />
         </div>
-      </div>
+      </Section>
     </div>
   );
 }

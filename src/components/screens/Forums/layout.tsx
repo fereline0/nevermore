@@ -8,6 +8,7 @@ import SecondaryContent from "@/components/shared/Content/SideBar/SecondaryConte
 import PairsJustified from "@/components/shared/PairsJustified/page";
 import { useTranslation } from "react-i18next";
 import ISection from "@/types/section.type";
+import MarginBottom from "@/components/shared/MarginBottom/page";
 
 interface IForum {
   res: {

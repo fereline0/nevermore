@@ -3,10 +3,11 @@
 import MemberInfo from "@/components/shared/MemberInfo/page";
 import styles from "./page.module.css";
 import Link from "next/link";
-import Separator from "@/components/screens/Forums/Articles/Separator/page";
+import Separator from "@/components/shared/TextSeparator/page";
 import IArticle from "@/types/article.type";
 import { formatDistance } from "date-fns";
 import { currentLocale } from "@/utils/currentLocale";
+import Section from "@/components/shared/Content/Section/page";
 
 interface Article {
   article: IArticle;
@@ -16,7 +17,7 @@ export default function Article(props: Article) {
   const locale = currentLocale();
 
   return (
-    <div className={styles.article}>
+    <Section className={styles.article} padding="10px">
       <div className={styles.aboutArticle}>
         <a href="" className={styles.title}>
           {props.article.title}
@@ -55,6 +56,6 @@ export default function Article(props: Article) {
           )}
         />
       </div>
-    </div>
+    </Section>
   );
 }

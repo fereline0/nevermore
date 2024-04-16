@@ -1,8 +1,8 @@
 import IUser from "@/types/user.type";
-import styles from "./page.module.css";
 import PairsJustified from "@/components/shared/PairsJustified/page";
 import { useTranslation } from "react-i18next";
-import { formatISO9075 } from "date-fns";
+import { formatISO9075, isValid } from "date-fns";
+import Section from "@/components/shared/Content/Section/page";
 
 interface IAboutUser {
   user: IUser;
@@ -13,9 +13,9 @@ export default function About(props: IAboutUser) {
   const detailInformation = props.user.detailInformation;
 
   return (
-    <div className={styles.aboutUser}>
-      <div className={styles.general}>
-        <h1 className={styles.username}>{props.user.name}</h1>
+    <Section padding="5px 10px">
+      <div>
+        <h1>{props.user.name}</h1>
         <p>{props.user.detailInformation?.aboutMe}</p>
       </div>
       {detailInformation && (
@@ -35,11 +35,13 @@ export default function About(props: IAboutUser) {
             },
             {
               label: t("screens:user:about:detailInformation:bithday"),
-              value: formatISO9075(detailInformation.bithday),
+              value: isValid(detailInformation.bithday)
+                ? formatISO9075(detailInformation.bithday)
+                : null,
             },
           ]}
         />
       )}
-    </div>
+    </Section>
   );
 }

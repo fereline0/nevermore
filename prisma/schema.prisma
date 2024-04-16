@@ -90,7 +90,7 @@ model UserComments {
   updatedAt DateTime @updatedAt
 
   parentId Int?
-  parent   UserComments?  @relation("UserComments", fields: [parentId], references: [id])
+  parent   UserComments?  @relation("UserComments", fields: [parentId], references: [id], onDelete: Cascade)
   childs   UserComments[] @relation("UserComments")
   writerId Int
   writer   User           @relation("writer", fields: [writerId], references: [id], onDelete: Cascade)

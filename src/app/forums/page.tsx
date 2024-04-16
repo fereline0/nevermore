@@ -4,7 +4,7 @@ import IArticle from "@/types/article.type";
 
 export const dynamic = "force-dynamic";
 
-export default async function Forum({
+export default async function forums({
   searchParams,
 }: {
   searchParams: { page: number };
