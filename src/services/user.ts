@@ -54,8 +54,6 @@ export async function editGeneral(
 
   if (!res.ok) notFound();
 
-  toast.success("Data saved");
-
   return res.json();
 }
 

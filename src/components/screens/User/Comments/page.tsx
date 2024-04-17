@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import Form from "@/components/shared/Form/page";
 import { useTranslation } from "react-i18next";
 import MarginBottom from "@/components/shared/MarginBottom/page";
+import { FormEvent } from "react";
 
 interface IComments extends IPagination {
   userId: number;
@@ -25,26 +26,26 @@ export default function Comments(props: IComments) {
 
   const { t } = useTranslation();
 
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    status === "authenticated" &&
+      (await createUserComment(
+        event,
+        props.userId,
+        session.user.id,
+        props.parentId
+      ));
+    router.refresh();
+  };
+
   return (
     <div>
       <MarginBottom gap={10}>
-        {status === "authenticated" && (
-          <div>
-            <Form
-              onSubmit={(event) =>
-                createUserComment(
-                  event,
-                  props.userId,
-                  session.user.id,
-                  props.parentId
-                ).then(router.refresh)
-              }
-              submitValue={t("screens:comments:publish")}
-            >
-              <TextArea name="comment" />
-            </Form>
-          </div>
-        )}
+        <Form
+          onSubmit={handleSubmit}
+          submitValue={t("screens:comments:publish")}
+        >
+          <TextArea name="comment" />
+        </Form>
         <MarginBottom gap={10}>
           {props.comments.map((comment: IComment) => {
             return (

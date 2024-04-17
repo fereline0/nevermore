@@ -6,7 +6,7 @@ interface TranslationFunction {
 
 const getMenuItems = (t: TranslationFunction) => [
   {
-    name: t("screens:users:edit:general"),
+    name: t("screens:users:edit:general:title"),
     link: "general",
   },
   {

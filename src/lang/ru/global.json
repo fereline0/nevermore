@@ -43,9 +43,18 @@
     "users": {
       "newUsers": "Новые пользователи",
       "edit": {
-        "general": "Общая",
+        "general": {
+          "title": "Общая",
+          "description": "Изменение ключевой информации о вашей учетной записи",
+          "inputs": {
+            "name": "Имя",
+            "email": "Почта"
+          }
+        },
         "security": "Безопасность",
-        "detailInformation": "Детальная информация"
+        "detailInformation": "Детальная информация",
+        "successfulChange": "Данные сохранены",
+        "save": "Сохранить"
       }
     },
     "comments": {

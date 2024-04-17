@@ -55,7 +55,10 @@ export default function ModalWindow(props: IModalWinodw) {
               props.func(event);
             }}
           />
-          <Button value={t("shared:modalWindow:cancel")} func={closeWindow} />
+          <Button
+            value={t("shared:modalWindow:cancel")}
+            onClick={closeWindow}
+          />
         </div>
       </Section>
     </div>

@@ -43,9 +43,18 @@
     "users": {
       "newUsers": "New users",
       "edit": {
-        "general": "General",
+        "general": {
+          "title": "General",
+          "description": "Changing key information about your account",
+          "inputs": {
+            "name": "Name",
+            "email": "Email"
+          }
+        },
         "security": "Security",
-        "detailInformation": "Detail information"
+        "detailInformation": "Detail information",
+        "successfulChange": "Data saved",
+        "save": "Save"
       }
     },
     "comments": {
