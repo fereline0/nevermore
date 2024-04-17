@@ -15,7 +15,7 @@ export default function DangerAction(props: IAbility) {
 
   return (
     <div className={styles.dangerAction}>
-      <DangerButton value={props.value} func={openWinodw} />
+      <DangerButton value={props.value} onSubmit={openWinodw} />
       <ModalWindow
         title={props.value}
         description={props.description}

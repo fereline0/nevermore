@@ -44,7 +44,10 @@ export default function Actions(props: IActions) {
           <MarginBottom gap={5}>
             <Button
               value={t("screens:user:preview:actions:changeInformation")}
-              func={() => router.push(`/users/${props.user.id}/edit/general`)}
+              type="button"
+              onClick={() =>
+                router.push(`/users/${props.user.id}/edit/general`)
+              }
             />
             <DangerAction
               value={t("screens:user:preview:actions:signOut:value")}

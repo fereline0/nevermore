@@ -50,7 +50,7 @@ export default function ModalWindow(props: IModalWinodw) {
         <div className={styles.solution}>
           <DangerButton
             value={props.title}
-            func={(event) => {
+            onClick={(event) => {
               closeWindow();
               props.func(event);
             }}

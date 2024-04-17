@@ -1,13 +1,10 @@
 import styles from "./page.module.css";
 
-interface IDangerButton {
-  value: string;
-  func?: React.MouseEventHandler<HTMLButtonElement>;
-}
-
-export default function DangerButton(props: IDangerButton) {
+export default function DangerButton(
+  props: React.ButtonHTMLAttributes<HTMLButtonElement>
+) {
   return (
-    <button className={styles.dangerButton} type="submit" onClick={props.func}>
+    <button className={styles.dangerButton} {...props}>
       {props.value}
     </button>
   );

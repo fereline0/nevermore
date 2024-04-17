@@ -1,6 +1,6 @@
 import { FormEvent } from "react";
 import styles from "./page.module.css";
-import PrimaryButton from "@/components/UI/PrimaryButton/page";
+import Button from "@/components/UI/Button/page";
 
 interface IForm {
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
@@ -13,7 +13,7 @@ export default function Form(props: IForm) {
     <form onSubmit={props.onSubmit} className={styles.form}>
       {props.children}
       <div>
-        <PrimaryButton value={props.submitValue} />
+        <Button type="submit" value={props.submitValue} />
       </div>
     </form>
   );

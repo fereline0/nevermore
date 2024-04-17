@@ -1,13 +1,10 @@
 import styles from "./page.module.css";
 
-interface IButton {
-  value: string;
-  func?: React.MouseEventHandler<HTMLButtonElement>;
-}
-
-export default function Button(props: IButton) {
+export default function Button(
+  props: React.ButtonHTMLAttributes<HTMLButtonElement>
+) {
   return (
-    <button className={styles.button} type="button" onClick={props.func}>
+    <button className={styles.button} {...props}>
       {props.value}
     </button>
   );
