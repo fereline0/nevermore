@@ -52,8 +52,6 @@ export async function editGeneral(
     { method: "POST", body: formData }
   );
 
-  if (!res.ok) notFound();
-
   return res.json();
 }
 

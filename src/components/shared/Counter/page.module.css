@@ -1,11 +1,12 @@
+.counter {
+  display: flex;
+  align-items: center;
+}
+
 .counter:not(:last-child) {
   margin-right: 15px;
 }
 
-.counter > span:not(:last-child) {
+.counter > *:not(:last-child) {
   margin-right: 5px;
-}
-
-.icon {
-  vertical-align: sub;
 }

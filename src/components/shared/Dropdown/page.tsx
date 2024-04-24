@@ -7,7 +7,7 @@ interface IDropdown {
   setVisibility: (visible: boolean) => void;
   right: boolean;
   children: React.ReactNode;
-  parentRef: React.RefObject<HTMLDivElement>; // Add parentRef prop
+  parentRef: React.RefObject<HTMLDivElement>;
 }
 
 export default function Dropdown(props: IDropdown) {

@@ -8,7 +8,7 @@ interface ICounter {
 export default function Counter(props: ICounter) {
   return (
     <div className={styles.counter}>
-      <span className={styles.icon}>{props.children}</span>
+      {props.children}
       <span>{props.count}</span>
     </div>
   );

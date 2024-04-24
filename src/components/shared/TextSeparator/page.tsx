@@ -1,5 +1,5 @@
 import styles from "./page.module.css";
 
-export default function Separator() {
-  return <span className={styles.separator} />;
+export default function TextSeparator() {
+  return <span className={styles.textSeparator} />;
 }

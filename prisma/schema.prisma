@@ -51,11 +51,26 @@ model User {
   comments              UserComments[]         @relation("user")
   writerComments        UserComments[]         @relation("writer")
   articles              Article[]
+  notifications         UserNotifications[]    @relation("user")
+  writerNotifications   UserNotifications[]    @relation("writer")
   accounts              Account[]
   sessions              Session[]
   writerArticleComments ArticleComments[]
 
   @@fulltext(name)
+}
+
+model UserNotifications {
+  id        Int      @id @default(autoincrement())
+  value     String?
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  writer   User? @relation("writer", fields: [writerId], references: [id], onDelete: Cascade)
+  writerId Int?
+  User     User? @relation("user", fields: [userId], references: [id])
+  userId   Int?
 }
 
 model UserSubscribers {

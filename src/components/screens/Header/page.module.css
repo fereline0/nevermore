@@ -17,7 +17,7 @@
 }
 
 .link:not(:last-child) {
-  padding-right: 50px;
+  margin-right: 40px;
 }
 
 .menu {
@@ -65,17 +65,16 @@
     transform: translateX(0);
   }
 
-  .link {
+  .navigation .link {
     float: none;
   }
 
-  .link:not(:last-child) {
-    padding-bottom: 10px;
+  .navigation .link:not(:last-child) {
+    margin-bottom: 10px;
   }
 
   .menu {
     display: block;
-    font-size: 1.7em;
   }
 }
 
