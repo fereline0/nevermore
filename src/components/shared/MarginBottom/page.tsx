@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./page.module.css";
 
 interface IMarginBottom extends React.HTMLAttributes<HTMLDivElement> {
   gap: number;
@@ -7,7 +8,7 @@ interface IMarginBottom extends React.HTMLAttributes<HTMLDivElement> {
 
 export default function MarginBottom(props: IMarginBottom) {
   return (
-    <div {...props}>
+    <div className={styles.marginBottom} {...props}>
       {React.Children.map(props.children, (child, index) => (
         <div
           style={{

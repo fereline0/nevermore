@@ -7,6 +7,7 @@ async function main() {
       { slug: "deleteUser" },
       { slug: "deleteComment" },
       { slug: "deleteArticle" },
+      { slug: "editUser" },
       { slug: "ban" },
     ],
     skipDuplicates: true,
@@ -49,6 +50,7 @@ async function main() {
         connect: [
           { slug: "deleteComment" },
           { slug: "deleteArticle" },
+          { slug: "editUser" },
           { slug: "ban" },
         ],
       },
@@ -67,6 +69,7 @@ async function main() {
         connect: [
           { slug: "deleteComment" },
           { slug: "deleteArticle" },
+          { slug: "editUser" },
           { slug: "ban" },
           { slug: "deleteUser" },
         ],

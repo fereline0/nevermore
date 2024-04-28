@@ -69,7 +69,7 @@
     },
     "notifications": {
       "readStatuses": {
-        "read": "Прочтено",
+        "read": "Прочитанно",
         "new": "Новое"
       }
     }

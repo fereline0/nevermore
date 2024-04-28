@@ -1,22 +1,37 @@
-import { NextRequest, NextResponse } from "next/server";
+import type { IncomingHttpHeaders } from "http";
+import type { NextRequest } from "next/server";
+import { getSession } from "next-auth/react";
+import { NextResponse } from "next/server";
 
-export function middleware(request: NextRequest) {
-  const res = NextResponse.next();
+export async function middleware(req: NextRequest) {
+  const cookieHeaderValue = req.headers.get("cookie");
+  const headers: Partial<{
+    headers?: IncomingHttpHeaders;
+  }> = {};
 
-  res.headers.append("Access-Control-Allow-Credentials", "true");
-  res.headers.append("Access-Control-Allow-Origin", "*");
-  res.headers.append(
-    "Access-Control-Allow-Methods",
-    "GET,DELETE,PATCH,POST,PUT"
-  );
-  res.headers.append(
-    "Access-Control-Allow-Headers",
-    "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
-  );
+  if (cookieHeaderValue !== null) {
+    headers.headers = { cookie: cookieHeaderValue };
+  }
 
-  return res;
+  const requestForNextAuth = headers;
+
+  const session = await getSession({ req: requestForNextAuth });
+
+  if (session) {
+    const editUser = session?.user.role.abilities.some(
+      (ability: any) => ability.slug === "editUser"
+    );
+
+    const currentUser = req.nextUrl.pathname.startsWith(
+      `/users/${session.user.id}`
+    );
+
+    if (!editUser && !currentUser) {
+      return NextResponse.redirect(new URL("/", req.url));
+    }
+  }
+
+  return NextResponse.next();
 }
 
-export const config = {
-  matcher: "/api/:path*",
-};
+export const config = { matcher: ["/users/:id/edit/:path*"] };
