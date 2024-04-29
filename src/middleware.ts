@@ -13,25 +13,31 @@ export async function middleware(req: NextRequest) {
     headers.headers = { cookie: cookieHeaderValue };
   }
 
-  const requestForNextAuth = headers;
+  const session = await getSession({ req: headers });
 
-  const session = await getSession({ req: requestForNextAuth });
+  const pathname = req.nextUrl.pathname;
 
   if (session) {
     const editUser = session?.user.role.abilities.some(
       (ability: any) => ability.slug === "editUser"
     );
 
-    const currentUser = req.nextUrl.pathname.startsWith(
-      `/users/${session.user.id}`
-    );
+    const pageBelong = pathname.startsWith(`/users/${session.user.id}`);
 
-    if (!editUser && !currentUser) {
-      return NextResponse.redirect(new URL("/", req.url));
+    if (!editUser && !pageBelong && pathname.includes("edit")) {
+      return NextResponse.error();
     }
+
+    if (!pageBelong && pathname.includes("notifications")) {
+      return NextResponse.error();
+    }
+  } else {
+    return NextResponse.redirect(new URL("/signIn", req.url));
   }
 
   return NextResponse.next();
 }
 
-export const config = { matcher: ["/users/:id/edit/:path*"] };
+export const config = {
+  matcher: ["/users/:id/edit/:path*", "/users/:id/notifications"],
+};

@@ -61,11 +61,12 @@ model User {
 }
 
 model UserNotifications {
-  id        Int      @id @default(autoincrement())
-  value     String?
-  read      Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         Int      @id @default(autoincrement())
+  value      String?
+  read       Boolean  @default(false)
+  sourceLink String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   writer   User? @relation("writer", fields: [writerId], references: [id], onDelete: Cascade)
   writerId Int?

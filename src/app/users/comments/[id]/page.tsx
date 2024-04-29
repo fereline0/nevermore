@@ -30,6 +30,7 @@ export default async function comment({
           pastPagesCount={2}
           futurePagesCount={4}
           userId={comment.userId}
+          writerId={comment.writerId}
           comments={comment.childs}
           parentId={comment.id}
         />

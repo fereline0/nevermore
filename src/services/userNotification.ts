@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { FormEvent } from "react";
 
 export async function getUserNotifications(id: number) {
   const res = await fetch(
@@ -12,14 +11,16 @@ export async function getUserNotifications(id: number) {
 }
 
 export async function createUserNotification(
-  event: FormEvent<HTMLFormElement>,
+  value: string,
   userId: number,
-  writerId: number
+  writerId: number,
+  sourceLink?: string
 ) {
-  event.preventDefault();
-  const formData = new FormData(event.currentTarget);
+  const formData = new FormData();
 
+  formData.append("value", value.toString());
   formData.append("writerId", writerId.toString());
+  sourceLink ? formData.append("sourceLink", sourceLink.toString()) : null;
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}/notifications`,
@@ -31,7 +32,7 @@ export async function createUserNotification(
 
 export async function updateStatusUserNotification(userId: number) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}/notifications`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}/notifications/status`,
     { method: "POST" }
   );
 

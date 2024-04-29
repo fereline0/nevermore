@@ -16,6 +16,7 @@ import { FormEvent } from "react";
 
 interface IComments extends IPagination {
   userId: number;
+  writerId?: number;
   parentId?: number;
   comments: IComment[];
 }
@@ -32,6 +33,7 @@ export default function Comments(props: IComments) {
         event,
         props.userId,
         session.user.id,
+        props.writerId,
         props.parentId
       ));
     router.refresh();

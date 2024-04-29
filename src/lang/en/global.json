@@ -59,6 +59,10 @@
     },
     "comments": {
       "publish": "Publish",
+      "notifications": {
+        "newMessage": "New comment has been posted on your profile page",
+        "reply": "Reply to your comment has been posted"
+      },
       "actions": {
         "replys": "Replys",
         "delete": {
@@ -66,6 +70,18 @@
           "description": "Are you sure you want to permanently delete this comment?"
         }
       }
+    },
+    "notifications": {
+      "readStatuses": {
+        "read": "Read",
+        "new": "New"
+      }
+    },
+    "roles": {
+      "user": "User",
+      "moderator": "Moderator",
+      "admin": "Admin",
+      "developer": "Developer"
     }
   },
   "shared": {

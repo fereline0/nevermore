@@ -23,7 +23,7 @@ export default function Header() {
       try {
         if (status == "authenticated") {
           const res = await getUserNotifications(session.user?.id);
-          setNotificationCount(res._count);
+          setNotificationCount(res._count.notifications);
         }
       } catch (error) {
         console.error(error);
@@ -87,7 +87,7 @@ export default function Header() {
                   </li>
                   <li className={styles.link}>
                     <Link href={`/users/${session.user?.id}`}>
-                      {session.user?.name}
+                      {session.user.name}
                     </Link>
                   </li>
                 </AlightItems>

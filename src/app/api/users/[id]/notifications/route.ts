@@ -22,7 +22,11 @@ export async function GET(
         },
         _count: {
           select: {
-            notifications: true,
+            notifications: {
+              where: {
+                read: false,
+              },
+            },
           },
         },
       },
@@ -41,22 +45,25 @@ export async function POST(
   req: NextRequest,
   { params }: { params: { id: number } }
 ) {
-  try {
-    const body = await req.formData();
+  const body = await req.formData();
 
-    const data: any = {
-      notification: body.get("notification") as string,
-      writerId: Number(body.get("writerId")),
-      userId: Number(params.id),
-      read: false,
-    };
+  const sourceLink = body.get("sourceLink") as string;
+  const data: any = {
+    value: body.get("value") as string,
+    writerId: Number(body.get("writerId")),
+    userId: Number(params.id),
+    read: false,
+  };
 
-    const notification = await prisma.userNotifications.create({
-      data,
-    });
-
-    return NextResponse.json(notification, { status: 200 });
-  } catch (error) {
-    return NextResponse.json(error, { status: 500 });
+  if (sourceLink !== null) {
+    data.sourceLink = sourceLink;
   }
+
+  console.log(data);
+
+  const notification = await prisma.userNotifications.create({
+    data: data,
+  });
+
+  return NextResponse.json(notification, { status: 200 });
 }

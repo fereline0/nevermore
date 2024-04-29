@@ -14,7 +14,9 @@ export default async function notifications({
 }) {
   const res: {
     notifications: INotification[];
-    _count: number;
+    _count: {
+      notifications: number;
+    };
   } = await getUserNotifications(params.id);
 
   const updateStatus = await updateStatusUserNotification(params.id);

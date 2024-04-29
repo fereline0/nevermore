@@ -2,6 +2,7 @@ import commentRequest from "@/requests/comment.request";
 import { notFound } from "next/navigation";
 import { FormEvent } from "react";
 import toast from "react-hot-toast";
+import { createUserNotification } from "./userNotification";
 
 export async function getUserComment(id: number, page: number, limit: number) {
   const res = await fetch(
@@ -16,7 +17,8 @@ export async function getUserComment(id: number, page: number, limit: number) {
 export async function createUserComment(
   event: FormEvent<HTMLFormElement>,
   userId: number,
-  writerId: number,
+  currentUserId: number,
+  writerId?: number,
   parentId?: number
 ) {
   event.preventDefault();
@@ -24,7 +26,7 @@ export async function createUserComment(
   event.currentTarget.reset();
 
   formData.append("userId", userId.toString());
-  formData.append("writerId", writerId.toString());
+  formData.append("writerId", currentUserId.toString());
   parentId ? formData.append("parentId", parentId.toString()) : null;
 
   const formObject: { [key: string]: string } = {};
@@ -47,7 +49,20 @@ export async function createUserComment(
     { method: "POST", body: formData }
   );
 
-  return res.json();
+  const responseJson = await res.json();
+
+  if (currentUserId != writerId) {
+    await createUserNotification(
+      parentId
+        ? "screens:comments:notifications:reply"
+        : "screens:comments:notifications:newMessage",
+      writerId ? writerId : userId,
+      currentUserId,
+      `/users/comments/${responseJson.id}`
+    );
+  }
+
+  return responseJson;
 }
 
 export async function deleteUserComment(id: number) {

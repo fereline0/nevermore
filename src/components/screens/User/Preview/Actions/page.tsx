@@ -20,6 +20,11 @@ export default function Actions(props: IActions) {
       (ability: any) => ability.slug === "deleteUser"
     ) &&
     props.user.role.id < session?.user.role.id;
+  const canEdit =
+    status === "authenticated" &&
+    session?.user.role.abilities.some(
+      (ability: any) => ability.slug === "editUser"
+    );
   const pageBelong = props.user.id == session?.user.id;
   const router = useRouter();
   const { t } = useTranslation();
@@ -40,23 +45,19 @@ export default function Actions(props: IActions) {
             }
           />
         )}
+        {(pageBelong || canEdit) && (
+          <Button
+            value={t("screens:user:preview:actions:changeInformation")}
+            type="button"
+            onClick={() => router.push(`/users/${props.user.id}/edit/general`)}
+          />
+        )}
         {pageBelong && (
-          <MarginBottom gap={5}>
-            <Button
-              value={t("screens:user:preview:actions:changeInformation")}
-              type="button"
-              onClick={() =>
-                router.push(`/users/${props.user.id}/edit/general`)
-              }
-            />
-            <DangerAction
-              value={t("screens:user:preview:actions:signOut:value")}
-              description={t(
-                "screens:user:preview:actions:signOut:description"
-              )}
-              func={() => signOut({ callbackUrl: "/" })}
-            />
-          </MarginBottom>
+          <DangerAction
+            value={t("screens:user:preview:actions:signOut:value")}
+            description={t("screens:user:preview:actions:signOut:description")}
+            func={() => signOut({ callbackUrl: "/" })}
+          />
         )}
       </MarginBottom>
     </div>

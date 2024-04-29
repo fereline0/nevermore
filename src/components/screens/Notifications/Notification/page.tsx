@@ -23,9 +23,15 @@ export default function Notification(props: Notification) {
     <Section padding="10px 10px">
       <div className={styles.notification}>
         <div>
-          <Link href={"/"}>{props.notification.value}</Link>
+          {props.notification.sourceLink ? (
+            <Link href={props.notification.sourceLink}>
+              {t(props.notification.value)}
+            </Link>
+          ) : (
+            <h4>{props.notification.value}</h4>
+          )}
           <p>
-            {formatDistance(props.notification.updatedAt, new Date(), {
+            {formatDistance(props.notification.createdAt, new Date(), {
               includeSeconds: true,
               addSuffix: true,
               locale,
@@ -38,7 +44,7 @@ export default function Notification(props: Notification) {
         </div>
         <MemberInfo
           member={props.notification.writer}
-          detail={props.notification.writer.role.name}
+          detail={t(props.notification.writer.role.name)}
         />
       </div>
     </Section>
