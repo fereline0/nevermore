@@ -25,7 +25,7 @@ export default function Forum(props: IForum) {
     <Content>
       <SideBar>
         <Sectionlist data={props.res.sections} />
-        <SecondaryContent title={t("screens:forum:statistics:title")} link="">
+        <SecondaryContent title={t("screens:forum:statistics:title")}>
           <PairsJustified
             data={[
               {

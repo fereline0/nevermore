@@ -1,4 +1,5 @@
 import User from "@/components/screens/User/page";
+import { getRoles } from "@/services/roles";
 import { getUser } from "@/services/user";
 
 export const dynamic = "force-dynamic";
@@ -13,6 +14,7 @@ export default async function user({
   const page = searchParams.page || 1;
   const limit = 20;
   const currentUser = await getUser(params.id, page, limit);
+  const roles = await getRoles();
 
-  return <User id={params.id} limit={limit} user={currentUser} />;
+  return <User id={params.id} limit={limit} user={currentUser} roles={roles} />;
 }

@@ -45,25 +45,27 @@ export async function POST(
   req: NextRequest,
   { params }: { params: { id: number } }
 ) {
-  const body = await req.formData();
+  try {
+    const body = await req.formData();
 
-  const sourceLink = body.get("sourceLink") as string;
-  const data: any = {
-    value: body.get("value") as string,
-    writerId: Number(body.get("writerId")),
-    userId: Number(params.id),
-    read: false,
-  };
+    const sourceLink = body.get("sourceLink") as string;
+    const data: any = {
+      value: body.get("value") as string,
+      writerId: Number(body.get("writerId")),
+      userId: Number(params.id),
+      read: false,
+    };
 
-  if (sourceLink !== null) {
-    data.sourceLink = sourceLink;
+    if (sourceLink !== null) {
+      data.sourceLink = sourceLink;
+    }
+
+    const notification = await prisma.userNotifications.create({
+      data: data,
+    });
+
+    return NextResponse.json(notification, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(error, { status: 500 });
   }
-
-  console.log(data);
-
-  const notification = await prisma.userNotifications.create({
-    data: data,
-  });
-
-  return NextResponse.json(notification, { status: 200 });
 }

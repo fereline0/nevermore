@@ -62,5 +62,6 @@ export async function deleteUser(id: number) {
       method: "DELETE",
     }
   );
+
   return res.json();
 }

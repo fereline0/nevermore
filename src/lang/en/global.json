@@ -45,7 +45,7 @@
       "edit": {
         "general": {
           "title": "General",
-          "description": "Changing key information about your account",
+          "description": "Changing key information for this account",
           "inputs": {
             "name": "Name",
             "email": "Email"
@@ -53,6 +53,10 @@
         },
         "security": "Security",
         "detailInformation": "Detail information",
+        "permissions": {
+          "title": "Permissions",
+          "description": "Changing right and policies for this account"
+        },
         "successfulChange": "Data saved",
         "save": "Save"
       }

@@ -24,7 +24,8 @@ export default function Actions(props: IActions) {
     status === "authenticated" &&
     session?.user.role.abilities.some(
       (ability: any) => ability.slug === "editUser"
-    );
+    ) &&
+    session?.user.role.id > props.user.role.id;
   const pageBelong = props.user.id == session?.user.id;
   const router = useRouter();
   const { t } = useTranslation();
@@ -32,6 +33,13 @@ export default function Actions(props: IActions) {
   return (
     <div>
       <MarginBottom gap={5}>
+        {(pageBelong || canEdit) && (
+          <Button
+            value={t("screens:user:preview:actions:changeInformation")}
+            type="button"
+            onClick={() => router.push(`/users/${props.user.id}/edit/general`)}
+          />
+        )}
         {canDelete && (
           <DangerAction
             value={t("screens:user:preview:actions:deleteAccount:value")}
@@ -43,13 +51,6 @@ export default function Actions(props: IActions) {
                 router.refresh();
               })
             }
-          />
-        )}
-        {(pageBelong || canEdit) && (
-          <Button
-            value={t("screens:user:preview:actions:changeInformation")}
-            type="button"
-            onClick={() => router.push(`/users/${props.user.id}/edit/general`)}
           />
         )}
         {pageBelong && (

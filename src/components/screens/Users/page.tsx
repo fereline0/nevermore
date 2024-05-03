@@ -26,7 +26,7 @@ export default function Users(props: IUsers) {
   return (
     <Content>
       <SideBar>
-        <SecondaryContent title={t("screens:users:newUsers")} link="">
+        <SecondaryContent title={t("screens:users:newUsers")}>
           {props.res.newUsers.map((user: IUser) => {
             return (
               <MemberInfo

@@ -58,9 +58,7 @@ export default function Actions(props: IActions) {
               description={t("screens:comments:actions:delete:description")}
               func={async () =>
                 await deleteUserComment(props.comment.id)
-                  .then(() => {
-                    router.refresh();
-                  })
+                  .then(router.refresh)
                   .then(() => {
                     setVisibility(false);
                   })

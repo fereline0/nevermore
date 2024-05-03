@@ -51,7 +51,7 @@ export async function createUserComment(
 
   const responseJson = await res.json();
 
-  if (currentUserId != writerId) {
+  if (currentUserId != (writerId ? writerId : userId)) {
     await createUserNotification(
       parentId
         ? "screens:comments:notifications:reply"
@@ -72,5 +72,6 @@ export async function deleteUserComment(id: number) {
       method: "DELETE",
     }
   );
+
   return res.json();
 }

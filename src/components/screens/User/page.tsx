@@ -10,11 +10,13 @@ import MemberInfo from "@/components/shared/MemberInfo/page";
 import IUser from "@/types/user.type";
 import UserComments from "@/components/screens/User/Comments/page";
 import { useTranslation } from "react-i18next";
+import IRole from "@/types/role.type";
 
 interface User {
   id: number;
   limit: number;
   user: IUser;
+  roles: IRole[];
 }
 
 export default function User(props: User) {
@@ -23,7 +25,7 @@ export default function User(props: User) {
   return (
     <Content>
       <SideBar>
-        <Preview user={props.user} />
+        <Preview user={props.user} roles={props.roles} />
         <SecondaryContent
           title={t("screens:user:subscribers")}
           link="/"
@@ -35,7 +37,7 @@ export default function User(props: User) {
                   <MemberInfo
                     key={subscriber.subscriber.id}
                     member={subscriber.subscriber}
-                    detail={subscriber.subscriber.role.name}
+                    detail={t(subscriber.subscriber.role.name)}
                   />
                 )
               )
@@ -51,7 +53,7 @@ export default function User(props: User) {
                 <MemberInfo
                   key={subscriber.user.id}
                   member={subscriber.user}
-                  detail={subscriber.user.role.name}
+                  detail={t(subscriber.user.role.name)}
                 />
               ))
             : null}
