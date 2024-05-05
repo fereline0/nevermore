@@ -11,8 +11,6 @@ import { notFound } from "next/navigation";
 import { getUserComment } from "@/services/userComment";
 import { useSWRConfig } from "swr";
 
-export const dynamic = "force-dynamic";
-
 export default function comment({ params }: { params: { id: number } }) {
   const [page, setPage] = useState(1);
   const limit = 20;

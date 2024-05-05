@@ -29,36 +29,6 @@ export function getUser(id: number, page: number, limit: number) {
   };
 }
 
-export async function editGeneral(
-  id: number,
-  event: FormEvent<HTMLFormElement>
-) {
-  event.preventDefault();
-  const formData = new FormData(event.currentTarget);
-
-  const formObject: { [key: string]: string } = {};
-  formData.forEach((value, key) => {
-    formObject[key] = value as string;
-  });
-
-  const validationRes = userRequest.safeParse(formObject);
-
-  if (!validationRes.success) {
-    validationRes.error.issues.forEach((error) => {
-      toast.error(error.message);
-    });
-
-    return;
-  }
-
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}/edit/general`,
-    { method: "POST", body: formData }
-  );
-
-  return res.json();
-}
-
 export async function deleteUser(id: number) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}`,

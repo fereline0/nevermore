@@ -7,8 +7,6 @@ import { notFound } from "next/navigation";
 import { useState } from "react";
 import { useSWRConfig } from "swr";
 
-export const dynamic = "force-dynamic";
-
 export default function user({ params }: { params: { id: number } }) {
   const [page, setPage] = useState(1);
   const limit = 20;
