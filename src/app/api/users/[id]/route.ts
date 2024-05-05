@@ -72,10 +72,7 @@ export async function GET(
     });
     return NextResponse.json(user, { status: 200 });
   } catch {
-    return NextResponse.json(
-      { error: "Failed to fetch data" },
-      { status: 500 }
-    );
+    return NextResponse.error();
   }
 }
 
@@ -92,9 +89,6 @@ export async function DELETE(
 
     return NextResponse.json(user, { status: 200 });
   } catch {
-    return NextResponse.json(
-      { error: "Failed to delete this user" },
-      { status: 500 }
-    );
+    return NextResponse.error();
   }
 }

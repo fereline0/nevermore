@@ -10,13 +10,11 @@ import MemberInfo from "@/components/shared/MemberInfo/page";
 import IUser from "@/types/user.type";
 import UserComments from "@/components/screens/User/Comments/page";
 import { useTranslation } from "react-i18next";
-import IRole from "@/types/role.type";
+import IPagination from "@/types/pagination.type";
 
-interface User {
-  id: number;
-  limit: number;
+interface User extends IPagination {
   user: IUser;
-  roles: IRole[];
+  refresh: () => void;
 }
 
 export default function User(props: User) {
@@ -25,7 +23,7 @@ export default function User(props: User) {
   return (
     <Content>
       <SideBar>
-        <Preview user={props.user} roles={props.roles} />
+        <Preview user={props.user} refresh={props.refresh} />
         <SecondaryContent
           title={t("screens:user:subscribers")}
           link="/"
@@ -62,12 +60,15 @@ export default function User(props: User) {
       <Main>
         <About user={props.user} />
         <UserComments
-          total={props.user._count.comments}
-          limit={props.limit}
-          pastPagesCount={2}
-          futurePagesCount={4}
-          userId={props.id}
+          userId={props.user.id}
           comments={props.user.comments}
+          total={props.total}
+          limit={props.limit}
+          pastPagesCount={props.pastPagesCount}
+          futurePagesCount={props.futurePagesCount}
+          page={props.page}
+          setPage={props.setPage}
+          refresh={props.refresh}
         />
       </Main>
     </Content>

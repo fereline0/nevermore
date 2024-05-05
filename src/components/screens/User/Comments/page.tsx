@@ -8,7 +8,6 @@ import Actions from "./Actions/page";
 import TextArea from "@/components/UI/TextArea/page";
 import { useSession } from "next-auth/react";
 import { createUserComment } from "@/services/userComment";
-import { useRouter } from "next/navigation";
 import Form from "@/components/shared/Form/page";
 import { useTranslation } from "react-i18next";
 import MarginBottom from "@/components/shared/MarginBottom/page";
@@ -19,11 +18,11 @@ interface IComments extends IPagination {
   writerId?: number;
   parentId?: number;
   comments: IComment[];
+  refresh: () => void;
 }
 
 export default function Comments(props: IComments) {
   const { data: session, status } = useSession();
-  const router = useRouter();
 
   const { t } = useTranslation();
 
@@ -36,7 +35,7 @@ export default function Comments(props: IComments) {
         props.writerId,
         props.parentId
       ));
-    router.refresh();
+    props.refresh();
   };
 
   return (
@@ -52,7 +51,7 @@ export default function Comments(props: IComments) {
           {props.comments.map((comment: IComment) => {
             return (
               <Comment key={comment.id} comment={comment}>
-                <Actions comment={comment} />
+                <Actions comment={comment} refresh={props.refresh} />
               </Comment>
             );
           })}
@@ -62,6 +61,8 @@ export default function Comments(props: IComments) {
           limit={props.limit}
           pastPagesCount={props.pastPagesCount}
           futurePagesCount={props.futurePagesCount}
+          page={props.page}
+          setPage={props.setPage}
         />
       </MarginBottom>
     </div>

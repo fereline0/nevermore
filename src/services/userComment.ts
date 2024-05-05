@@ -1,17 +1,22 @@
 import commentRequest from "@/requests/comment.request";
-import { notFound } from "next/navigation";
 import { FormEvent } from "react";
 import toast from "react-hot-toast";
 import { createUserNotification } from "./userNotification";
+import useSWR from "swr";
+import { fetcher } from "@/utils/fetcher";
+import IComment from "@/types/comment.type";
 
-export async function getUserComment(id: number, page: number, limit: number) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/users/comments/${id}?page=${page}&limit=${limit}`
-  );
+export function getUserComment(id: number, page: number, limit: number) {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/api/users/comments/${id}?page=${page}&limit=${limit}`;
 
-  if (!res.ok) notFound();
+  const { data, error, isLoading } = useSWR<IComment>(url, fetcher);
 
-  return res.json();
+  return {
+    data,
+    isLoading,
+    error,
+    url,
+  };
 }
 
 export async function createUserComment(

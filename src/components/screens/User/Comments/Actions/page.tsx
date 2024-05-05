@@ -15,6 +15,7 @@ import Separated from "@/components/shared/Dropdown/Separated/page";
 
 interface IActions {
   comment: IComment;
+  refresh: () => void;
 }
 
 export default function Actions(props: IActions) {
@@ -58,7 +59,7 @@ export default function Actions(props: IActions) {
               description={t("screens:comments:actions:delete:description")}
               func={async () =>
                 await deleteUserComment(props.comment.id)
-                  .then(router.refresh)
+                  .then(props.refresh)
                   .then(() => {
                     setVisibility(false);
                   })

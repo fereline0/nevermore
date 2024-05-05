@@ -74,9 +74,6 @@ export async function GET(
     });
     return NextResponse.json(forum, { status: 200 });
   } catch {
-    return NextResponse.json(
-      { error: "Failed to fetch data" },
-      { status: 500 }
-    );
+    return NextResponse.error();
   }
 }

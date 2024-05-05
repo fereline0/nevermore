@@ -20,17 +20,13 @@ export default function Header() {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        if (status == "authenticated") {
-          const res = await getUserNotifications(session.user?.id);
-          setNotificationCount(res._count.notifications);
-        }
-      } catch (error) {
-        console.error(error);
+      if (status == "authenticated") {
+        const res = await getUserNotifications(session.user?.id);
+        setNotificationCount(res._count.notifications);
       }
     };
     fetchData();
-  }, [status, session]);
+  }, [status]);
 
   function openWindow() {
     setStateVisibility(true);

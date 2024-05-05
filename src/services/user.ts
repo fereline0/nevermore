@@ -1,7 +1,9 @@
-import { notFound } from "next/navigation";
 import userRequest from "@/requests/user.request";
 import { FormEvent } from "react";
+import useSWR from "swr";
+import { fetcher } from "@/utils/fetcher";
 import toast from "react-hot-toast";
+import IUser from "@/types/user.type";
 
 export async function getUsers(page: number, limit: number, query: any) {
   const res = await fetch(
@@ -10,19 +12,21 @@ export async function getUsers(page: number, limit: number, query: any) {
     }`
   );
 
-  if (!res.ok) notFound();
-
+  if (!res.ok) throw new Error();
   return res.json();
 }
 
-export async function getUser(id: number, page: number, limit: number) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}?page=${page}&limit=${limit}`
-  );
+export function getUser(id: number, page: number, limit: number) {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}?page=${page}&limit=${limit}`;
 
-  if (!res.ok) notFound();
+  const { data, error, isLoading } = useSWR<IUser>(url, fetcher);
 
-  return res.json();
+  return {
+    data,
+    isLoading,
+    error,
+    url,
+  };
 }
 
 export async function editGeneral(

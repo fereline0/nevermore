@@ -1,9 +1,19 @@
 import IUser from "@/types/user.type";
+import useSWR from "swr";
+import { fetcher } from "@/utils/fetcher";
+import IRole from "@/types/role.type";
 
-export async function getRoles() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/roles`);
+export function getRoles(id: number) {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/api/users/roles/${id}`;
 
-  return res.json();
+  const { data, error, isLoading } = useSWR<IRole[]>(url, fetcher);
+
+  return {
+    data,
+    isLoading,
+    error,
+    url,
+  };
 }
 
 export async function editRole(

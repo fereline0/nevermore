@@ -43,10 +43,7 @@ export async function GET(
 
     return NextResponse.json(userComment, { status: 200 });
   } catch {
-    return NextResponse.json(
-      { error: "Failed to fetch data" },
-      { status: 500 }
-    );
+    return NextResponse.error();
   }
 }
 
@@ -63,9 +60,6 @@ export async function DELETE(
 
     return NextResponse.json(comment, { status: 200 });
   } catch {
-    return NextResponse.json(
-      { error: "Failed to delete this comment" },
-      { status: 500 }
-    );
+    return NextResponse.error();
   }
 }

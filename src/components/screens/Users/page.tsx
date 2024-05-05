@@ -15,7 +15,10 @@ import { useTranslation } from "react-i18next";
 
 interface IUsers {
   res: { newUsers: IUser[]; users: IUser[]; count: number };
+  page: number;
+  setPage: any;
   limit: number;
+  setSearchParams: any;
 }
 
 export default function Users(props: IUsers) {
@@ -43,7 +46,10 @@ export default function Users(props: IUsers) {
         </SecondaryContent>
       </SideBar>
       <Main>
-        <Search />
+        <Search
+          setPage={props.setPage}
+          setSearchParams={props.setSearchParams}
+        />
         {props.res.users.map((user: IUser) => {
           return (
             <Member key={user.id} member={user} detail={t(user.role.name)} />
@@ -52,6 +58,8 @@ export default function Users(props: IUsers) {
         <Pagination
           total={props.res.count}
           limit={props.limit}
+          page={props.page}
+          setPage={props.setPage}
           pastPagesCount={2}
           futurePagesCount={4}
         />

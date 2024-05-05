@@ -34,10 +34,7 @@ export async function GET(
 
     return NextResponse.json(userNotification, { status: 200 });
   } catch {
-    return NextResponse.json(
-      { error: "Failed to fetch data" },
-      { status: 500 }
-    );
+    return NextResponse.error();
   }
 }
 
