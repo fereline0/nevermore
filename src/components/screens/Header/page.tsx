@@ -1,32 +1,23 @@
 "use client";
 
 import { IoMenu } from "react-icons/io5";
-import { useEffect, useState } from "react";
-const classNames = require("classnames/bind");
+import { useState } from "react";
+import classNames from "classnames/bind";
 import Link from "next/link";
 import styles from "./page.module.css";
 import header from "./header";
 import { useSession } from "next-auth/react";
 import { ITab } from "@/types/tab.type";
 import Notification from "./Notification/page";
-import { getUserNotifications } from "@/services/userNotification";
+import { getUserNotificationsCount } from "@/services/userNotification";
 import AlightItems from "@/components/shared/AlightItems/page";
 
 export default function Header() {
   const { data: session, status } = useSession();
 
   const [stateVisibility, setStateVisibility] = useState(false);
-  const [notificationCount, setNotificationCount] = useState(0);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (status == "authenticated") {
-        const res = await getUserNotifications(session.user?.id);
-        setNotificationCount(res._count.notifications);
-      }
-    };
-    fetchData();
-  }, [status]);
+  const { data: count } = getUserNotificationsCount(session?.user.id);
 
   function openWindow() {
     setStateVisibility(true);
@@ -76,11 +67,13 @@ export default function Header() {
             <ul>
               {status == "authenticated" ? (
                 <AlightItems>
-                  <li className={styles.link}>
-                    <Link href={`/users/${session.user?.id}/notifications`}>
-                      <Notification count={notificationCount} />
-                    </Link>
-                  </li>
+                  {count != undefined && (
+                    <li className={styles.link}>
+                      <Link href={`/users/${session.user?.id}/notifications`}>
+                        <Notification count={count} />
+                      </Link>
+                    </li>
+                  )}
                   <li className={styles.link}>
                     <Link href={`/users/${session.user?.id}`}>
                       {session.user.name}

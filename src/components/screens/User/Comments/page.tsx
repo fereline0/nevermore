@@ -39,32 +39,27 @@ export default function Comments(props: IComments) {
   };
 
   return (
-    <div>
+    <MarginBottom gap={10}>
+      <Form onSubmit={handleSubmit} submitValue={t("screens:comments:publish")}>
+        <TextArea name="comment" />
+      </Form>
       <MarginBottom gap={10}>
-        <Form
-          onSubmit={handleSubmit}
-          submitValue={t("screens:comments:publish")}
-        >
-          <TextArea name="comment" />
-        </Form>
-        <MarginBottom gap={10}>
-          {props.comments.map((comment: IComment) => {
-            return (
-              <Comment key={comment.id} comment={comment}>
-                <Actions comment={comment} refresh={props.refresh} />
-              </Comment>
-            );
-          })}
-        </MarginBottom>
-        <Pagination
-          total={props.total}
-          limit={props.limit}
-          pastPagesCount={props.pastPagesCount}
-          futurePagesCount={props.futurePagesCount}
-          page={props.page}
-          setPage={props.setPage}
-        />
+        {props.comments.map((comment: IComment) => {
+          return (
+            <Comment key={comment.id} comment={comment}>
+              <Actions comment={comment} refresh={props.refresh} />
+            </Comment>
+          );
+        })}
       </MarginBottom>
-    </div>
+      <Pagination
+        total={props.total}
+        limit={props.limit}
+        pastPagesCount={props.pastPagesCount}
+        futurePagesCount={props.futurePagesCount}
+        page={props.page}
+        setPage={props.setPage}
+      />
+    </MarginBottom>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-const classNames = require("classnames/bind");
+import classNames from "classnames/bind";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import styles from "./page.module.css";

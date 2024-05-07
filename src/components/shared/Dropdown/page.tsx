@@ -1,4 +1,4 @@
-const classNames = require("classnames/bind");
+import classNames from "classnames/bind";
 import { useEffect } from "react";
 import styles from "./page.module.css";
 

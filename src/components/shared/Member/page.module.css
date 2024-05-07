@@ -5,10 +5,6 @@
   border-radius: 9px;
 }
 
-.member:not(:last-child) {
-  margin-bottom: 7.5px;
-}
-
 .about {
   margin-left: 10px;
   overflow-x: hidden;

@@ -1,6 +1,6 @@
 "use client";
 
-const classNames = require("classnames/bind");
+import classNames from "classnames/bind";
 import styles from "./page.module.css";
 import DangerButton from "@/components/UI/DangerButton/page";
 import Button from "@/components/UI/Button/page";

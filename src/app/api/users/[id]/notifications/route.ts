@@ -6,12 +6,17 @@ export async function GET(
   { params }: { params: { id: number } }
 ) {
   try {
+    const searchParams = req.nextUrl.searchParams;
+    const limit = Number(searchParams.get("limit"));
+    const pageToSkip = (Number(searchParams.get("page")) - 1) * limit;
     const userNotification = await prisma.user.findUniqueOrThrow({
       where: {
         id: Number(params.id),
       },
       select: {
         notifications: {
+          skip: pageToSkip,
+          take: limit,
           include: {
             writer: {
               include: {
@@ -22,11 +27,7 @@ export async function GET(
         },
         _count: {
           select: {
-            notifications: {
-              where: {
-                read: false,
-              },
-            },
+            notifications: true,
           },
         },
       },

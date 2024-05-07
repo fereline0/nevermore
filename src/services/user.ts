@@ -1,19 +1,24 @@
-import userRequest from "@/requests/user.request";
-import { FormEvent } from "react";
 import useSWR from "swr";
 import { fetcher } from "@/utils/fetcher";
-import toast from "react-hot-toast";
 import IUser from "@/types/user.type";
 
-export async function getUsers(page: number, limit: number, query: any) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/users?page=${page}&limit=${limit}${
-      query ? `&q=${query}` : ""
-    }`
-  );
+export function getUsers(page: number, limit: number, query: any) {
+  const url = `${
+    process.env.NEXT_PUBLIC_API_URL
+  }/api/users?page=${page}&limit=${limit}${query ? `&q=${query}` : ""}`;
 
-  if (!res.ok) throw new Error();
-  return res.json();
+  const { data, error, isLoading } = useSWR<{
+    newUsers: IUser[];
+    users: IUser[];
+    count: number;
+  }>(url, fetcher);
+
+  return {
+    data,
+    isLoading,
+    error,
+    url,
+  };
 }
 
 export function getUser(id: number, page: number, limit: number) {

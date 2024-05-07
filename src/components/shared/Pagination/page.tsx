@@ -1,6 +1,6 @@
 "use client";
 
-const classNames = require("classnames/bind");
+import classNames from "classnames/bind";
 import styles from "./page.module.css";
 import IPagination from "@/types/pagination.type";
 

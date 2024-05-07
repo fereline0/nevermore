@@ -8,16 +8,15 @@ import Member from "@/components/shared/Member/page";
 import MemberInfo from "@/components/shared/MemberInfo/page";
 import Pagination from "@/components/shared/Pagination/page";
 import Search from "@/components/shared/Search/page";
+import IPagination from "@/types/pagination.type";
 import IUser from "@/types/user.type";
 import { currentLocale } from "@/utils/currentLocale";
 import { formatDistance } from "date-fns";
 import { useTranslation } from "react-i18next";
 
-interface IUsers {
-  res: { newUsers: IUser[]; users: IUser[]; count: number };
-  page: number;
-  setPage: any;
-  limit: number;
+interface IUsers extends IPagination {
+  newUsers: IUser[];
+  users: IUser[];
   setSearchParams: any;
 }
 
@@ -30,7 +29,7 @@ export default function Users(props: IUsers) {
     <Content>
       <SideBar>
         <SecondaryContent title={t("screens:users:newUsers")}>
-          {props.res.newUsers.map((user: IUser) => {
+          {props.newUsers.map((user: IUser) => {
             return (
               <MemberInfo
                 key={user.id}
@@ -50,18 +49,18 @@ export default function Users(props: IUsers) {
           setPage={props.setPage}
           setSearchParams={props.setSearchParams}
         />
-        {props.res.users.map((user: IUser) => {
+        {props.users.map((user: IUser) => {
           return (
             <Member key={user.id} member={user} detail={t(user.role.name)} />
           );
         })}
         <Pagination
-          total={props.res.count}
+          total={props.total}
           limit={props.limit}
           page={props.page}
           setPage={props.setPage}
-          pastPagesCount={2}
-          futurePagesCount={4}
+          pastPagesCount={props.pastPagesCount}
+          futurePagesCount={props.futurePagesCount}
         />
       </Main>
     </Content>
