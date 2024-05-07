@@ -26,7 +26,7 @@ export default function User(props: User) {
         <Preview user={props.user} refresh={props.refresh} />
         <SecondaryContent
           title={t("screens:user:subscribers")}
-          link="/"
+          link={`/users/${props.user.id}/subscribers`}
           counter={props.user._count.subscribers}
         >
           {props.user.subscribers.length > 0
@@ -43,7 +43,7 @@ export default function User(props: User) {
         </SecondaryContent>
         <SecondaryContent
           title={t("screens:user:subscribed")}
-          link="/"
+          link={`/users/${props.user.id}/subscribers`}
           counter={props.user._count.subscribed}
         >
           {props.user.subscribed.length > 0

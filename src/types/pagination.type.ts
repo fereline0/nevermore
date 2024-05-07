@@ -2,7 +2,7 @@ export default interface IPagination {
   total: number;
   limit: number;
   page: number;
-  setPage: any;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
   pastPagesCount: number;
   futurePagesCount: number;
 }

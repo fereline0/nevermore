@@ -67,6 +67,7 @@
         "newMessage": "New comment has been posted on your profile page",
         "reply": "Reply to your comment has been posted"
       },
+      "emptyList": "There should be comments here, but there aren't any yet",
       "actions": {
         "replys": "Replys",
         "delete": {
@@ -79,7 +80,8 @@
       "readStatuses": {
         "read": "Read",
         "new": "New"
-      }
+      },
+      "emptyList": "There should be notifications here, but there aren't any yet"
     },
     "roles": {
       "user": "User",

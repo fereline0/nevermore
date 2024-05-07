@@ -12,25 +12,25 @@ interface ISecondaryContent {
 
 export default function SecondaryContent(props: ISecondaryContent) {
   return (
-    <>
-      {props.children != null && (
-        <MarginBottom gap={5}>
-          <FitContent>
-            <Section padding="5px 10px">
-              {props.link ? (
-                <Link href={props.link}>
-                  {props.title} <span>{props.counter}</span>
-                </Link>
-              ) : (
-                <h4>
-                  {props.title} <span>{props.counter}</span>
-                </h4>
-              )}
-            </Section>
-          </FitContent>
-          <Section padding="10px">{props.children}</Section>
-        </MarginBottom>
-      )}
-    </>
+    props.children != null && (
+      <MarginBottom gap={5}>
+        <FitContent>
+          <Section padding="5px 10px">
+            {props.link ? (
+              <Link href={props.link}>
+                {props.title} <span>{props.counter}</span>
+              </Link>
+            ) : (
+              <h4>
+                {props.title} <span>{props.counter}</span>
+              </h4>
+            )}
+          </Section>
+        </FitContent>
+        <Section padding="10px">
+          <MarginBottom gap={10}>{props.children}</MarginBottom>
+        </Section>
+      </MarginBottom>
+    )
   );
 }

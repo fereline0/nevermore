@@ -25,7 +25,7 @@ export default function notifications({ params }: { params: { id: number } }) {
 
   if (error) return notFound();
 
-  const status = updateStatusUserNotification(params.id);
+  updateStatusUserNotification(params.id);
 
   return (
     data && (

@@ -13,7 +13,7 @@ interface IModalWinodw {
   description: string;
   func: React.MouseEventHandler<HTMLButtonElement>;
   visibility: boolean;
-  setVisibility: (visible: boolean) => void;
+  setVisibility: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function ModalWindow(props: IModalWinodw) {

@@ -1,9 +1,10 @@
-.member {
+.memberInfo {
   display: flex;
+  justify-content: space-between;
 }
 
-.member:not(:last-child) {
-  margin-bottom: 7.5px;
+.member {
+  display: flex;
 }
 
 .about {

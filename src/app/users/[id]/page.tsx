@@ -11,23 +11,18 @@ export default function user({ params }: { params: { id: number } }) {
   const [page, setPage] = useState(1);
   const limit = 20;
 
-  const {
-    data: currentUser,
-    error,
-    isLoading,
-    url,
-  } = getUser(params.id, page, limit);
+  const { data: user, error, isLoading, url } = getUser(params.id, page, limit);
 
   const { mutate } = useSWRConfig();
 
   if (error) return notFound();
   if (isLoading) return <Loading />;
 
-  if (currentUser)
-    return (
+  return (
+    user && (
       <User
-        user={currentUser}
-        total={currentUser._count.comments}
+        user={user}
+        total={user._count.comments}
         limit={limit}
         pastPagesCount={2}
         futurePagesCount={4}
@@ -35,5 +30,6 @@ export default function user({ params }: { params: { id: number } }) {
         page={page}
         setPage={setPage}
       />
-    );
+    )
+  );
 }

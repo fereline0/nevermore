@@ -12,6 +12,7 @@ import Form from "@/components/shared/Form/page";
 import { useTranslation } from "react-i18next";
 import MarginBottom from "@/components/shared/MarginBottom/page";
 import { FormEvent } from "react";
+import EmptyList from "@/components/shared/EmptyList/page";
 
 interface IComments extends IPagination {
   userId: number;
@@ -43,15 +44,19 @@ export default function Comments(props: IComments) {
       <Form onSubmit={handleSubmit} submitValue={t("screens:comments:publish")}>
         <TextArea name="comment" />
       </Form>
-      <MarginBottom gap={10}>
-        {props.comments.map((comment: IComment) => {
-          return (
-            <Comment key={comment.id} comment={comment}>
-              <Actions comment={comment} refresh={props.refresh} />
-            </Comment>
-          );
-        })}
-      </MarginBottom>
+      {props.comments.length > 0 ? (
+        <MarginBottom gap={10}>
+          {props.comments.map((comment: IComment) => {
+            return (
+              <Comment key={comment.id} comment={comment}>
+                <Actions comment={comment} refresh={props.refresh} />
+              </Comment>
+            );
+          })}
+        </MarginBottom>
+      ) : (
+        <EmptyList value={t("screens:comments:emptyList")} />
+      )}
       <Pagination
         total={props.total}
         limit={props.limit}
