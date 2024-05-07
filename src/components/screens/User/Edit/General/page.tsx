@@ -7,7 +7,7 @@ import Section from "@/components/shared/Content/Section/page";
 import Form from "@/components/shared/Form/page";
 import MarginBottom from "@/components/shared/MarginBottom/page";
 import IUser from "@/types/user.type";
-import { editGeneral } from "@/services/user";
+import { editGeneral } from "@/services/userEdit";
 import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
 

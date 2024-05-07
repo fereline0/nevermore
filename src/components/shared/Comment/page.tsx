@@ -6,6 +6,7 @@ import IComment from "@/types/comment.type";
 import { currentLocale } from "@/utils/currentLocale";
 import { formatDistance } from "date-fns";
 import Section from "@/components/shared/Content/Section/page";
+import MarginBottom from "@/components/shared/MarginBottom/page";
 
 interface Comment {
   comment: IComment;
@@ -17,18 +18,20 @@ export default function Comment(props: Comment) {
 
   return (
     <Section className={styles.comment} padding="10px">
-      <div className={styles.aboutWriter}>
-        <MemberInfo
-          member={props.comment.writer}
-          detail={formatDistance(props.comment.createdAt, new Date(), {
-            includeSeconds: true,
-            addSuffix: true,
-            locale,
-          })}
-        />
-        {props.children}
-      </div>
-      <div className={styles.value}>{props.comment.value}</div>
+      <MarginBottom gap={5}>
+        <div className={styles.aboutWriter}>
+          <MemberInfo
+            member={props.comment.writer}
+            detail={formatDistance(props.comment.createdAt, new Date(), {
+              includeSeconds: true,
+              addSuffix: true,
+              locale,
+            })}
+          />
+          {props.children}
+        </div>
+        <div className={styles.value}>{props.comment.value}</div>
+      </MarginBottom>
     </Section>
   );
 }
