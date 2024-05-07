@@ -1,6 +1,7 @@
 "use client";
 
 import Main from "@/components/shared/Content/Main/page";
+import Section from "@/components/shared/Content/Section/page";
 import SecondaryContent from "@/components/shared/Content/SideBar/SecondaryContent/page";
 import SideBar from "@/components/shared/Content/SideBar/page";
 import Content from "@/components/shared/Content/page";
@@ -17,7 +18,7 @@ import { useTranslation } from "react-i18next";
 interface IUsers extends IPagination {
   newUsers: IUser[];
   users: IUser[];
-  setSearchParams: any;
+  setSearchParams: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function Users(props: IUsers) {
@@ -51,7 +52,9 @@ export default function Users(props: IUsers) {
         />
         {props.users.map((user: IUser) => {
           return (
-            <Member key={user.id} member={user} detail={t(user.role.name)} />
+            <Section padding="10px 10px">
+              <Member key={user.id} member={user} detail={t(user.role.name)} />
+            </Section>
           );
         })}
         <Pagination

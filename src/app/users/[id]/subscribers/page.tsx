@@ -1,12 +1,12 @@
 "use client";
 
-import Button from "@/components/UI/Button/page";
 import Main from "@/components/shared/Content/Main/page";
 import Section from "@/components/shared/Content/Section/page";
 import Content from "@/components/shared/Content/page";
-import FitContent from "@/components/shared/FitContent/page";
+import EmptyList from "@/components/shared/EmptyList/page";
 import Loading from "@/components/shared/Loading/page";
-import MemberInfo from "@/components/shared/MemberInfo/page";
+import Member from "@/components/shared/Member/page";
+import Pagination from "@/components/shared/Pagination/page";
 import { getUserSubscribers } from "@/services/userSubscribers";
 import IUser from "@/types/user.type";
 import { notFound } from "next/navigation";
@@ -29,20 +29,28 @@ export default function subscribers({ params }: { params: { id: number } }) {
     data && (
       <Content>
         <Main>
-          {data?.subscribers.map((user: { subscriber: IUser }) => {
-            return (
-              <Section key={user.subscriber.id} padding="10px 10px">
-                <MemberInfo
-                  member={user.subscriber}
-                  detail={t(user.subscriber.role.name)}
-                >
-                  <FitContent>
-                    <Button value="Hello" />
-                  </FitContent>
-                </MemberInfo>
-              </Section>
-            );
-          })}
+          {data.subscribers.length > 0 ? (
+            data.subscribers.map((user: { subscriber: IUser }) => {
+              return (
+                <Section key={user.subscriber.id} padding="10px 10px">
+                  <Member
+                    member={user.subscriber}
+                    detail={t(user.subscriber.role.name)}
+                  />
+                </Section>
+              );
+            })
+          ) : (
+            <EmptyList value={t("screens:user:subscribers:emptyList")} />
+          )}
+          <Pagination
+            total={data._count.subscribers}
+            limit={limit}
+            pastPagesCount={2}
+            futurePagesCount={4}
+            page={page}
+            setPage={setPage}
+          />
         </Main>
       </Content>
     )

@@ -12,7 +12,7 @@ interface IMemberInfo {
 export default function MemberInfo(props: IMemberInfo) {
   return (
     <div className={styles.memberInfo}>
-      <div className={styles.member}>
+      <div className={styles.info}>
         <Avatar url={props.member.image} />
         <div className={styles.about}>
           <Link href={`/users/${props.member.id}`}>{props.member.name}</Link>

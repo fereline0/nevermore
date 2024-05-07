@@ -37,7 +37,10 @@
           "bithday": "Bithday"
         }
       },
-      "subscribers": "Subscribers",
+      "subscribers": {
+        "value": "Subscribers",
+        "emptyList": "No one is following this user"
+      },
       "subscribed": "Subscribed"
     },
     "users": {

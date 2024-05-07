@@ -14,7 +14,7 @@ export async function GET(
       where: {
         id: Number(params.id),
       },
-      select: {
+      include: {
         subscribers: {
           skip: pageToSkip,
           take: limit,
@@ -29,6 +29,11 @@ export async function GET(
             subscriber: {
               include: {
                 role: true,
+                _count: {
+                  select: {
+                    writerComments: true,
+                  },
+                },
               },
             },
           },

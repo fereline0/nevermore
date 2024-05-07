@@ -41,9 +41,14 @@ export default function Comments(props: IComments) {
 
   return (
     <MarginBottom gap={10}>
-      <Form onSubmit={handleSubmit} submitValue={t("screens:comments:publish")}>
-        <TextArea name="comment" />
-      </Form>
+      {status == "authenticated" && (
+        <Form
+          onSubmit={handleSubmit}
+          submitValue={t("screens:comments:publish")}
+        >
+          <TextArea name="comment" />
+        </Form>
+      )}
       {props.comments.length > 0 ? (
         <MarginBottom gap={10}>
           {props.comments.map((comment: IComment) => {

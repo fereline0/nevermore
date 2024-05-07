@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import Input from "@/components/UI/Input/page";
 import Form from "@/components/shared/Form/page";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 interface ISearch {
-  setPage: any;
-  setSearchParams: any;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  setSearchParams: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function Search(props: ISearch) {

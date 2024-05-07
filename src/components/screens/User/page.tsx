@@ -25,7 +25,7 @@ export default function User(props: User) {
       <SideBar>
         <Preview user={props.user} refresh={props.refresh} />
         <SecondaryContent
-          title={t("screens:user:subscribers")}
+          title={t("screens:user:subscribers:value")}
           link={`/users/${props.user.id}/subscribers`}
           counter={props.user._count.subscribers}
         >
