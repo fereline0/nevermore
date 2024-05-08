@@ -29,8 +29,6 @@ export default function Notifications(props: INotifications) {
         <Pagination
           total={props.total}
           limit={props.limit}
-          page={props.page}
-          setPage={props.setPage}
           pastPagesCount={props.pastPagesCount}
           futurePagesCount={props.futurePagesCount}
         />

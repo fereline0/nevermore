@@ -41,8 +41,8 @@ export default function User(props: User) {
             : null}
         </SecondaryContent>
         <SecondaryContent
-          title={t("screens:user:subscribed")}
-          link={`/users/${props.user.id}/subscribers`}
+          title={t("screens:user:subscribed:value")}
+          link={`/users/${props.user.id}/subscribed`}
           counter={props.user._count.subscribed}
         >
           {props.user.subscribed.length > 0

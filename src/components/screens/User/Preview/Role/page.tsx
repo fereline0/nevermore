@@ -24,14 +24,14 @@ export default function Role(props: Role) {
   const { data: session } = useSession();
   const router = useRouter();
 
-  const { data: roles } = getRoles(session?.user.role.id);
-
   const canEditRole =
     session?.user.role.id > props.user.role.id &&
     props.user.id != session?.user.id &&
     session?.user.role.abilities.some(
       (ability: any) => ability.slug === "editUser"
     );
+
+  const { data: roles } = getRoles(canEditRole ? session?.user.role.id : null);
 
   return (
     <div className={styles.roleContainter} ref={actionsRef}>
@@ -44,32 +44,31 @@ export default function Role(props: Role) {
         >
           {t(props.user.role.name)}
         </h3>
-        {canEditRole && (
+        {roles && (
           <IoMdMore
             className={styles.icon}
             onClick={() => setVisibility(!visibility)}
           />
         )}
       </AlightItems>
-      {canEditRole && (
+      {roles && (
         <Dropdown
           visibility={visibility}
           setVisibility={setVisibility}
           parentRef={actionsRef}
           right
         >
-          {roles &&
-            roles.map((role: IRole) => (
-              <Item
-                key={role.id}
-                value={t(role.name)}
-                func={async () =>
-                  await editRole(props.user, session?.user.role.id, role.name)
-                    .then(router.refresh)
-                    .then(() => setVisibility(false))
-                }
-              />
-            ))}
+          {roles.map((role: IRole) => (
+            <Item
+              key={role.id}
+              value={t(role.name)}
+              func={async () =>
+                await editRole(props.user, session?.user.role.id, role.name)
+                  .then(router.refresh)
+                  .then(() => setVisibility(false))
+              }
+            />
+          ))}
         </Dropdown>
       )}
     </div>

@@ -13,3 +13,17 @@ export async function getUserSubscribers(
 
   return res.json();
 }
+
+export async function getUserSubscribed(
+  id: number,
+  page: number,
+  limit: number
+) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}/subscribed?page=${page}&limit=${limit}`
+  );
+
+  if (!res.ok) notFound();
+
+  return res.json();
+}

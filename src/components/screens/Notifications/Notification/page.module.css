@@ -2,3 +2,14 @@
   display: flex;
   justify-content: space-between;
 }
+
+@media screen and (max-width: 600px) {
+  .notification {
+    display: block;
+    justify-content: unset;
+  }
+
+  .notification > *:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}

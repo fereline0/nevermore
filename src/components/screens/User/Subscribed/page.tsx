@@ -10,29 +10,29 @@ import IPagination from "@/types/pagination.type";
 import IUser from "@/types/user.type";
 import { useTranslation } from "react-i18next";
 
-interface ISubscribers extends IPagination {
-  subscribers: { subscriber: IUser }[];
+interface ISubscribed extends IPagination {
+  subscribed: { user: IUser }[];
 }
 
-export default function Subscribers(props: ISubscribers) {
+export default function Subscribed(props: ISubscribed) {
   const { t } = useTranslation();
 
   return (
     <Content>
       <Main>
-        {props.subscribers.length > 0 ? (
-          props.subscribers.map((subscriber: { subscriber: IUser }) => {
+        {props.subscribed.length > 0 ? (
+          props.subscribed.map((subscribed: { user: IUser }) => {
             return (
-              <Section key={subscriber.subscriber.id} padding="10px 10px">
+              <Section key={subscribed.user.id} padding="10px 10px">
                 <Member
-                  member={subscriber.subscriber}
-                  detail={t(subscriber.subscriber.role.name)}
+                  member={subscribed.user}
+                  detail={t(subscribed.user.role.name)}
                 />
               </Section>
             );
           })
         ) : (
-          <EmptyList value={t("screens:user:subscribers:emptyList")} />
+          <EmptyList value={t("screens:user:subscribed:emptyList")} />
         )}
         <Pagination
           total={props.total}

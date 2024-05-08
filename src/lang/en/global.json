@@ -41,7 +41,10 @@
         "value": "Subscribers",
         "emptyList": "No one is following this user"
       },
-      "subscribed": "Subscribed"
+      "subscribed": {
+        "value": "Subscribed",
+        "emptyList": "This user is not subscribed to anyone"
+      }
     },
     "users": {
       "newUsers": "New users",
