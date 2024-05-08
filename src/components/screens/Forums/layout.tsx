@@ -40,7 +40,7 @@ export default function Forum(props: IForum) {
           />
         </SecondaryContent>
       </SideBar>
-      <Main>{props.children}</Main>
+      {props.children}
     </Content>
   );
 }

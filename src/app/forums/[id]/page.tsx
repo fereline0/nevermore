@@ -3,6 +3,7 @@ import Articles from "@/components/screens/Forums/Articles/page";
 import Search from "@/components/shared/Search/page";
 import { Suspense } from "react";
 import Loading from "@/components/shared/Loading/page";
+import Main from "@/components/shared/Content/Main/page";
 
 export const dynamic = "force-dynamic";
 
@@ -19,17 +20,19 @@ export default async function forum({
 
   return (
     <Suspense fallback={<Loading />}>
-      <div>
-        <h1>{category.name}</h1>
-      </div>
-      <Search />
-      <Articles
-        articles={category.articles}
-        total={category._count.articles}
-        limit={limit}
-        pastPagesCount={2}
-        futurePagesCount={4}
-      />
+      <Main>
+        <div>
+          <h1>{category.name}</h1>
+        </div>
+        <Search />
+        <Articles
+          articles={category.articles}
+          total={category._count.articles}
+          limit={limit}
+          pastPagesCount={2}
+          futurePagesCount={4}
+        />
+      </Main>
     </Suspense>
   );
 }
