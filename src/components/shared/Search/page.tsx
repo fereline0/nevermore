@@ -1,22 +1,22 @@
 "use client";
 
+import { useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import Input from "@/components/UI/Input/page";
 import Form from "@/components/shared/Form/page";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-interface ISearch {
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-  setSearchParams: React.Dispatch<React.SetStateAction<string>>;
-}
-
-export default function Search(props: ISearch) {
+export default function Search() {
   const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
+  const pathname = usePathname();
 
   function onSearch(event: React.FormEvent) {
     event.preventDefault();
-    props.setSearchParams(encodeURI(searchQuery));
-    props.setPage(1);
+    const encodedSearchQuery = encodeURI(searchQuery);
+    encodedSearchQuery
+      ? router.push(`?q=${encodedSearchQuery}`)
+      : router.push(pathname);
   }
 
   const { t } = useTranslation();

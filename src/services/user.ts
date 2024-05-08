@@ -1,37 +1,25 @@
-import useSWR from "swr";
-import { fetcher } from "@/utils/fetcher";
-import IUser from "@/types/user.type";
+import { notFound } from "next/navigation";
 
-export function getUsers(page: number, limit: number, query: any) {
-  const url = `${
-    process.env.NEXT_PUBLIC_API_URL
-  }/api/users?page=${page}&limit=${limit}${query ? `&q=${query}` : ""}`;
+export async function getUsers(page: number, limit: number, query: any) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/users?page=${page}&limit=${limit}${
+      query ? `&q=${query}` : ""
+    }`
+  );
 
-  const { data, error, isLoading } = useSWR<{
-    newUsers: IUser[];
-    users: IUser[];
-    count: number;
-  }>(url, fetcher);
+  if (!res.ok) notFound();
 
-  return {
-    data,
-    isLoading,
-    error,
-    url,
-  };
+  return res.json();
 }
 
-export function getUser(id: number, page: number, limit: number) {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}?page=${page}&limit=${limit}`;
+export async function getUser(id: number, page: number, limit: number) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}?page=${page}&limit=${limit}`
+  );
 
-  const { data, error, isLoading } = useSWR<IUser>(url, fetcher);
+  if (!res.ok) notFound();
 
-  return {
-    data,
-    isLoading,
-    error,
-    url,
-  };
+  return res.json();
 }
 
 export async function deleteUser(id: number) {

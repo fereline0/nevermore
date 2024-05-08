@@ -15,7 +15,6 @@ import Separated from "@/components/shared/Dropdown/Separated/page";
 
 interface IActions {
   comment: IComment;
-  refresh: () => void;
 }
 
 export default function Actions(props: IActions) {
@@ -25,6 +24,7 @@ export default function Actions(props: IActions) {
   const [visibility, setVisibility] = useState(false);
   const router = useRouter();
   const path = usePathname();
+
   const canDelete =
     props.comment.writer.id == session?.user.id ||
     (session?.user.role.abilities.some(
@@ -59,7 +59,7 @@ export default function Actions(props: IActions) {
               description={t("screens:comments:actions:delete:description")}
               func={async () =>
                 await deleteUserComment(props.comment.id)
-                  .then(props.refresh)
+                  .then(router.refresh)
                   .then(() => {
                     setVisibility(false);
                   })

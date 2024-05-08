@@ -7,6 +7,7 @@ export const dynamic = "force-dynamic";
 
 export default async function general({ params }: { params: { id: number } }) {
   const user = await getGeneral(params.id);
+
   return (
     <Suspense fallback={<Loading />}>
       <General user={user} />

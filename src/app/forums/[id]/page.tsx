@@ -1,7 +1,8 @@
 import { getForum } from "@/services/forum";
 import Articles from "@/components/screens/Forums/Articles/page";
 import Search from "@/components/shared/Search/page";
-import MarginBottom from "@/components/shared/MarginBottom/page";
+import { Suspense } from "react";
+import Loading from "@/components/shared/Loading/page";
 
 export const dynamic = "force-dynamic";
 
@@ -17,7 +18,7 @@ export default async function forum({
   const category = await getForum(params.id, page, limit, searchParams.q);
 
   return (
-    <MarginBottom gap={10}>
+    <Suspense fallback={<Loading />}>
       <div>
         <h1>{category.name}</h1>
       </div>
@@ -29,6 +30,6 @@ export default async function forum({
         pastPagesCount={2}
         futurePagesCount={4}
       />
-    </MarginBottom>
+    </Suspense>
   );
 }

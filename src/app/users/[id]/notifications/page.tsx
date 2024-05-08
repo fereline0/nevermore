@@ -1,43 +1,41 @@
-"use client";
-
 import Notifications from "@/components/screens/Notifications/page";
 import Loading from "@/components/shared/Loading/page";
 import {
   getUserNotifications,
   updateStatusUserNotification,
 } from "@/services/userNotification";
-import { notFound } from "next/navigation";
-import { useState } from "react";
+import INotification from "@/types/notification.type";
+import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
 
-export default function notifications({ params }: { params: { id: number } }) {
-  const [page, setPage] = useState(1);
+export default async function notifications({
+  params,
+  searchParams,
+}: {
+  params: { id: number };
+  searchParams: { page: number };
+}) {
+  const page = searchParams.page || 1;
   const limit = 20;
+  const res: {
+    notifications: INotification[];
+    _count: {
+      notifications: number;
+    };
+  } = await getUserNotifications(params.id, page, limit);
 
-  const { data, error, isLoading } = getUserNotifications(
-    params.id,
-    page,
-    limit
-  );
-
-  if (isLoading) return <Loading />;
-
-  if (error) return notFound();
-
-  updateStatusUserNotification(params.id);
+  const updateStatus = await updateStatusUserNotification(params.id);
 
   return (
-    data && (
+    <Suspense fallback={<Loading />}>
       <Notifications
-        notifications={data.notifications}
-        total={data._count.notifications}
+        notifications={res.notifications}
+        total={res._count.notifications}
         pastPagesCount={2}
         futurePagesCount={4}
         limit={limit}
-        page={page}
-        setPage={setPage}
       />
-    )
+    </Suspense>
   );
 }

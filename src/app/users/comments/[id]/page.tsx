@@ -1,53 +1,44 @@
-"use client";
-
 import Main from "@/components/shared/Content/Main/page";
 import Content from "@/components/shared/Content/page";
 import Comment from "@/components/shared/Comment/page";
 import Actions from "@/components/screens/User/Comments/Actions/page";
-import Comments from "@/components/screens/User/Comments/page";
-import { useState } from "react";
-import Loading from "@/components/shared/Loading/page";
-import { notFound } from "next/navigation";
 import { getUserComment } from "@/services/userComment";
-import { useSWRConfig } from "swr";
+import Comments from "@/components/screens/User/Comments/page";
+import { Suspense } from "react";
+import Loading from "@/components/shared/Loading/page";
 
-export default function comment({ params }: { params: { id: number } }) {
-  const [page, setPage] = useState(1);
+export const dynamic = "force-dynamic";
+
+export default async function comment({
+  params,
+  searchParams,
+}: {
+  params: { id: number };
+  searchParams: { page: number };
+}) {
+  const page = searchParams.page || 1;
   const limit = 20;
-
-  const {
-    data: comment,
-    error,
-    isLoading,
-    url,
-  } = getUserComment(params.id, page, limit);
-
-  const { mutate } = useSWRConfig();
-
-  if (error) return notFound();
-  if (isLoading) return <Loading />;
+  const comment = await getUserComment(params.id, page, limit);
 
   return (
-    <Content>
-      {comment && (
+    <Suspense fallback={<Loading />}>
+      <Content>
         <Main>
           <Comment comment={comment}>
-            <Actions comment={comment} refresh={() => mutate(url)} />
+            <Actions comment={comment} />
           </Comment>
           <Comments
             total={comment._count.childs}
             limit={limit}
             pastPagesCount={2}
             futurePagesCount={4}
-            parentId={comment.id}
             userId={comment.userId}
+            writerId={comment.writerId}
             comments={comment.childs}
-            page={page}
-            setPage={setPage}
-            refresh={() => mutate(url)}
+            parentId={comment.id}
           />
         </Main>
-      )}
-    </Content>
+      </Content>
+    </Suspense>
   );
 }

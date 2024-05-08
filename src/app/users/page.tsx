@@ -1,37 +1,31 @@
-"use client";
-
 import Users from "@/components/screens/Users/page";
 import Loading from "@/components/shared/Loading/page";
 import { getUsers } from "@/services/user";
-import { notFound } from "next/navigation";
-import { useState } from "react";
+import IUser from "@/types/user.type";
+import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
 
-export default function users() {
-  const [page, setPage] = useState(1);
-  const [searchParams, setSearchParams] = useState("");
+export default async function users({
+  searchParams,
+}: {
+  searchParams: { q: any; page: number };
+}) {
+  const page = searchParams.page || 1;
   const limit = 20;
-
-  const { data, error, isLoading } = getUsers(page, limit, searchParams);
-
-  if (isLoading) return <Loading />;
-
-  if (error) return notFound();
+  const res: { newUsers: IUser[]; users: IUser[]; count: number } =
+    await getUsers(page, limit, searchParams.q);
 
   return (
-    data && (
+    <Suspense fallback={<Loading />}>
       <Users
-        users={data.users}
-        newUsers={data.newUsers}
-        total={data.count}
+        newUsers={res.newUsers}
+        users={res.users}
+        total={res.count}
+        limit={limit}
         pastPagesCount={2}
         futurePagesCount={4}
-        page={page}
-        setPage={setPage}
-        limit={limit}
-        setSearchParams={setSearchParams}
       />
-    )
+    </Suspense>
   );
 }

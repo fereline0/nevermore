@@ -10,7 +10,6 @@ import Role from "./Role/page";
 
 interface IPreview {
   user: IUser;
-  refresh: () => void;
 }
 
 export default function Preview(props: IPreview) {
@@ -18,7 +17,7 @@ export default function Preview(props: IPreview) {
     <Section className={styles.preview} padding="10px">
       <MarginBottom gap={5}>
         <Avatar url={props.user.image} />
-        <Role user={props.user} refresh={props.refresh} />
+        <Role user={props.user} />
         <Actions user={props.user} />
       </MarginBottom>
     </Section>

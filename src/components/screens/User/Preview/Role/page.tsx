@@ -4,7 +4,7 @@ import IRole from "@/types/role.type";
 import styles from "./page.module.css";
 import { useTranslation } from "react-i18next";
 import { IoMdMore } from "react-icons/io";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Dropdown from "@/components/shared/Dropdown/page";
 import Item from "@/components/shared/Dropdown/Item/page";
 import AlightItems from "@/components/shared/AlightItems/page";
@@ -12,11 +12,9 @@ import { editRole, getRoles } from "@/services/roles";
 import IUser from "@/types/user.type";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useSWRConfig } from "swr";
 
 interface Role {
   user: IUser;
-  refresh: () => void;
 }
 
 export default function Role(props: Role) {
@@ -24,13 +22,9 @@ export default function Role(props: Role) {
   const actionsRef = useRef(null);
   const [visibility, setVisibility] = useState(false);
   const { data: session } = useSession();
+  const router = useRouter();
 
-  const {
-    data: roles,
-    error,
-    isLoading,
-    url,
-  } = getRoles(session?.user.role.id);
+  const { data: roles } = getRoles(session?.user.role.id);
 
   const canEditRole =
     session?.user.role.id > props.user.role.id &&
@@ -71,7 +65,7 @@ export default function Role(props: Role) {
                 value={t(role.name)}
                 func={async () =>
                   await editRole(props.user, session?.user.role.id, role.name)
-                    .then(props.refresh)
+                    .then(router.refresh)
                     .then(() => setVisibility(false))
                 }
               />

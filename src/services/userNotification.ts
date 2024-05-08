@@ -1,23 +1,19 @@
-import INotification from "@/types/notification.type";
 import { fetcher } from "@/utils/fetcher";
-import useSWR, { mutate } from "swr";
+import { notFound } from "next/navigation";
+import useSWR from "swr";
 
-export function getUserNotifications(id: number, page: number, limit: number) {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}/notifications?page=${page}&limit=${limit}`;
+export async function getUserNotifications(
+  id: number,
+  page: number,
+  limit: number
+) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}/notifications?page=${page}&limit=${limit}`
+  );
 
-  const { data, error, isLoading } = useSWR<{
-    notifications: INotification[];
-    _count: {
-      notifications: number;
-    };
-  }>(url, fetcher);
+  if (!res.ok) notFound();
 
-  return {
-    data,
-    isLoading,
-    error,
-    url,
-  };
+  return res.json();
 }
 
 export function getUserNotificationsCount(id?: number) {
@@ -53,12 +49,11 @@ export async function createUserNotification(
   return res.json();
 }
 
-export function updateStatusUserNotification(userId: number) {
-  mutate(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}/notifications/count`,
-    fetcher(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}/notifications/status`,
-      { method: "POST" }
-    )
+export async function updateStatusUserNotification(userId: number) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}/notifications/status`,
+    { method: "POST" }
   );
+
+  return res.json();
 }

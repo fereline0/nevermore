@@ -14,7 +14,6 @@ import IPagination from "@/types/pagination.type";
 
 interface User extends IPagination {
   user: IUser;
-  refresh: () => void;
 }
 
 export default function User(props: User) {
@@ -23,7 +22,7 @@ export default function User(props: User) {
   return (
     <Content>
       <SideBar>
-        <Preview user={props.user} refresh={props.refresh} />
+        <Preview user={props.user} />
         <SecondaryContent
           title={t("screens:user:subscribers:value")}
           link={`/users/${props.user.id}/subscribers`}
@@ -66,9 +65,6 @@ export default function User(props: User) {
           limit={props.limit}
           pastPagesCount={props.pastPagesCount}
           futurePagesCount={props.futurePagesCount}
-          page={props.page}
-          setPage={props.setPage}
-          refresh={props.refresh}
         />
       </Main>
     </Content>

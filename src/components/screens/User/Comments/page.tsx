@@ -13,18 +13,18 @@ import { useTranslation } from "react-i18next";
 import MarginBottom from "@/components/shared/MarginBottom/page";
 import { FormEvent } from "react";
 import EmptyList from "@/components/shared/EmptyList/page";
+import { useRouter } from "next/navigation";
 
 interface IComments extends IPagination {
   userId: number;
   writerId?: number;
   parentId?: number;
   comments: IComment[];
-  refresh: () => void;
 }
 
 export default function Comments(props: IComments) {
   const { data: session, status } = useSession();
-
+  const router = useRouter();
   const { t } = useTranslation();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -36,7 +36,7 @@ export default function Comments(props: IComments) {
         props.writerId,
         props.parentId
       ));
-    props.refresh();
+    router.refresh();
   };
 
   return (
@@ -54,7 +54,7 @@ export default function Comments(props: IComments) {
           {props.comments.map((comment: IComment) => {
             return (
               <Comment key={comment.id} comment={comment}>
-                <Actions comment={comment} refresh={props.refresh} />
+                <Actions comment={comment} />
               </Comment>
             );
           })}
@@ -67,8 +67,6 @@ export default function Comments(props: IComments) {
         limit={props.limit}
         pastPagesCount={props.pastPagesCount}
         futurePagesCount={props.futurePagesCount}
-        page={props.page}
-        setPage={props.setPage}
       />
     </MarginBottom>
   );

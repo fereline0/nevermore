@@ -16,9 +16,8 @@ import { formatDistance } from "date-fns";
 import { useTranslation } from "react-i18next";
 
 interface IUsers extends IPagination {
-  newUsers: IUser[];
-  users: IUser[];
-  setSearchParams: React.Dispatch<React.SetStateAction<string>>;
+  newUsers?: IUser[];
+  users?: IUser[];
 }
 
 export default function Users(props: IUsers) {
@@ -30,7 +29,7 @@ export default function Users(props: IUsers) {
     <Content>
       <SideBar>
         <SecondaryContent title={t("screens:users:newUsers")}>
-          {props.newUsers.map((user: IUser) => {
+          {props.newUsers?.map((user: IUser) => {
             return (
               <MemberInfo
                 key={user.id}
@@ -46,11 +45,8 @@ export default function Users(props: IUsers) {
         </SecondaryContent>
       </SideBar>
       <Main>
-        <Search
-          setPage={props.setPage}
-          setSearchParams={props.setSearchParams}
-        />
-        {props.users.map((user: IUser) => {
+        <Search />
+        {props.users?.map((user: IUser) => {
           return (
             <Section padding="10px 10px">
               <Member key={user.id} member={user} detail={t(user.role.name)} />
@@ -60,8 +56,6 @@ export default function Users(props: IUsers) {
         <Pagination
           total={props.total}
           limit={props.limit}
-          page={props.page}
-          setPage={props.setPage}
           pastPagesCount={props.pastPagesCount}
           futurePagesCount={props.futurePagesCount}
         />
