@@ -17,9 +17,14 @@ export async function GET(
         notifications: {
           skip: pageToSkip,
           take: limit,
-          orderBy: {
-            createdAt: "desc",
-          },
+          orderBy: [
+            {
+              read: "asc",
+            },
+            {
+              createdAt: "desc",
+            },
+          ],
           include: {
             writer: {
               include: {

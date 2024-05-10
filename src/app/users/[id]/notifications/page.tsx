@@ -2,7 +2,7 @@ import Notifications from "@/components/screens/Notifications/page";
 import Loading from "@/components/shared/Loading/page";
 import {
   getUserNotifications,
-  updateStatusUserNotification,
+  updateStatusUserNotifications,
 } from "@/services/userNotification";
 import INotification from "@/types/notification.type";
 import { Suspense } from "react";
@@ -25,7 +25,7 @@ export default async function notifications({
     };
   } = await getUserNotifications(params.id, page, limit);
 
-  const updateStatus = await updateStatusUserNotification(params.id);
+  const updateStatus = await updateStatusUserNotifications(params.id);
 
   return (
     <Suspense fallback={<Loading />}>

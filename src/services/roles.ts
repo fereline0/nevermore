@@ -6,7 +6,7 @@ import IRole from "@/types/role.type";
 export function getRoles(id: number) {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/api/users/roles/${id}`;
 
-  const { data, error, isLoading } = useSWR<IRole[]>(url, fetcher);
+  const { data, error, isLoading } = useSWR<IRole[]>(id ? url : null, fetcher);
 
   return {
     data,

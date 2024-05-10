@@ -49,10 +49,23 @@ export async function createUserNotification(
   return res.json();
 }
 
-export async function updateStatusUserNotification(userId: number) {
+export async function updateStatusUserNotifications(userId: number) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}/notifications/status`,
     { method: "POST" }
+  );
+
+  return res.json();
+}
+
+export async function updateStatusUserNotification(sourceLink: string) {
+  const formData = new FormData();
+
+  formData.append("sourceLink", sourceLink.toString());
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/users/notifications/status`,
+    { method: "POST", body: formData }
   );
 
   return res.json();

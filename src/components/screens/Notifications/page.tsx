@@ -21,7 +21,9 @@ export default function Notifications(props: INotifications) {
       <Main>
         {props.notifications.length > 0 ? (
           props.notifications.map((notification: INotification) => {
-            return <Notification notification={notification} />;
+            return (
+              <Notification key={notification.id} notification={notification} />
+            );
           })
         ) : (
           <EmptyList value={t("screens:notifications:emptyList")} />
