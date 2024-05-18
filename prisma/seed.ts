@@ -19,7 +19,7 @@ async function main() {
     },
     update: {},
     create: {
-      name: "screens:roles:user",
+      name: "User",
       color: "f3f4f6",
     },
   });
@@ -30,7 +30,7 @@ async function main() {
     },
     update: {},
     create: {
-      name: "screens:roles:moderator",
+      name: "Moderator",
       color: "0ebd00",
       abilities: {
         connect: [{ slug: "deleteComment" }, { slug: "deleteArticle" }],
@@ -44,7 +44,7 @@ async function main() {
     },
     update: {},
     create: {
-      name: "screens:roles:admin",
+      name: "Admin",
       color: "ff0000",
       abilities: {
         connect: [
@@ -63,7 +63,7 @@ async function main() {
     },
     update: {},
     create: {
-      name: "screens:roles:developer",
+      name: "Developer",
       color: "ffb2fa",
       abilities: {
         connect: [

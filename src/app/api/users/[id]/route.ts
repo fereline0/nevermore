@@ -61,6 +61,15 @@ export async function GET(
             },
           },
         },
+        bans: {
+          include: {
+            initiator: {
+              include: {
+                role: true,
+              },
+            },
+          },
+        },
         _count: {
           select: {
             comments: true,

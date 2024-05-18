@@ -18,6 +18,14 @@
       "preview": {
         "actions": {
           "changeInformation": "Change information",
+          "ban": {
+            "value": "Ban",
+            "description": "Are you sure that you want to completely limit access to the forum features for this user for the period you choose?"
+          },
+          "unBan": {
+            "value": "Unban",
+            "description": "Are you sure you want to restore access to the forum for this user?"
+          },
           "deleteAccount": {
             "value": "Delete account",
             "description": "Are you sure you want to delete the user account from the database, this action is irreversible!"
@@ -27,6 +35,11 @@
             "description": "Are you sure you want to sign out of your account?"
           }
         }
+      },
+      "alertAboutBan": {
+        "alert": "This user is blocked, we do not recommend conducting transactions with him at the time of blocking, if the user has already deceived you in any way, contact support so that we can solve the problem as soon as possible",
+        "initiator": "Initiator",
+        "expires": "Expires"
       },
       "about": {
         "detailInformation": {
@@ -88,12 +101,6 @@
         "new": "New"
       },
       "emptyList": "There should be notifications here, but there aren't any yet"
-    },
-    "roles": {
-      "user": "User",
-      "moderator": "Moderator",
-      "admin": "Admin",
-      "developer": "Developer"
     }
   },
   "shared": {

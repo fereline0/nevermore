@@ -27,8 +27,8 @@ export default function ModalWindow(props: IModalWinodw) {
   });
 
   useEffect(() => {
-    const closeOnEscapePressed = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+    const closeOnEscapePressed = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
         closeWindow;
       }
     };
@@ -42,7 +42,11 @@ export default function ModalWindow(props: IModalWinodw) {
 
   return (
     <div className={className} onClick={closeWindow}>
-      <Section className={styles.modalWinodw} padding="5px 10px">
+      <Section
+        className={styles.modalWinodw}
+        padding="5px 10px"
+        onClick={(event) => event.stopPropagation()}
+      >
         <div className={styles.title}>
           <h3>{props.title}</h3>
         </div>

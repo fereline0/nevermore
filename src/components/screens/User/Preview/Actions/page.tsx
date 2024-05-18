@@ -1,3 +1,4 @@
+import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
 import DangerAction from "./DangerAction/page";
 import { deleteUser } from "@/services/user";
@@ -6,6 +7,15 @@ import IUser from "@/types/user.type";
 import { useTranslation } from "react-i18next";
 import Button from "@/components/UI/Button/page";
 import MarginBottom from "@/components/shared/MarginBottom/page";
+import Dropdown from "@/components/shared/Dropdown/page";
+import { useRef, useState } from "react";
+import DangerItem from "@/components/shared/Dropdown/DangerItem/page";
+import DangerButton from "@/components/UI/DangerButton/page";
+import ban from "./ban";
+import { deleteUserBans, userBan } from "@/services/userBan";
+import { addTimeToCurrentDate } from "@/utils/addTimeToCurrentDate";
+import { formatDistanceToNow } from "date-fns";
+import { currentLocale } from "@/utils/currentLocale";
 
 interface IActions {
   user: IUser;
@@ -13,54 +23,100 @@ interface IActions {
 
 export default function Actions(props: IActions) {
   const { data: session, status } = useSession();
-  const canDelete =
-    status === "authenticated" &&
-    props.user.id != session?.user.id &&
-    session?.user.role.abilities.some(
-      (ability: any) => ability.slug === "deleteUser"
-    ) &&
-    props.user.role.id < session?.user.role.id;
-  const canEdit =
-    status === "authenticated" &&
-    session?.user.role.abilities.some(
-      (ability: any) => ability.slug === "editUser"
-    ) &&
-    session?.user.role.id > props.user.role.id;
+  const locale = currentLocale();
+  const roleBenefits = props.user.role.id < session?.user.role.id;
+  const canDelete = session?.user.role.abilities.some(
+    (ability: any) => ability.slug === "deleteUser"
+  );
+  const canEdit = session?.user.role.abilities.some(
+    (ability: any) => ability.slug === "editUser"
+  );
+  const canBan = session?.user.role.abilities.some(
+    (ability: any) => ability.slug === "ban"
+  );
   const pageBelong = props.user.id == session?.user.id;
   const router = useRouter();
   const { t } = useTranslation();
+  const actionsRef = useRef(null);
+  const [visibility, setVisibility] = useState(false);
+  const userIsBanned = props.user.bans.find(
+    (ban) => new Date(ban.expires) > new Date()
+  );
 
   return (
-    <div>
-      <MarginBottom gap={5}>
-        {(pageBelong || canEdit) && (
-          <Button
-            value={t("screens:user:preview:actions:changeInformation")}
-            type="button"
-            onClick={() => router.push(`/users/${props.user.id}/edit/general`)}
-          />
-        )}
-        {canDelete && (
+    <MarginBottom gap={5}>
+      {(pageBelong || (canEdit && roleBenefits)) && (
+        <Button
+          value={t("screens:user:preview:actions:changeInformation")}
+          type="button"
+          onClick={() => router.push(`/users/${props.user.id}/edit/general`)}
+        />
+      )}
+      {status == "authenticated" &&
+        canBan &&
+        !pageBelong &&
+        roleBenefits &&
+        (userIsBanned ? (
           <DangerAction
-            value={t("screens:user:preview:actions:deleteAccount:value")}
-            description={t(
-              "screens:user:preview:actions:deleteAccount:description"
-            )}
+            value={t("screens:user:preview:actions:unBan:value")}
+            description={t("screens:user:preview:actions:unBan:description")}
             func={async () =>
-              await deleteUser(props.user.id).then(() => {
-                router.refresh();
-              })
+              await deleteUserBans(props.user.id).then(router.refresh)
             }
           />
-        )}
-        {pageBelong && (
-          <DangerAction
-            value={t("screens:user:preview:actions:signOut:value")}
-            description={t("screens:user:preview:actions:signOut:description")}
-            func={() => signOut({ callbackUrl: "/" })}
-          />
-        )}
-      </MarginBottom>
-    </div>
+        ) : (
+          <div className={styles.banContainer} ref={actionsRef}>
+            <DangerButton
+              value={t("screens:user:preview:actions:ban:value")}
+              onClick={() => setVisibility(true)}
+            />
+            <Dropdown
+              visibility={visibility}
+              setVisibility={setVisibility}
+              parentRef={actionsRef}
+              right
+            >
+              {ban.map((ban, index) => {
+                return (
+                  <DangerItem
+                    key={index}
+                    value={formatDistanceToNow(addTimeToCurrentDate(ban), {
+                      locale,
+                    })}
+                    description={t(
+                      "screens:user:preview:actions:ban:description"
+                    )}
+                    func={async () =>
+                      await userBan(
+                        props.user.id,
+                        session?.user.id,
+                        addTimeToCurrentDate(ban)
+                      ).then(router.refresh)
+                    }
+                  />
+                );
+              })}
+            </Dropdown>
+          </div>
+        ))}
+      {canDelete && !pageBelong && roleBenefits && (
+        <DangerAction
+          value={t("screens:user:preview:actions:deleteAccount:value")}
+          description={t(
+            "screens:user:preview:actions:deleteAccount:description"
+          )}
+          func={async () =>
+            await deleteUser(props.user.id).then(router.refresh)
+          }
+        />
+      )}
+      {pageBelong && (
+        <DangerAction
+          value={t("screens:user:preview:actions:signOut:value")}
+          description={t("screens:user:preview:actions:signOut:description")}
+          func={() => signOut({ callbackUrl: "/" })}
+        />
+      )}
+    </MarginBottom>
   );
 }

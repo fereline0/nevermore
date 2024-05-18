@@ -19,7 +19,7 @@ export async function getUserNotifications(
 export function getUserNotificationsCount(id?: number) {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}/notifications/count`;
 
-  const { data, error, isLoading } = useSWR<number>(url, fetcher);
+  const { data, error, isLoading } = useSWR<number>(id ? url : null, fetcher);
 
   return {
     data,

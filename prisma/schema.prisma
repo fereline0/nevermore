@@ -53,11 +53,22 @@ model User {
   articles              Article[]
   notifications         UserNotifications[]    @relation("user")
   writerNotifications   UserNotifications[]    @relation("writer")
+  bans                  UserBans[]             @relation("user")
+  bansInitiator         UserBans[]             @relation("initiator")
   accounts              Account[]
   sessions              Session[]
   writerArticleComments ArticleComments[]
 
   @@fulltext(name)
+}
+
+model UserBans {
+  id          Int      @id @default(autoincrement())
+  user        User     @relation("user", fields: [userId], references: [id])
+  userId      Int
+  expires     DateTime
+  initiator   User     @relation("initiator", fields: [initiatorId], references: [id])
+  initiatorId Int
 }
 
 model UserNotifications {
@@ -68,10 +79,10 @@ model UserNotifications {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  writer   User? @relation("writer", fields: [writerId], references: [id], onDelete: Cascade)
-  writerId Int?
-  User     User? @relation("user", fields: [userId], references: [id])
-  userId   Int?
+  writer   User @relation("writer", fields: [writerId], references: [id], onDelete: Cascade)
+  writerId Int
+  User     User @relation("user", fields: [userId], references: [id])
+  userId   Int
 }
 
 model UserSubscribers {

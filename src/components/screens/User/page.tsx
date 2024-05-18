@@ -11,6 +11,7 @@ import IUser from "@/types/user.type";
 import UserComments from "@/components/screens/User/Comments/page";
 import { useTranslation } from "react-i18next";
 import IPagination from "@/types/pagination.type";
+import AlertAboutBan from "./AlertAboutBan/page";
 
 interface User extends IPagination {
   user: IUser;
@@ -18,6 +19,8 @@ interface User extends IPagination {
 
 export default function User(props: User) {
   const { t } = useTranslation();
+
+  const ban = props.user.bans.find((ban) => new Date(ban.expires) > new Date());
 
   return (
     <Content>
@@ -34,7 +37,7 @@ export default function User(props: User) {
                   <MemberInfo
                     key={subscriber.subscriber.id}
                     member={subscriber.subscriber}
-                    detail={t(subscriber.subscriber.role.name)}
+                    detail={subscriber.subscriber.role.name}
                   />
                 )
               )
@@ -50,7 +53,7 @@ export default function User(props: User) {
                 <MemberInfo
                   key={subscriber.user.id}
                   member={subscriber.user}
-                  detail={t(subscriber.user.role.name)}
+                  detail={subscriber.user.role.name}
                 />
               ))
             : null}
@@ -58,6 +61,7 @@ export default function User(props: User) {
       </SideBar>
       <Main>
         <About user={props.user} />
+        {ban && <AlertAboutBan ban={ban} />}
         <UserComments
           userId={props.user.id}
           comments={props.user.comments}

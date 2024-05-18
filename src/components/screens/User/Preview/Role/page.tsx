@@ -2,7 +2,6 @@
 
 import IRole from "@/types/role.type";
 import styles from "./page.module.css";
-import { useTranslation } from "react-i18next";
 import { IoMdMore } from "react-icons/io";
 import { useRef, useState } from "react";
 import Dropdown from "@/components/shared/Dropdown/page";
@@ -18,7 +17,6 @@ interface Role {
 }
 
 export default function Role(props: Role) {
-  const { t } = useTranslation();
   const actionsRef = useRef(null);
   const [visibility, setVisibility] = useState(false);
   const { data: session } = useSession();
@@ -42,7 +40,7 @@ export default function Role(props: Role) {
             backgroundColor: `#${props.user.role.color}`,
           }}
         >
-          {t(props.user.role.name)}
+          {props.user.role.name}
         </h3>
         {roles && (
           <IoMdMore
@@ -61,9 +59,9 @@ export default function Role(props: Role) {
           {roles.map((role: IRole) => (
             <Item
               key={role.id}
-              value={t(role.name)}
+              value={role.name}
               func={async () =>
-                await editRole(props.user, session?.user.role.id, role.name)
+                await editRole(props.user.id, role.name)
                   .then(router.refresh)
                   .then(() => setVisibility(false))
               }

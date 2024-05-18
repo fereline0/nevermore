@@ -49,7 +49,7 @@ export default function Users(props: IUsers) {
         {props.users?.map((user: IUser) => {
           return (
             <Section padding="10px 10px">
-              <Member key={user.id} member={user} detail={t(user.role.name)} />
+              <Member key={user.id} member={user} detail={user.role.name} />
             </Section>
           );
         })}

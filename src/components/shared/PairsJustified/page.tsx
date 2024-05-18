@@ -11,7 +11,14 @@ export default function PairsJustified(props: IPairsJustified) {
     <div className={styles.pairsJustified}>
       {props.data.map((row, index) => {
         if (row.value != null)
-          return <Row key={index} label={row.label} value={row.value} />;
+          return (
+            <Row
+              key={index}
+              label={row.label}
+              link={row.link}
+              value={row.value}
+            />
+          );
       })}
     </div>
   );

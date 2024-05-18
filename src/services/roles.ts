@@ -1,4 +1,3 @@
-import IUser from "@/types/user.type";
 import useSWR from "swr";
 import { fetcher } from "@/utils/fetcher";
 import IRole from "@/types/role.type";
@@ -16,21 +15,13 @@ export function getRoles(id: number) {
   };
 }
 
-export async function editRole(
-  user: IUser,
-  currentRoleId: number,
-  name: string
-) {
-  if (currentRoleId <= user.role.id) {
-    return;
-  }
-
+export async function editRole(id: number, name: string) {
   const formData = new FormData();
 
   formData.append("name", name);
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${user.id}/roles`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}/roles`,
     { method: "POST", body: formData }
   );
 

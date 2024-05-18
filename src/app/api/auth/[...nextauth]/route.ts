@@ -60,11 +60,13 @@ const handler = NextAuth({
               abilities: true,
             },
           },
+          bans: true,
         },
       });
 
       if (session.user) {
         session.user.role = user?.role;
+        session.user.bans = user?.bans;
       }
     },
   },

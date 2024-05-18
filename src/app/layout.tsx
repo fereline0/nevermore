@@ -18,7 +18,17 @@ export default async function RootLayout({
       <body>
         <Provider>
           <Header />
-          <Toaster position="top-right" />
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              style: {
+                width: "500px",
+                maxWidth: "100%",
+                background: "#ffffff96",
+                backdropFilter: "blur(5px)",
+              },
+            }}
+          />
           <div className="container">{children}</div>
         </Provider>
       </body>
