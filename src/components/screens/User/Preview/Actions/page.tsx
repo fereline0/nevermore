@@ -13,7 +13,7 @@ import DangerItem from "@/components/shared/Dropdown/DangerItem/page";
 import DangerButton from "@/components/UI/DangerButton/page";
 import ban from "./ban";
 import { deleteUserBans, userBan } from "@/services/userBan";
-import { addTimeToCurrentDate } from "@/utils/addTimeToCurrentDate";
+import { stringToCurrentDate } from "@/utils/stringToCurrentDate";
 import { formatDistanceToNow } from "date-fns";
 import { currentLocale } from "@/utils/currentLocale";
 
@@ -80,7 +80,7 @@ export default function Actions(props: IActions) {
                 return (
                   <DangerItem
                     key={index}
-                    value={formatDistanceToNow(addTimeToCurrentDate(ban), {
+                    value={formatDistanceToNow(stringToCurrentDate(ban), {
                       locale,
                     })}
                     description={t(
@@ -90,7 +90,7 @@ export default function Actions(props: IActions) {
                       await userBan(
                         props.user.id,
                         session?.user.id,
-                        addTimeToCurrentDate(ban)
+                        stringToCurrentDate(ban)
                       ).then(router.refresh)
                     }
                   />
