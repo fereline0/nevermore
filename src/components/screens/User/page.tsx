@@ -20,7 +20,9 @@ interface User extends IPagination {
 export default function User(props: User) {
   const { t } = useTranslation();
 
-  const ban = props.user.bans.find((ban) => new Date(ban.expires) > new Date());
+  const ban = props.user.bans.find(
+    (ban) => new Date(ban.expires) > new Date() && ban.activity
+  );
 
   return (
     <Content>

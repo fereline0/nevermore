@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
 import DangerAction from "./DangerAction/page";
@@ -40,7 +42,7 @@ export default function Actions(props: IActions) {
   const actionsRef = useRef(null);
   const [visibility, setVisibility] = useState(false);
   const userIsBanned = props.user.bans.find(
-    (ban) => new Date(ban.expires) > new Date()
+    (ban) => new Date(ban.expires) > new Date() && ban.activity
   );
 
   return (
@@ -77,12 +79,20 @@ export default function Actions(props: IActions) {
               right
             >
               {ban.map((ban, index) => {
+                const formattedDistance = formatDistanceToNow(
+                  stringToCurrentDate(ban),
+                  {
+                    locale,
+                  }
+                );
+                const capitalizedValue =
+                  formattedDistance.charAt(0).toUpperCase() +
+                  formattedDistance.slice(1);
+
                 return (
                   <DangerItem
                     key={index}
-                    value={formatDistanceToNow(stringToCurrentDate(ban), {
-                      locale,
-                    })}
+                    value={capitalizedValue}
                     description={t(
                       "screens:user:preview:actions:ban:description"
                     )}

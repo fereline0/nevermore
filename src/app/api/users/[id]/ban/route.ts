@@ -33,9 +33,12 @@ export async function DELETE(
   { params }: { params: { id: number } }
 ) {
   try {
-    const bans = await prisma.userBans.deleteMany({
+    const bans = await prisma.userBans.updateMany({
       where: {
         userId: Number(params.id),
+      },
+      data: {
+        activity: false,
       },
     });
 

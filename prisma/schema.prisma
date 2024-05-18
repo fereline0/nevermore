@@ -64,8 +64,10 @@ model User {
 
 model UserBans {
   id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
   user        User     @relation("user", fields: [userId], references: [id])
   userId      Int
+  activity    Boolean  @default(true)
   expires     DateTime
   initiator   User     @relation("initiator", fields: [initiatorId], references: [id])
   initiatorId Int
