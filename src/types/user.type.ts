@@ -1,4 +1,5 @@
 import IBan from "./ban.type";
+import ICategory from "./category.type";
 import IComment from "./comment.type";
 import IRole from "./role.type";
 
@@ -14,6 +15,7 @@ export default interface IUser {
   subscribers: any[];
   subscribed: any[];
   comments: IComment[];
+  administeredCategories: ICategory[];
   bans: IBan[];
   _count: any;
 }

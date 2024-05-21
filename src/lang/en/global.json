@@ -6,8 +6,11 @@
       "support": "Support"
     },
     "forum": {
-      "createArticle": "Create article",
-      "moderate": "Moderation of unpublished articles"
+      "actions": {
+        "createArticle": "Create article",
+        "moderate": "Moderation of unpublished articles"
+      },
+      "supervisors": "Category curators"
     },
     "forums": {
       "statistics": {

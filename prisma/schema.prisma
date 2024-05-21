@@ -36,28 +36,29 @@ model Session {
 }
 
 model User {
-  id                    Int                    @id @default(autoincrement())
-  name                  String?
-  email                 String?                @unique
-  emailVerified         DateTime?
-  image                 String?
-  createdAt             DateTime               @default(now())
-  updatedAt             DateTime               @updatedAt
-  roleId                Int?
-  role                  Role?                  @relation(fields: [roleId], references: [id])
-  detailInformation     UserDetailInformation?
-  subscribed            UserSubscribers[]      @relation("subscriber")
-  subscribers           UserSubscribers[]      @relation("user")
-  comments              UserComments[]         @relation("user")
-  writerComments        UserComments[]         @relation("writer")
-  articles              Article[]
-  notifications         UserNotifications[]    @relation("user")
-  writerNotifications   UserNotifications[]    @relation("writer")
-  bans                  UserBans[]             @relation("user")
-  bansInitiator         UserBans[]             @relation("initiator")
-  accounts              Account[]
-  sessions              Session[]
-  writerArticleComments ArticleComments[]
+  id                     Int                    @id @default(autoincrement())
+  name                   String?
+  email                  String?                @unique
+  emailVerified          DateTime?
+  image                  String?
+  createdAt              DateTime               @default(now())
+  updatedAt              DateTime               @updatedAt
+  roleId                 Int?
+  role                   Role?                  @relation(fields: [roleId], references: [id])
+  detailInformation      UserDetailInformation?
+  subscribed             UserSubscribers[]      @relation("subscriber")
+  subscribers            UserSubscribers[]      @relation("user")
+  comments               UserComments[]         @relation("user")
+  writerComments         UserComments[]         @relation("writer")
+  articles               Article[]
+  notifications          UserNotifications[]    @relation("user")
+  writerNotifications    UserNotifications[]    @relation("writer")
+  bans                   UserBans[]             @relation("user")
+  bansInitiator          UserBans[]             @relation("initiator")
+  accounts               Account[]
+  sessions               Session[]
+  writerArticleComments  ArticleComments[]
+  administeredCategories Category[]
 
   @@fulltext(name)
 }
@@ -146,11 +147,12 @@ model Section {
 }
 
 model Category {
-  id        Int       @id @default(autoincrement())
-  name      String
-  articles  Article[]
-  section   Section   @relation(fields: [sectionId], references: [id])
-  sectionId Int
+  id          Int       @id @default(autoincrement())
+  name        String
+  articles    Article[]
+  section     Section   @relation(fields: [sectionId], references: [id])
+  sectionId   Int
+  supervisors User[]
 }
 
 model Article {
@@ -164,7 +166,7 @@ model Article {
   comments   ArticleComments[]
   authorId   Int
   author     User              @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  Category   Category          @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  category   Category          @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId Int
 
   @@fulltext([title, value])

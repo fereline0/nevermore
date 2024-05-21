@@ -3,7 +3,7 @@
 import Content from "@/components/shared/Content/page";
 import SideBar from "@/components/shared/Content/SideBar/page";
 import Sectionlist from "@/components/screens/Forums/SectionList/page";
-import SecondaryContent from "@/components/shared/Content/SideBar/SecondaryContent/page";
+import SecondaryContent from "@/components/shared/Content/SecondaryContent/page";
 import PairsJustified from "@/components/shared/PairsJustified/page";
 import { useTranslation } from "react-i18next";
 import ISection from "@/types/section.type";

@@ -26,6 +26,14 @@ export default function Article(props: Article) {
           <Link href={`/users/${props.article.author.id}`}>
             {props.article.author.name}
           </Link>
+          {props.article.category && (
+            <>
+              <Separator />
+              <Link href={`/forums/${props.article.category.id}`}>
+                {props.article.category.name}
+              </Link>
+            </>
+          )}
           <Separator />
           <span>
             {formatDistance(props.article.createdAt, new Date(), {

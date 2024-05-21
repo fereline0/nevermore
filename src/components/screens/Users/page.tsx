@@ -2,7 +2,7 @@
 
 import Main from "@/components/shared/Content/Main/page";
 import Section from "@/components/shared/Content/Section/page";
-import SecondaryContent from "@/components/shared/Content/SideBar/SecondaryContent/page";
+import SecondaryContent from "@/components/shared/Content/SecondaryContent/page";
 import SideBar from "@/components/shared/Content/SideBar/page";
 import Content from "@/components/shared/Content/page";
 import Member from "@/components/shared/Member/page";

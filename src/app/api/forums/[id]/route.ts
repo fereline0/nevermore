@@ -49,6 +49,11 @@ export async function GET(
             },
           },
         },
+        supervisors: {
+          include: {
+            role: true,
+          },
+        },
         _count: {
           select: {
             articles: {

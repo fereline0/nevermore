@@ -5,7 +5,7 @@ import SideBar from "@/components/shared/Content/SideBar/page";
 import Main from "@/components/shared/Content/Main/page";
 import Preview from "@/components/screens/User/Preview/page";
 import About from "@/components/screens/User/About/page";
-import SecondaryContent from "@/components/shared/Content/SideBar/SecondaryContent/page";
+import SecondaryContent from "@/components/shared/Content/SecondaryContent/page";
 import MemberInfo from "@/components/shared/MemberInfo/page";
 import IUser from "@/types/user.type";
 import UserComments from "@/components/screens/User/Comments/page";

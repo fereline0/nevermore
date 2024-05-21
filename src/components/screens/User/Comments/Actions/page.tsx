@@ -28,7 +28,7 @@ export default function Actions(props: IActions) {
   const canDelete =
     props.comment.writer.id == session?.user.id ||
     (session?.user.role.abilities.some(
-      (ability: any) => ability.slug === "deleteComment"
+      (ability: any) => ability.slug === "deleteUserComment"
     ) &&
       props.comment.writer.role.id < session?.user.role.id);
 

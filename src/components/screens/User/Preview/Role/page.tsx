@@ -26,7 +26,7 @@ export default function Role(props: Role) {
     session?.user.role.id > props.user.role.id &&
     props.user.id != session?.user.id &&
     session?.user.role.abilities.some(
-      (ability: any) => ability.slug === "editUser"
+      (ability: any) => ability.slug === "editUserRole"
     );
 
   const { data: roles } = getRoles(canEditRole ? session?.user.role.id : null);

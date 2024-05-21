@@ -5,9 +5,10 @@ async function main() {
   const abilities = await prisma.ability.createMany({
     data: [
       { slug: "deleteUser" },
-      { slug: "deleteComment" },
-      { slug: "deleteArticle" },
+      { slug: "deleteUserComment" },
+      { slug: "superviseForum" },
       { slug: "editUser" },
+      { slug: "editUserRole" },
       { slug: "ban" },
     ],
     skipDuplicates: true,
@@ -33,7 +34,7 @@ async function main() {
       name: "Moderator",
       color: "0ebd00",
       abilities: {
-        connect: [{ slug: "deleteComment" }, { slug: "deleteArticle" }],
+        connect: [{ slug: "deleteUserComment" }, { slug: "editUser" }],
       },
     },
   });
@@ -48,9 +49,10 @@ async function main() {
       color: "ff0000",
       abilities: {
         connect: [
-          { slug: "deleteComment" },
-          { slug: "deleteArticle" },
+          { slug: "deleteUserComment" },
+          { slug: "superviseForum" },
           { slug: "editUser" },
+          { slug: "editUserRole" },
           { slug: "ban" },
         ],
       },
@@ -67,9 +69,10 @@ async function main() {
       color: "ffb2fa",
       abilities: {
         connect: [
-          { slug: "deleteComment" },
-          { slug: "deleteArticle" },
+          { slug: "deleteUserComment" },
+          { slug: "superviseForum" },
           { slug: "editUser" },
+          { slug: "editUserRole" },
           { slug: "ban" },
           { slug: "deleteUser" },
         ],

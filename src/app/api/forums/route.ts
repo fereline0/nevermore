@@ -32,6 +32,7 @@ export async function GET(req: NextRequest) {
             writer: true,
           },
         },
+        category: true,
         _count: {
           select: {
             comments: true,

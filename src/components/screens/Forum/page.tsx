@@ -10,6 +10,10 @@ import ICategory from "@/types/category.type";
 import Main from "@/components/shared/Content/Main/page";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { useSession } from "next-auth/react";
+import MemberInfo from "@/components/shared/MemberInfo/page";
+import IUser from "@/types/user.type";
+import SecondaryContent from "@/components/shared/Content/SecondaryContent/page";
 
 interface IForum extends IPagination {
   category: ICategory;
@@ -18,25 +22,35 @@ interface IForum extends IPagination {
 export default function Forum(props: IForum) {
   const { t } = useTranslation();
   const router = useRouter();
+  const { status } = useSession();
 
   return (
     <Main>
       <h1>{props.category.name}</h1>
       <Search />
-      <div className={styles.actions}>
-        <FitContent>
-          <Button
-            value={t("screens:forum:createArticle")}
-            onClick={() => router.push(`${props.category.id}/createArticle`)}
-          />
-        </FitContent>
-        <FitContent>
-          <Button
-            value={t("screens:forum:moderate")}
-            onClick={() => router.push("")}
-          />
-        </FitContent>
-      </div>
+      {status == "authenticated" && (
+        <div className={styles.actions}>
+          <FitContent>
+            <Button
+              value={t("screens:forum:actions:createArticle")}
+              onClick={() => router.push(`${props.category.id}/createArticle`)}
+            />
+          </FitContent>
+          <FitContent>
+            <Button
+              value={t("screens:forum:actions:moderate")}
+              onClick={() => router.push("")}
+            />
+          </FitContent>
+        </div>
+      )}
+      <SecondaryContent title={t("screens:forum:supervisors")}>
+        {props.category.supervisors.length > 0
+          ? props.category.supervisors.map((user: IUser) => (
+              <MemberInfo key={user.id} member={user} detail={user.role.name} />
+            ))
+          : null}
+      </SecondaryContent>
       <Articles
         articles={props.category.articles}
         total={props.total}

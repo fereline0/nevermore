@@ -6,8 +6,13 @@
       "support": "Поддержка"
     },
     "forum": {
-      "createArticle": "Создать статью",
-      "moderate": "Модерация не опубликованных статей",
+      "actions": {
+        "createArticle": "Создать статью",
+        "moderate": "Модерация не опубликованных статей"
+      },
+      "supervisors": "Кураторы категории"
+    },
+    "forums": {
       "statistics": {
         "title": "Статистика форума",
         "data": {
