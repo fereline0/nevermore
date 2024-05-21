@@ -36,8 +36,10 @@ export async function editGeneral(
     return;
   }
 
-  await serverFetcher(
+  const res = await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}/edit/general`,
     { method: "POST", body: formData }
   );
+
+  return res.json();
 }
