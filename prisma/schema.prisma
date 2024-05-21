@@ -43,8 +43,8 @@ model User {
   image                  String?
   createdAt              DateTime               @default(now())
   updatedAt              DateTime               @updatedAt
-  roleId                 Int?
-  role                   Role?                  @relation(fields: [roleId], references: [id])
+  roleId                 Int
+  role                   Role                   @relation(fields: [roleId], references: [id])
   detailInformation      UserDetailInformation?
   subscribed             UserSubscribers[]      @relation("subscriber")
   subscribers            UserSubscribers[]      @relation("user")
@@ -66,11 +66,11 @@ model User {
 model UserBans {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
-  user        User     @relation("user", fields: [userId], references: [id])
+  user        User     @relation("user", fields: [userId], references: [id], onDelete: Cascade)
   userId      Int
   activity    Boolean  @default(true)
   expires     DateTime
-  initiator   User     @relation("initiator", fields: [initiatorId], references: [id])
+  initiator   User     @relation("initiator", fields: [initiatorId], references: [id], onDelete: Cascade)
   initiatorId Int
 }
 
@@ -84,7 +84,7 @@ model UserNotifications {
 
   writer   User @relation("writer", fields: [writerId], references: [id], onDelete: Cascade)
   writerId Int
-  User     User @relation("user", fields: [userId], references: [id])
+  User     User @relation("user", fields: [userId], references: [id], onDelete: Cascade)
   userId   Int
 }
 
@@ -93,8 +93,11 @@ model UserSubscribers {
 
   subscriberId Int
   subscriber   User @relation("subscriber", fields: [subscriberId], references: [id], onDelete: Cascade)
-  userId       Int
-  user         User @relation("user", fields: [userId], references: [id], onDelete: Cascade)
+
+  userId Int
+  user   User @relation("user", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([subscriberId, userId])
 }
 
 model Role {

@@ -23,16 +23,11 @@ export async function editRole(id: number, name: string) {
 
   formData.append("name", name);
 
-  const res = await serverFetcher(
+  await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}/roles`,
     {
       method: "POST",
       body: formData,
-      headers: {
-        "API-Key": process.env.NEXT_PUBLIC_API_KEY as string,
-      },
     }
   );
-
-  return res.json();
 }

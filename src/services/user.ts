@@ -5,12 +5,7 @@ export async function getUsers(page: number, limit: number, query: string) {
   const res = await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users?page=${page}&limit=${limit}${
       query ? `&q=${query}` : ""
-    }`,
-    {
-      headers: {
-        "API-Key": process.env.NEXT_PUBLIC_API_KEY as string,
-      },
-    }
+    }`
   );
 
   if (!res.ok) notFound();
@@ -33,9 +28,6 @@ export async function deleteUser(id: number) {
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}`,
     {
       method: "DELETE",
-      headers: {
-        "API-Key": process.env.NEXT_PUBLIC_API_KEY as string,
-      },
     }
   );
 

@@ -24,6 +24,11 @@
     "user": {
       "preview": {
         "actions": {
+          "subscribe": "Подписаться",
+          "unSubscribe": {
+            "value": "Отписаться",
+            "description": "Вы уверены, что хотите отозвать подписку на данного пользователя?"
+          },
           "changeInformation": "Изменить информацию",
           "ban": {
             "value": "Заблокировать",

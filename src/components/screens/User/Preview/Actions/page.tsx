@@ -19,6 +19,7 @@ import { stringToCurrentDate } from "@/utils/stringToCurrentDate";
 import { formatDistanceToNow } from "date-fns";
 import { currentLocale } from "@/utils/currentLocale";
 import IBan from "@/types/ban.type";
+import { subscribe, unSubscribe } from "@/services/userSubscribers";
 
 interface IActions {
   user: IUser;
@@ -28,17 +29,22 @@ interface IActions {
 export default function Actions(props: IActions) {
   const { data: session, status } = useSession();
   const locale = currentLocale();
+
   const roleBenefits = props.user.role.id < session?.user.role.id;
-  const canDelete = session?.user.role.abilities.some(
-    (ability: any) => ability.slug === "deleteUser"
-  );
-  const canEdit = session?.user.role.abilities.some(
-    (ability: any) => ability.slug === "editUser"
-  );
-  const canBan = session?.user.role.abilities.some(
-    (ability: any) => ability.slug === "ban"
-  );
   const pageBelong = props.user.id == session?.user.id;
+  const abilities = session?.user?.role?.abilities;
+  const userRoleAbilities = abilities
+    ? abilities.map((ability: any) => ability.slug)
+    : [];
+  const canDelete = userRoleAbilities.includes("deleteUser");
+  const canEdit = userRoleAbilities.includes("editUser");
+  const canBan = userRoleAbilities.includes("ban");
+
+  const ifSubscribe = props.user.subscribers.some(
+    (subscriber: { subscriber: IUser }) =>
+      subscriber.subscriber.id === session?.user.id
+  );
+
   const router = useRouter();
   const { t } = useTranslation();
   const actionsRef = useRef(null);
@@ -53,70 +59,93 @@ export default function Actions(props: IActions) {
           onClick={() => router.push(`/users/${props.user.id}/edit/general`)}
         />
       )}
-      {status == "authenticated" &&
-        canBan &&
+      {status === "authenticated" &&
         !pageBelong &&
-        roleBenefits &&
-        (props.ban ? (
+        (ifSubscribe ? (
           <DangerAction
-            value={t("screens:user:preview:actions:unBan:value")}
-            description={t("screens:user:preview:actions:unBan:description")}
-            func={async () =>
-              await deleteUserBans(props.user.id).then(router.refresh)
-            }
+            value={t("screens:user:preview:actions:unSubscribe:value")}
+            description={t(
+              "screens:user:preview:actions:unSubscribe:description"
+            )}
+            func={async () => {
+              await unSubscribe(props.user.id, session?.user.id);
+              router.refresh();
+            }}
           />
         ) : (
-          <div className={styles.banContainer} ref={actionsRef}>
-            <DangerButton
-              value={t("screens:user:preview:actions:ban:value")}
-              onClick={() => setVisibility(true)}
-            />
-            <Dropdown
-              visibility={visibility}
-              setVisibility={setVisibility}
-              parentRef={actionsRef}
-              right
-            >
-              {ban.map((ban, index) => {
-                const formattedDistance = formatDistanceToNow(
-                  stringToCurrentDate(ban),
-                  {
-                    locale,
-                  }
-                );
-                const capitalizedValue =
-                  formattedDistance.charAt(0).toUpperCase() +
-                  formattedDistance.slice(1);
-
-                return (
-                  <DangerItem
-                    key={index}
-                    value={capitalizedValue}
-                    description={t(
-                      "screens:user:preview:actions:ban:description"
-                    )}
-                    func={async () =>
-                      await userBan(
-                        props.user.id,
-                        session?.user.id,
-                        stringToCurrentDate(ban)
-                      ).then(router.refresh)
-                    }
-                  />
-                );
-              })}
-            </Dropdown>
-          </div>
+          <Button
+            value={t("screens:user:preview:actions:subscribe")}
+            type="button"
+            onClick={async () => {
+              await subscribe(props.user.id, session?.user.id);
+              router.refresh();
+            }}
+          />
         ))}
+      {status === "authenticated" && canBan && !pageBelong && roleBenefits && (
+        <div className={styles.banContainer} ref={actionsRef}>
+          {props.ban ? (
+            <DangerAction
+              value={t("screens:user:preview:actions:unBan:value")}
+              description={t("screens:user:preview:actions:unBan:description")}
+              func={async () => {
+                await deleteUserBans(props.user.id);
+                router.refresh();
+              }}
+            />
+          ) : (
+            <div>
+              <DangerButton
+                value={t("screens:user:preview:actions:ban:value")}
+                onClick={() => setVisibility(true)}
+              />
+              <Dropdown
+                visibility={visibility}
+                setVisibility={setVisibility}
+                parentRef={actionsRef}
+                right
+              >
+                {ban.map((ban, index) => {
+                  const formattedDistance = formatDistanceToNow(
+                    stringToCurrentDate(ban),
+                    { locale }
+                  );
+                  const capitalizedValue =
+                    formattedDistance.charAt(0).toUpperCase() +
+                    formattedDistance.slice(1);
+                  return (
+                    <DangerItem
+                      key={index}
+                      value={capitalizedValue}
+                      description={t(
+                        "screens:user:preview:actions:ban:description"
+                      )}
+                      func={async () => {
+                        await userBan(
+                          props.user.id,
+                          session?.user.id,
+                          stringToCurrentDate(ban)
+                        );
+                        router.refresh();
+                      }}
+                    />
+                  );
+                })}
+              </Dropdown>
+            </div>
+          )}
+        </div>
+      )}
       {canDelete && !pageBelong && roleBenefits && (
         <DangerAction
           value={t("screens:user:preview:actions:deleteAccount:value")}
           description={t(
             "screens:user:preview:actions:deleteAccount:description"
           )}
-          func={async () =>
-            await deleteUser(props.user.id).then(router.refresh)
-          }
+          func={async () => {
+            await deleteUser(props.user.id);
+            router.refresh();
+          }}
         />
       )}
       {pageBelong && (

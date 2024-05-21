@@ -62,17 +62,13 @@ export async function createUserComment(
       `/users/comments/${responseJson.id}`
     );
   }
-
-  return responseJson;
 }
 
 export async function deleteUserComment(id: number) {
-  const res = await serverFetcher(
+  await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/comments/${id}`,
     {
       method: "DELETE",
     }
   );
-
-  return res.json();
 }

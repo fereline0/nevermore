@@ -24,6 +24,11 @@
     "user": {
       "preview": {
         "actions": {
+          "subscribe": "Subscribe",
+          "unSubscribe": {
+            "value": "Unsubscribe",
+            "description": "Are you sure you want to unsubscribe this user?"
+          },
           "changeInformation": "Change information",
           "ban": {
             "value": "Ban",

@@ -28,3 +28,31 @@ export async function getUserSubscribed(
 
   return res.json();
 }
+
+export async function subscribe(userId: number, subscriberId: number) {
+  const formData = new FormData();
+
+  formData.append("subscriberId", subscriberId.toString());
+
+  const res = await serverFetcher(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}/subscribed`,
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
+}
+
+export async function unSubscribe(userId: number, subscriberId: number) {
+  const formData = new FormData();
+
+  formData.append("subscriberId", subscriberId.toString());
+
+  const res = await serverFetcher(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}/subscribed`,
+    {
+      method: "DELETE",
+      body: formData,
+    }
+  );
+}

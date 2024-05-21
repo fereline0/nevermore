@@ -10,6 +10,7 @@ export async function getGeneral(id: number) {
   );
 
   if (!res.ok) notFound();
+
   return res.json();
 }
 
@@ -35,10 +36,8 @@ export async function editGeneral(
     return;
   }
 
-  const res = await serverFetcher(
+  await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}/edit/general`,
     { method: "POST", body: formData }
   );
-
-  return res.json();
 }

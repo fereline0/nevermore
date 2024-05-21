@@ -50,3 +50,43 @@ export async function GET(
     return NextResponse.error();
   }
 }
+
+export async function POST(
+  req: NextRequest,
+  { params }: { params: { id: number } }
+) {
+  try {
+    const body = await req.formData();
+
+    const userSubscriber = await prisma.userSubscribers.create({
+      data: {
+        userId: Number(params.id),
+        subscriberId: Number(body.get("subscriberId")),
+      },
+    });
+
+    return NextResponse.json(userSubscriber, { status: 200 });
+  } catch (error) {
+    return NextResponse.error();
+  }
+}
+
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: number } }
+) {
+  try {
+    const body = await req.formData();
+    const unSubscribe = await prisma.userSubscribers.delete({
+      where: {
+        subscriberId_userId: {
+          subscriberId: Number(body.get("subscriberId")),
+          userId: Number(params.id),
+        },
+      },
+    });
+    return NextResponse.json(unSubscribe, { status: 200 });
+  } catch (error) {
+    return NextResponse.error();
+  }
+}

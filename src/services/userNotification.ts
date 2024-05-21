@@ -44,21 +44,17 @@ export async function createUserNotification(
   formData.append("writerId", writerId.toString());
   sourceLink ? formData.append("sourceLink", sourceLink.toString()) : null;
 
-  const res = await serverFetcher(
+  await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}/notifications`,
     { method: "POST", body: formData }
   );
-
-  return res.json();
 }
 
 export async function updateStatusUserNotifications(userId: number) {
-  const res = await serverFetcher(
+  await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}/notifications/status`,
     { method: "POST" }
   );
-
-  return res.json();
 }
 
 export async function updateStatusUserNotification(sourceLink: string) {
@@ -66,10 +62,8 @@ export async function updateStatusUserNotification(sourceLink: string) {
 
   formData.append("sourceLink", sourceLink.toString());
 
-  const res = await serverFetcher(
+  await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/notifications/status`,
     { method: "POST", body: formData }
   );
-
-  return res.json();
 }
