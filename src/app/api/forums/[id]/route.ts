@@ -15,8 +15,7 @@ export async function GET(
       where: {
         id: Number(params.id),
       },
-      select: {
-        name: true,
+      include: {
         articles: {
           orderBy: {
             createdAt: "desc",
@@ -46,11 +45,6 @@ export async function GET(
               select: {
                 createdAt: true,
                 writer: true,
-              },
-            },
-            _count: {
-              select: {
-                comments: true,
               },
             },
           },

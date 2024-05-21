@@ -6,6 +6,8 @@
       "support": "Поддержка"
     },
     "forum": {
+      "createArticle": "Создать статью",
+      "moderate": "Модерация не опубликованных статей",
       "statistics": {
         "title": "Статистика форума",
         "data": {

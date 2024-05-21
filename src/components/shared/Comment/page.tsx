@@ -17,7 +17,7 @@ export default function Comment(props: Comment) {
   const locale = currentLocale();
 
   return (
-    <Section className={styles.comment} padding="10px">
+    <Section padding="10px">
       <MarginBottom gap={5}>
         <div className={styles.aboutWriter}>
           <MemberInfo

@@ -2,15 +2,13 @@
 
 import Content from "@/components/shared/Content/page";
 import SideBar from "@/components/shared/Content/SideBar/page";
-import Main from "@/components/shared/Content/Main/page";
 import Sectionlist from "@/components/screens/Forums/SectionList/page";
 import SecondaryContent from "@/components/shared/Content/SideBar/SecondaryContent/page";
 import PairsJustified from "@/components/shared/PairsJustified/page";
 import { useTranslation } from "react-i18next";
 import ISection from "@/types/section.type";
-import MarginBottom from "@/components/shared/MarginBottom/page";
 
-interface IForum {
+interface IForums {
   res: {
     sections: ISection[];
     count: { articles: number; comments: number };
@@ -18,22 +16,22 @@ interface IForum {
   children: React.ReactNode;
 }
 
-export default function Forum(props: IForum) {
+export default function Forums(props: IForums) {
   const { t } = useTranslation();
 
   return (
     <Content>
       <SideBar>
         <Sectionlist data={props.res.sections} />
-        <SecondaryContent title={t("screens:forum:statistics:title")}>
+        <SecondaryContent title={t("screens:forums:statistics:title")}>
           <PairsJustified
             data={[
               {
-                label: t("screens:forum:statistics:data:articlesCount"),
+                label: t("screens:forums:statistics:data:articlesCount"),
                 value: props.res.count.articles,
               },
               {
-                label: t("screens:forum:statistics:data:commentsCount"),
+                label: t("screens:forums:statistics:data:commentsCount"),
                 value: props.res.count.comments,
               },
             ]}

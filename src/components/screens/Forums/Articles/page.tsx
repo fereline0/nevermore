@@ -13,7 +13,7 @@ export default function Articles(props: IArticles) {
     <MarginBottom gap={10}>
       <MarginBottom gap={10}>
         {props.articles.map((article: IArticle) => {
-          return <Article article={article} />;
+          return <Article key={article.id} article={article} />;
         })}
       </MarginBottom>
       <Pagination

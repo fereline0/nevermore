@@ -6,6 +6,10 @@
       "support": "Support"
     },
     "forum": {
+      "createArticle": "Create article",
+      "moderate": "Moderation of unpublished articles"
+    },
+    "forums": {
       "statistics": {
         "title": "Forum statistics",
         "data": {

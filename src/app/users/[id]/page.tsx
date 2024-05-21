@@ -1,6 +1,7 @@
 import User from "@/components/screens/User/page";
 import Loading from "@/components/shared/Loading/page";
 import { getUser } from "@/services/user";
+import IUser from "@/types/user.type";
 import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
@@ -14,7 +15,7 @@ export default async function user({
 }) {
   const page = searchParams.page || 1;
   const limit = 20;
-  const user = await getUser(params.id, page, limit);
+  const user: IUser = await getUser(params.id, page, limit);
 
   return (
     <Suspense fallback={<Loading />}>

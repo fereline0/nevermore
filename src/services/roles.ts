@@ -1,11 +1,14 @@
 import useSWR from "swr";
-import { fetcher } from "@/utils/fetcher";
+import { clientFetcher, serverFetcher } from "@/utils/fetcher";
 import IRole from "@/types/role.type";
 
 export function getRoles(id: number) {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/api/users/roles/${id}`;
 
-  const { data, error, isLoading } = useSWR<IRole[]>(id ? url : null, fetcher);
+  const { data, error, isLoading } = useSWR<IRole[]>(
+    id ? url : null,
+    clientFetcher
+  );
 
   return {
     data,
@@ -20,9 +23,15 @@ export async function editRole(id: number, name: string) {
 
   formData.append("name", name);
 
-  const res = await fetch(
+  const res = await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}/roles`,
-    { method: "POST", body: formData }
+    {
+      method: "POST",
+      body: formData,
+      headers: {
+        "API-Key": process.env.NEXT_PUBLIC_API_KEY as string,
+      },
+    }
   );
 
   return res.json();

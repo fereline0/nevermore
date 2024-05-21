@@ -7,6 +7,7 @@ import Comments from "@/components/screens/User/Comments/page";
 import { Suspense } from "react";
 import Loading from "@/components/shared/Loading/page";
 import { updateStatusUserNotification } from "@/services/userNotification";
+import IComment from "@/types/comment.type";
 
 export const dynamic = "force-dynamic";
 
@@ -19,7 +20,7 @@ export default async function comment({
 }) {
   const page = searchParams.page || 1;
   const limit = 20;
-  const comment = await getUserComment(params.id, page, limit);
+  const comment: IComment = await getUserComment(params.id, page, limit);
   const updateStatus = await updateStatusUserNotification(
     `/users/comments/${params.id}`
   );

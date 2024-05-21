@@ -1,5 +1,3 @@
-"use client";
-
 import Subscribers from "@/components/screens/User/Subscribers/page";
 import Loading from "@/components/shared/Loading/page";
 import { getUserSubscribers } from "@/services/userSubscribers";
@@ -12,6 +10,8 @@ interface ISubscribers extends IUser {
     subscribers: number;
   };
 }
+
+export const dynamic = "force-dynamic";
 
 export default async function subscribers({
   params,

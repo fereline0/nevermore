@@ -1,4 +1,4 @@
-import { fetcher } from "@/utils/fetcher";
+import { clientFetcher, serverFetcher } from "@/utils/fetcher";
 import { notFound } from "next/navigation";
 import useSWR from "swr";
 
@@ -7,7 +7,7 @@ export async function getUserNotifications(
   page: number,
   limit: number
 ) {
-  const res = await fetch(
+  const res = await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}/notifications?page=${page}&limit=${limit}`
   );
 
@@ -19,7 +19,10 @@ export async function getUserNotifications(
 export function getUserNotificationsCount(id?: number) {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}/notifications/count`;
 
-  const { data, error, isLoading } = useSWR<number>(id ? url : null, fetcher);
+  const { data, error, isLoading } = useSWR<number>(
+    id ? url : null,
+    clientFetcher
+  );
 
   return {
     data,
@@ -41,7 +44,7 @@ export async function createUserNotification(
   formData.append("writerId", writerId.toString());
   sourceLink ? formData.append("sourceLink", sourceLink.toString()) : null;
 
-  const res = await fetch(
+  const res = await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}/notifications`,
     { method: "POST", body: formData }
   );
@@ -50,7 +53,7 @@ export async function createUserNotification(
 }
 
 export async function updateStatusUserNotifications(userId: number) {
-  const res = await fetch(
+  const res = await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}/notifications/status`,
     { method: "POST" }
   );
@@ -63,7 +66,7 @@ export async function updateStatusUserNotification(sourceLink: string) {
 
   formData.append("sourceLink", sourceLink.toString());
 
-  const res = await fetch(
+  const res = await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/notifications/status`,
     { method: "POST", body: formData }
   );

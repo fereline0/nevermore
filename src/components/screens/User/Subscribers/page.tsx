@@ -1,3 +1,5 @@
+"use client";
+
 import Main from "@/components/shared/Content/Main/page";
 import Section from "@/components/shared/Content/Section/page";
 import Content from "@/components/shared/Content/page";

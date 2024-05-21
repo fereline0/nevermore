@@ -1,3 +1,4 @@
+import { serverFetcher } from "@/utils/fetcher";
 import { notFound } from "next/navigation";
 
 export async function getUserSubscribers(
@@ -5,7 +6,7 @@ export async function getUserSubscribers(
   page: number,
   limit: number
 ) {
-  const res = await fetch(
+  const res = await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}/subscribers?page=${page}&limit=${limit}`
   );
 
@@ -19,7 +20,7 @@ export async function getUserSubscribed(
   page: number,
   limit: number
 ) {
-  const res = await fetch(
+  const res = await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}/subscribed?page=${page}&limit=${limit}`
   );
 

@@ -12,7 +12,7 @@ i18n.use(initReactI18next).init({
     en: { ...en, zod: zEN },
     ru: { ...ru, zod: zRU },
   },
-  lng: "ru",
+  lng: "en",
   fallbackLng: "en",
 
   interpolation: {

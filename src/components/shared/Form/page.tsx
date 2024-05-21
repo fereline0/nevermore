@@ -1,6 +1,7 @@
 import { FormEvent } from "react";
 import styles from "./page.module.css";
 import Button from "@/components/UI/Button/page";
+import FitContent from "@/components/shared/FitContent/page";
 
 interface IForm {
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
@@ -12,9 +13,9 @@ export default function Form(props: IForm) {
   return (
     <form onSubmit={props.onSubmit} className={styles.form}>
       {props.children}
-      <div>
+      <FitContent>
         <Button type="submit" value={props.submitValue} />
-      </div>
+      </FitContent>
     </form>
   );
 }

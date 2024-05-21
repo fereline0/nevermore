@@ -1,4 +1,4 @@
-import Forum from "@/components/screens/Forums/layout";
+import Forums from "@/components/screens/Forums/layout";
 import { getSections } from "@/services/forum";
 import ISection from "@/types/section.type";
 
@@ -12,5 +12,5 @@ export default async function Layout(props: ILayout) {
     count: { articles: number; comments: number };
   } = await getSections();
 
-  return <Forum res={res}>{props.children}</Forum>;
+  return <Forums res={res}>{props.children}</Forums>;
 }

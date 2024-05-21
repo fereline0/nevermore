@@ -1,9 +1,6 @@
-.comment {
-  position: relative;
-}
-
 .aboutWriter {
   display: flex;
+  position: relative;
   justify-content: space-between;
 }
 

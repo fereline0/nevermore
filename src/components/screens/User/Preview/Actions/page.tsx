@@ -18,9 +18,11 @@ import { deleteUserBans, userBan } from "@/services/userBan";
 import { stringToCurrentDate } from "@/utils/stringToCurrentDate";
 import { formatDistanceToNow } from "date-fns";
 import { currentLocale } from "@/utils/currentLocale";
+import IBan from "@/types/ban.type";
 
 interface IActions {
   user: IUser;
+  ban?: IBan;
 }
 
 export default function Actions(props: IActions) {
@@ -41,9 +43,6 @@ export default function Actions(props: IActions) {
   const { t } = useTranslation();
   const actionsRef = useRef(null);
   const [visibility, setVisibility] = useState(false);
-  const userIsBanned = props.user.bans.find(
-    (ban) => new Date(ban.expires) > new Date() && ban.activity
-  );
 
   return (
     <MarginBottom gap={5}>
@@ -58,7 +57,7 @@ export default function Actions(props: IActions) {
         canBan &&
         !pageBelong &&
         roleBenefits &&
-        (userIsBanned ? (
+        (props.ban ? (
           <DangerAction
             value={t("screens:user:preview:actions:unBan:value")}
             description={t("screens:user:preview:actions:unBan:description")}

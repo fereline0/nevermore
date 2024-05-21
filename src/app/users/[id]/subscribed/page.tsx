@@ -1,5 +1,3 @@
-"use client";
-
 import Subscribed from "@/components/screens/User/Subscribed/page";
 import Loading from "@/components/shared/Loading/page";
 import { getUserSubscribed } from "@/services/userSubscribers";
@@ -13,6 +11,8 @@ interface ISubscribed extends IUser {
   };
 }
 
+export const dynamic = "force-dynamic";
+
 export default async function subscribed({
   params,
   searchParams,
@@ -22,7 +22,7 @@ export default async function subscribed({
 }) {
   const page = searchParams.page || 1;
   const limit = 20;
-  const res: ISubscribed = await getUserSubscribed(params.id, page, limit);
+  const res = await getUserSubscribed(params.id, page, limit);
 
   return (
     <Suspense fallback={<Loading />}>

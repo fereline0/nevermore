@@ -1,10 +1,16 @@
+import { serverFetcher } from "@/utils/fetcher";
 import { notFound } from "next/navigation";
 
-export async function getUsers(page: number, limit: number, query: any) {
-  const res = await fetch(
+export async function getUsers(page: number, limit: number, query: string) {
+  const res = await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users?page=${page}&limit=${limit}${
       query ? `&q=${query}` : ""
-    }`
+    }`,
+    {
+      headers: {
+        "API-Key": process.env.NEXT_PUBLIC_API_KEY as string,
+      },
+    }
   );
 
   if (!res.ok) notFound();
@@ -13,7 +19,7 @@ export async function getUsers(page: number, limit: number, query: any) {
 }
 
 export async function getUser(id: number, page: number, limit: number) {
-  const res = await fetch(
+  const res = await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}?page=${page}&limit=${limit}`
   );
 
@@ -23,10 +29,13 @@ export async function getUser(id: number, page: number, limit: number) {
 }
 
 export async function deleteUser(id: number) {
-  const res = await fetch(
+  const res = await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}`,
     {
       method: "DELETE",
+      headers: {
+        "API-Key": process.env.NEXT_PUBLIC_API_KEY as string,
+      },
     }
   );
 

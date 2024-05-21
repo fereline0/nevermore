@@ -3,9 +3,10 @@ import { FormEvent } from "react";
 import toast from "react-hot-toast";
 import { createUserNotification } from "./userNotification";
 import { notFound } from "next/navigation";
+import { serverFetcher } from "@/utils/fetcher";
 
 export async function getUserComment(id: number, page: number, limit: number) {
-  const res = await fetch(
+  const res = await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/comments/${id}?page=${page}&limit=${limit}`
   );
 
@@ -44,7 +45,7 @@ export async function createUserComment(
     return;
   }
 
-  const res = await fetch(
+  const res = await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/comments`,
     { method: "POST", body: formData }
   );
@@ -66,7 +67,7 @@ export async function createUserComment(
 }
 
 export async function deleteUserComment(id: number) {
-  const res = await fetch(
+  const res = await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/comments/${id}`,
     {
       method: "DELETE",
