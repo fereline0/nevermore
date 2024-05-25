@@ -1,4 +1,7 @@
 {
+  "app": {
+    "not-found": "The requested page was not found"
+  },
   "screens": {
     "header": {
       "forum": "Forum",

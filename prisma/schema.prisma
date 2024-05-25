@@ -43,8 +43,8 @@ model User {
   image                  String?
   createdAt              DateTime               @default(now())
   updatedAt              DateTime               @updatedAt
-  roleId                 Int
-  role                   Role                   @relation(fields: [roleId], references: [id])
+  roleId                 Int?
+  role                   Role?                  @relation(fields: [roleId], references: [id])
   detailInformation      UserDetailInformation?
   subscribed             UserSubscribers[]      @relation("subscriber")
   subscribers            UserSubscribers[]      @relation("user")

@@ -12,6 +12,7 @@ import { useSession } from "next-auth/react";
 import IComment from "@/types/comment.type";
 import { useTranslation } from "react-i18next";
 import Separated from "@/components/shared/Dropdown/Separated/page";
+import { canDelete, canRedirectToReplys } from "@/policies/comment";
 
 interface IActions {
   comment: IComment;
@@ -25,14 +26,16 @@ export default function Actions(props: IActions) {
   const router = useRouter();
   const path = usePathname();
 
-  const canDelete =
-    props.comment.writer.id == session?.user.id ||
-    (session?.user.role.abilities.some(
-      (ability: any) => ability.slug === "deleteUserComment"
-    ) &&
-      props.comment.writer.role.id < session?.user.role.id);
+  const canDeleteComment = canDelete(
+    props.comment.writer.id,
+    session?.user.role.abilities,
+    session?.user.id
+  );
 
-  const canRedirectToReplys = path != `/users/comments/${props.comment.id}`;
+  const canRedirectToCommentReplys = canRedirectToReplys(
+    path,
+    props.comment.id
+  );
 
   return (
     <div ref={actionsRef}>
@@ -47,13 +50,13 @@ export default function Actions(props: IActions) {
         setVisibility={setVisibility}
       >
         <Separated>
-          {canRedirectToReplys && (
+          {canRedirectToCommentReplys && (
             <Item
               value={t("screens:comments:actions:replys")}
               func={() => router.push(`/users/comments/${props.comment.id}`)}
             />
           )}
-          {canDelete && (
+          {canDeleteComment && (
             <DangerItem
               value={t("screens:comments:actions:delete:value")}
               description={t("screens:comments:actions:delete:description")}
