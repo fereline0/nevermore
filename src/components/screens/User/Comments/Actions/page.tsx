@@ -12,7 +12,8 @@ import { useSession } from "next-auth/react";
 import IComment from "@/types/comment.type";
 import { useTranslation } from "react-i18next";
 import Separated from "@/components/shared/Dropdown/Separated/page";
-import { canDelete, canRedirectToReplys } from "@/policies/comment";
+import { canRedirectToReplys } from "@/policies/comment";
+import { pageBelong, roleBenefits, userCan } from "@/policies/user";
 
 interface IActions {
   comment: IComment;
@@ -26,11 +27,10 @@ export default function Actions(props: IActions) {
   const router = useRouter();
   const path = usePathname();
 
-  const canDeleteComment = canDelete(
-    props.comment.writer.id,
-    session?.user.role.abilities,
-    session?.user.id
-  );
+  const canDelete =
+    pageBelong(props.comment.writer.id, session?.user.id) ||
+    (userCan(session?.user.role.abilities, "deleteUserComment") &&
+      roleBenefits(props.comment.writer.role.id, session?.user.role.id));
 
   const canRedirectToCommentReplys = canRedirectToReplys(
     path,
@@ -56,7 +56,7 @@ export default function Actions(props: IActions) {
               func={() => router.push(`/users/comments/${props.comment.id}`)}
             />
           )}
-          {canDeleteComment && (
+          {canDelete && (
             <DangerItem
               value={t("screens:comments:actions:delete:value")}
               description={t("screens:comments:actions:delete:description")}
