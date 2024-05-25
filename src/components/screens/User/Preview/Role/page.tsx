@@ -11,6 +11,7 @@ import { editRole, getRoles } from "@/services/roles";
 import IUser from "@/types/user.type";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { pageBelong, roleBenefits, userCan } from "@/policies/user";
 
 interface Role {
   user: IUser;
@@ -23,11 +24,9 @@ export default function Role(props: Role) {
   const router = useRouter();
 
   const canEditRole =
-    session?.user.role.id > props.user.role.id &&
-    props.user.id != session?.user.id &&
-    session?.user.role.abilities.some(
-      (ability: any) => ability.slug === "editUserRole"
-    );
+    userCan(session?.user.role.abilities, "editUserRole") &&
+    roleBenefits(props.user.role.id, session?.user.role.id) &&
+    !pageBelong(props.user.id, session?.user.id);
 
   const { data: roles } = getRoles(canEditRole ? session?.user.role.id : null);
 
@@ -37,7 +36,7 @@ export default function Role(props: Role) {
         <h3
           className={styles.role}
           style={{
-            backgroundColor: `#${props.user.role.color}`,
+            background: `${props.user.role.color}`,
           }}
         >
           {props.user.role.name}

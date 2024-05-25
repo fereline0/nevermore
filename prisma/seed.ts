@@ -21,7 +21,7 @@ async function main() {
     update: {},
     create: {
       name: "User",
-      color: "a3a3a3",
+      color: "#a3a3a3",
     },
   });
 
@@ -32,7 +32,7 @@ async function main() {
     update: {},
     create: {
       name: "Moderator",
-      color: "60bd53",
+      color: "#60bd53",
       abilities: {
         connect: [{ slug: "deleteUserComment" }, { slug: "editUser" }],
       },
@@ -46,7 +46,7 @@ async function main() {
     update: {},
     create: {
       name: "Admin",
-      color: "ff0000",
+      color: "#ff0000",
       abilities: {
         connect: [
           { slug: "deleteUserComment" },
@@ -66,7 +66,7 @@ async function main() {
     update: {},
     create: {
       name: "Developer",
-      color: "b0beff",
+      color: "linear-gradient(to right, #d77bff, #8796ff)",
       abilities: {
         connect: [
           { slug: "deleteUserComment" },
