@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 export default async function users({
   searchParams,
 }: {
-  searchParams: { q: any; page: number };
+  searchParams: { q: string; page: number };
 }) {
   const page = searchParams.page || 1;
   const limit = 20;

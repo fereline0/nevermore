@@ -1,7 +1,7 @@
 import IUser from "@/types/user.type";
 import PairsJustified from "@/components/shared/PairsJustified/page";
 import { useTranslation } from "react-i18next";
-import { formatISO9075, isValid } from "date-fns";
+import { formatISO9075 } from "date-fns";
 import Section from "@/components/shared/Content/Section/page";
 
 interface IAboutUser {

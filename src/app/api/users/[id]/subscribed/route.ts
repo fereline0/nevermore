@@ -8,6 +8,7 @@ export async function GET(
   const searchParams = req.nextUrl.searchParams;
   const limit = Number(searchParams.get("limit"));
   const pageToSkip = (Number(searchParams.get("page")) - 1) * limit;
+  const query = req.nextUrl.searchParams.get("q")?.toString();
 
   try {
     const user = await prisma.user.findUniqueOrThrow({
@@ -16,6 +17,13 @@ export async function GET(
       },
       include: {
         subscribed: {
+          where: {
+            user: {
+              name: {
+                search: query,
+              },
+            },
+          },
           skip: pageToSkip,
           take: limit,
           orderBy: {
@@ -40,7 +48,15 @@ export async function GET(
         },
         _count: {
           select: {
-            subscribed: true,
+            subscribed: {
+              where: {
+                user: {
+                  name: {
+                    search: query,
+                  },
+                },
+              },
+            },
           },
         },
       },

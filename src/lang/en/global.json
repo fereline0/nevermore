@@ -67,11 +67,11 @@
       },
       "subscribers": {
         "value": "Subscribers",
-        "emptyList": "No one is following this user"
+        "emptyList": "According to the definition parameters of this user, no one is subscribed"
       },
       "subscribed": {
         "value": "Subscribed",
-        "emptyList": "This user is not subscribed to anyone"
+        "emptyList": "According to the search parameters, this user does not follow anyone"
       }
     },
     "users": {

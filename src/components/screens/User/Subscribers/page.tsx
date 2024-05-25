@@ -6,6 +6,7 @@ import Content from "@/components/shared/Content/page";
 import EmptyList from "@/components/shared/EmptyList/page";
 import Member from "@/components/shared/Member/page";
 import Pagination from "@/components/shared/Pagination/page";
+import Search from "@/components/shared/Search/page";
 import IPagination from "@/types/pagination.type";
 import IUser from "@/types/user.type";
 import { useTranslation } from "react-i18next";
@@ -20,6 +21,7 @@ export default function Subscribers(props: ISubscribers) {
   return (
     <Content>
       <Main>
+        <Search />
         {props.subscribers.length > 0 ? (
           props.subscribers.map((subscriber: { subscriber: IUser }) => {
             return (

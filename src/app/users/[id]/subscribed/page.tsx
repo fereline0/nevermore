@@ -18,11 +18,11 @@ export default async function subscribed({
   searchParams,
 }: {
   params: { id: number };
-  searchParams: { page: number };
+  searchParams: { q: string; page: number };
 }) {
   const page = searchParams.page || 1;
   const limit = 20;
-  const res = await getUserSubscribed(params.id, page, limit);
+  const res = await getUserSubscribed(params.id, page, limit, searchParams.q);
 
   return (
     <Suspense fallback={<Loading />}>

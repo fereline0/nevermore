@@ -11,7 +11,7 @@ export default async function forum({
   searchParams,
 }: {
   params: { id: number };
-  searchParams: { q: any; page: number };
+  searchParams: { q: string; page: number };
 }) {
   const page = searchParams.page || 1;
   const limit = 20;

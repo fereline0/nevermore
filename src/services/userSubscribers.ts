@@ -4,10 +4,15 @@ import { notFound } from "next/navigation";
 export async function getUserSubscribers(
   id: number,
   page: number,
-  limit: number
+  limit: number,
+  query: string
 ) {
   const res = await serverFetcher(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}/subscribers?page=${page}&limit=${limit}`
+    `${
+      process.env.NEXT_PUBLIC_API_URL
+    }/api/users/${id}/subscribers?page=${page}&limit=${limit}${
+      query ? `&q=${query}` : ""
+    }`
   );
 
   if (!res.ok) notFound();
@@ -18,10 +23,15 @@ export async function getUserSubscribers(
 export async function getUserSubscribed(
   id: number,
   page: number,
-  limit: number
+  limit: number,
+  query: string
 ) {
   const res = await serverFetcher(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}/subscribed?page=${page}&limit=${limit}`
+    `${
+      process.env.NEXT_PUBLIC_API_URL
+    }/api/users/${id}/subscribed?page=${page}&limit=${limit}${
+      query ? `&q=${query}` : ""
+    }`
   );
 
   if (!res.ok) notFound();
