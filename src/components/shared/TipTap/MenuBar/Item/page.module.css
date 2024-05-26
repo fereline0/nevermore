@@ -1,0 +1,16 @@
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: background-color 0.3s;
+  padding: 3px 3px;
+  border-radius: 5px;
+}
+
+.item:hover,
+.item.active {
+  background-color: gray;
+}

@@ -1,3 +1,4 @@
+import CreateArticle from "@/components/screens/Forum/CreateArticle/page";
 import { getCategory } from "@/services/forum";
 import ICategory from "@/types/category.type";
 
@@ -8,5 +9,5 @@ export default async function createArticle({
 }) {
   const category: ICategory = await getCategory(params.id);
 
-  return <h1>Создание статьи в категории {category.name}</h1>;
+  return <CreateArticle />;
 }
