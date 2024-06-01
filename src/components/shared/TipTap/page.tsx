@@ -8,9 +8,12 @@ import StarterKit from "@tiptap/starter-kit";
 import TextAlign from "@tiptap/extension-text-align";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import css from "highlight.js/lib/languages/css";
+import php from "highlight.js/lib/languages/php";
 import js from "highlight.js/lib/languages/javascript";
 import ts from "highlight.js/lib/languages/typescript";
 import html from "highlight.js/lib/languages/xml";
+import c from "highlight.js/lib/languages/c";
+import csharp from "highlight.js/lib/languages/csharp";
 import { createLowlight } from "lowlight";
 import Section from "@/components/shared/Content/Section/page";
 import { useEffect } from "react";
@@ -26,6 +29,9 @@ export default function TipTap(props: ITipTap) {
   lowlight.register("css", css);
   lowlight.register("js", js);
   lowlight.register("ts", ts);
+  lowlight.register("c", c);
+  lowlight.register("csharp", csharp);
+  lowlight.register("php", php);
 
   const editor = useEditor({
     extensions: [
