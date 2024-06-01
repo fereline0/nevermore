@@ -35,9 +35,9 @@ export default function About(props: IAboutUser) {
             },
             {
               label: t("screens:user:about:detailInformation:bithday"),
-              value: detailInformation.bithday
-                ? formatISO9075(detailInformation.bithday)
-                : null,
+              value:
+                detailInformation.bithday &&
+                formatISO9075(detailInformation.bithday),
             },
           ]}
         />

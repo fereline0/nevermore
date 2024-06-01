@@ -27,8 +27,3 @@
   transform: translate(-50%, -50%);
   margin-right: -50%;
 }
-
-.solution {
-  display: flex;
-  gap: 5px;
-}

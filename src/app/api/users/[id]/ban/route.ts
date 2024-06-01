@@ -16,6 +16,7 @@ export async function POST(
         bans: {
           create: {
             initiatorId: Number(body.get("initiatorId")),
+            reason: body.get("reason") as string,
             expires: new Date(body.get("expires") as string),
           },
         },

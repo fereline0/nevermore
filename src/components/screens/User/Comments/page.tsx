@@ -1,5 +1,6 @@
 "use client";
 
+import styles from "./page.module.css";
 import Pagination from "@/components/shared/Pagination/page";
 import IPagination from "@/types/pagination.type";
 import IComment from "@/types/comment.type";
@@ -14,6 +15,8 @@ import MarginBottom from "@/components/shared/MarginBottom/page";
 import { FormEvent } from "react";
 import EmptyList from "@/components/shared/EmptyList/page";
 import { useRouter } from "next/navigation";
+import FitContent from "@/components/shared/FitContent/page";
+import Button from "@/components/UI/Button/page";
 
 interface IComments extends IPagination {
   userId: number;
@@ -42,11 +45,11 @@ export default function Comments(props: IComments) {
   return (
     <MarginBottom gap={10}>
       {status == "authenticated" && (
-        <Form
-          onSubmit={handleSubmit}
-          submitValue={t("screens:comments:submitValue")}
-        >
+        <Form onSubmit={handleSubmit} className={styles.form}>
           <TextArea name="comment" />
+          <FitContent>
+            <Button type="submit" value={t("screens:comments:submitValue")} />
+          </FitContent>
         </Form>
       )}
       {props.comments.length > 0 ? (

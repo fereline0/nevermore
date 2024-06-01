@@ -47,7 +47,8 @@
           "changeInformation": "Change information",
           "ban": {
             "value": "Ban",
-            "description": "Are you sure that you want to completely limit access to the forum features for this user for the period you choose?"
+            "description": "Are you sure that you want to completely limit access to the forum features for this user for the period you choose?",
+            "reason": "Reason"
           },
           "unBan": {
             "value": "Unban",
@@ -65,6 +66,7 @@
       },
       "alertAboutBan": {
         "alert": "This user is blocked, we do not recommend conducting transactions with him at the time of blocking, if the user has already deceived you in any way, contact support so that we can solve the problem as soon as possible",
+        "reason": "Reason",
         "initiator": "Initiator",
         "expires": "Expires"
       },

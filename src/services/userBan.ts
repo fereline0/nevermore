@@ -1,10 +1,15 @@
 import { serverFetcher } from "@/utils/fetcher";
+import { FormEvent } from "react";
 
-export async function userBan(id: number, initiatorId: number, expires: any) {
-  const formData = new FormData();
+export async function userBan(
+  event: FormEvent<HTMLFormElement>,
+  id: number,
+  initiatorId: number
+) {
+  event.preventDefault();
+  const formData = new FormData(event.currentTarget);
 
   formData.append("initiatorId", initiatorId.toString());
-  formData.append("expires", expires.toString());
 
   await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}/ban`,

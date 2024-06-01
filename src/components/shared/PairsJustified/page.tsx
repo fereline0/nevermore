@@ -10,7 +10,7 @@ export default function PairsJustified(props: IPairsJustified) {
   return (
     <div className={styles.pairsJustified}>
       {props.data.map((row, index) => {
-        if (row.value != null)
+        if (row.value)
           return (
             <Row
               key={index}

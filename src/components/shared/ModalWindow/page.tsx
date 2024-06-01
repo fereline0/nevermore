@@ -2,23 +2,18 @@
 
 import classNames from "classnames/bind";
 import styles from "./page.module.css";
-import DangerButton from "@/components/UI/DangerButton/page";
-import Button from "@/components/UI/Button/page";
 import { useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import Section from "@/components/shared/Content/Section/page";
 
 interface IModalWinodw {
   title: string;
   description: string;
-  func: React.MouseEventHandler<HTMLButtonElement>;
   visibility: boolean;
   setVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+  children: React.ReactNode;
 }
 
 export default function ModalWindow(props: IModalWinodw) {
-  const { t } = useTranslation();
-
   const cx = classNames.bind(styles);
 
   const className = cx({
@@ -47,23 +42,9 @@ export default function ModalWindow(props: IModalWinodw) {
         padding="5px 10px"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className={styles.title}>
-          <h3>{props.title}</h3>
-        </div>
-        <div className={styles.description}>{props.description}</div>
-        <div className={styles.solution}>
-          <DangerButton
-            value={props.title}
-            onClick={(event) => {
-              closeWindow();
-              props.func(event);
-            }}
-          />
-          <Button
-            value={t("shared:modalWindow:cancel")}
-            onClick={closeWindow}
-          />
-        </div>
+        <h3>{props.title}</h3>
+        <p>{props.description}</p>
+        {props.children}
       </Section>
     </div>
   );

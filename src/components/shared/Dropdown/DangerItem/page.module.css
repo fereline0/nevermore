@@ -10,3 +10,8 @@
   background-color: #ffdada;
   color: red;
 }
+
+.solution {
+  display: flex;
+  gap: 5px;
+}

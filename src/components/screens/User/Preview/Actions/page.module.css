@@ -1,3 +1,13 @@
 .banContainer {
   position: relative;
 }
+
+.ban {
+  display: flex;
+  gap: 5px;
+}
+
+.solution {
+  display: flex;
+  gap: 5px;
+}

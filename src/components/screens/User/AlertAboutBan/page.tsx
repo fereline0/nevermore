@@ -27,6 +27,10 @@ export default function AlertAboutBan(props: IAlertAboutBan) {
               value: props.ban.initiator.name,
             },
             {
+              label: t("screens:user:alertAboutBan:reason"),
+              value: props.ban.reason,
+            },
+            {
               label: t("screens:user:alertAboutBan:expires"),
               value: formatDistance(props.ban.expires, new Date(), {
                 includeSeconds: true,

@@ -68,6 +68,7 @@ model UserBans {
   createdAt   DateTime @default(now())
   user        User     @relation("user", fields: [userId], references: [id], onDelete: Cascade)
   userId      Int
+  reason      String
   activity    Boolean  @default(true)
   expires     DateTime
   initiator   User     @relation("initiator", fields: [initiatorId], references: [id], onDelete: Cascade)
