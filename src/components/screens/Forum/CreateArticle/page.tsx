@@ -1,7 +1,10 @@
 "use client";
 
+import styles from "./page.module.css";
+import Button from "@/components/UI/Button/page";
 import Input from "@/components/UI/Input/page";
 import Section from "@/components/shared/Content/Section/page";
+import FitContent from "@/components/shared/FitContent/page";
 import Form from "@/components/shared/Form/page";
 import MarginBottom from "@/components/shared/MarginBottom/page";
 import Tiptap from "@/components/shared/TipTap/page";
@@ -47,13 +50,19 @@ export default function CreateArticle(props: ICreateArticle) {
         </p>
       </Section>
       <Form
-        submitValue={t("screens:forum:createArticle:form:submitValue")}
         onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmit(event)}
+        className={styles.form}
       >
         <Input
           placeholder={t("screens:forum:createArticle:form:title")}
           name="title"
         />
+        <FitContent>
+          <Button
+            type="submit"
+            value={t("screens:forum:createArticle:form:submitValue")}
+          />
+        </FitContent>
       </Form>
       <Tiptap setHTML={setHTML} />
     </MarginBottom>

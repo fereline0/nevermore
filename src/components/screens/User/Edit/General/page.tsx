@@ -1,5 +1,6 @@
 "use client";
 
+import styles from "./page.module.css";
 import React, { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Input from "@/components/UI/Input/page";
@@ -10,6 +11,8 @@ import IUser from "@/types/user.type";
 import { editGeneral } from "@/services/userEdit";
 import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
+import FitContent from "@/components/shared/FitContent/page";
+import Button from "@/components/UI/Button/page";
 
 interface IGeneral {
   user: IUser;
@@ -47,7 +50,7 @@ export default function General({ user }: IGeneral) {
         <h1>{t("screens:users:edit:general:title")}</h1>
         <p>{t("screens:users:edit:general:description")}</p>
       </Section>
-      <Form onSubmit={handleSubmit} submitValue={t("edit:save")}>
+      <Form onSubmit={handleSubmit} className={styles.form}>
         <MarginBottom gap={10}>
           <Input
             placeholder={t("screens:users:edit:general:inputs:name")}
@@ -62,6 +65,9 @@ export default function General({ user }: IGeneral) {
             value={userData.email}
             onChange={handleInputChange}
           />
+          <FitContent>
+            <Button type="submit" value={t("edit:save")} />
+          </FitContent>
         </MarginBottom>
       </Form>
     </MarginBottom>
