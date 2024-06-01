@@ -6,6 +6,12 @@ import MenuBar from "./MenuBar/page";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import TextAlign from "@tiptap/extension-text-align";
+import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
+import css from "highlight.js/lib/languages/css";
+import js from "highlight.js/lib/languages/javascript";
+import ts from "highlight.js/lib/languages/typescript";
+import html from "highlight.js/lib/languages/xml";
+import { createLowlight } from "lowlight";
 import Section from "@/components/shared/Content/Section/page";
 import { useEffect } from "react";
 
@@ -14,11 +20,21 @@ interface ITipTap {
 }
 
 export default function TipTap(props: ITipTap) {
+  const lowlight = createLowlight();
+
+  lowlight.register("html", html);
+  lowlight.register("css", css);
+  lowlight.register("js", js);
+  lowlight.register("ts", ts);
+
   const editor = useEditor({
     extensions: [
       StarterKit,
       TextAlign.configure({
         types: ["heading", "paragraph"],
+      }),
+      CodeBlockLowlight.configure({
+        lowlight,
       }),
     ],
     editorProps: {
