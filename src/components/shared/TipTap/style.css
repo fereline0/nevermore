@@ -17,6 +17,7 @@
 }
 
 .tiptap pre {
+  text-wrap: wrap;
   background: #0d0d0d;
   color: #fff;
   font-family: "JetBrainsMono", monospace;

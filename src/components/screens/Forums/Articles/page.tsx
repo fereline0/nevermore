@@ -3,6 +3,7 @@ import Article from "./Article/page";
 import Pagination from "@/components/shared/Pagination/page";
 import IPagination from "@/types/pagination.type";
 import MarginBottom from "@/components/shared/MarginBottom/page";
+import Main from "@/components/shared/Content/Main/page";
 
 interface IArticles extends IPagination {
   articles: IArticle[];
@@ -10,7 +11,7 @@ interface IArticles extends IPagination {
 
 export default function Articles(props: IArticles) {
   return (
-    <MarginBottom gap={10}>
+    <Main>
       <MarginBottom gap={10}>
         {props.articles.map((article: IArticle) => {
           return <Article key={article.id} article={article} />;
@@ -22,6 +23,6 @@ export default function Articles(props: IArticles) {
         pastPagesCount={props.pastPagesCount}
         futurePagesCount={props.futurePagesCount}
       />
-    </MarginBottom>
+    </Main>
   );
 }

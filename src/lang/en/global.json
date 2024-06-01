@@ -2,6 +2,11 @@
   "app": {
     "not-found": "The requested page was not found"
   },
+  "edit": {
+    "successfulChange": "Data saved",
+    "errorWhenChanging": "An error occurred on the server side while saving data",
+    "save": "Save"
+  },
   "screens": {
     "header": {
       "forum": "Forum",
@@ -12,6 +17,13 @@
       "actions": {
         "createArticle": "Create article",
         "moderate": "Moderation of unpublished articles"
+      },
+      "createArticle": {
+        "title": "Creating an article in a category",
+        "form": {
+          "title": "Title",
+          "submitValue": "Create"
+        }
       },
       "supervisors": "Category curators"
     },
@@ -87,16 +99,13 @@
         },
         "security": "Security",
         "detailInformation": "Detail information",
-        "permissions": {
-          "title": "Permissions",
-          "description": "Changing right and policies for this account"
-        },
         "successfulChange": "Data saved",
+        "errorWhenChanging": "An error occurred on the server side while saving data",
         "save": "Save"
       }
     },
     "comments": {
-      "publish": "Publish",
+      "submitValue": "Publish",
       "notifications": {
         "newMessage": "New comment has been posted on your profile page",
         "reply": "Reply to your comment has been posted"
@@ -122,6 +131,23 @@
     "search": "Search",
     "modalWindow": {
       "cancel": "Cancel"
+    },
+    "tipTap": {
+      "menuBar": {
+        "items": {
+          "heading1": "Heading 1",
+          "heading2": "Heading 2",
+          "heading3": "Heading 3",
+          "code": "Code",
+          "quote": "Quote",
+          "left": "Left",
+          "center": "Center",
+          "right": "Right",
+          "justify": "Justify",
+          "bulletList": "Bullet list",
+          "orderedList": "Ordered list"
+        }
+      }
     }
   }
 }

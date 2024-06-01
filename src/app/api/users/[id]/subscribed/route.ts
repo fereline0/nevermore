@@ -62,8 +62,8 @@ export async function GET(
       },
     });
     return NextResponse.json(user, { status: 200 });
-  } catch {
-    return NextResponse.error();
+  } catch (error) {
+    return NextResponse.json(error, { status: 500 });
   }
 }
 
@@ -83,7 +83,7 @@ export async function POST(
 
     return NextResponse.json(userSubscriber, { status: 200 });
   } catch (error) {
-    return NextResponse.error();
+    return NextResponse.json(error, { status: 500 });
   }
 }
 
@@ -103,6 +103,6 @@ export async function DELETE(
     });
     return NextResponse.json(unSubscribe, { status: 200 });
   } catch (error) {
-    return NextResponse.error();
+    return NextResponse.json(error, { status: 500 });
   }
 }

@@ -1,0 +1,22 @@
+.heading {
+  display: flex;
+  gap: 10px;
+}
+
+.title {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  position: relative;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 800px) {
+  .heading {
+    display: block;
+  }
+
+  .heading > div:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}

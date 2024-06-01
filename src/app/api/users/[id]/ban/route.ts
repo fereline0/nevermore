@@ -23,8 +23,8 @@ export async function POST(
     });
 
     return NextResponse.json(user, { status: 200 });
-  } catch {
-    return NextResponse.error();
+  } catch (error) {
+    return NextResponse.json(error, { status: 500 });
   }
 }
 
@@ -43,7 +43,7 @@ export async function DELETE(
     });
 
     return NextResponse.json(bans, { status: 200 });
-  } catch {
-    return NextResponse.error();
+  } catch (error) {
+    return NextResponse.json(error, { status: 500 });
   }
 }

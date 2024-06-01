@@ -118,7 +118,7 @@ model Ability {
 
 model UserComments {
   id        Int      @id @default(autoincrement())
-  value     String
+  value     String   @db.Text
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -164,7 +164,7 @@ model Article {
   updatedAt DateTime @updatedAt
   published Boolean  @default(false)
   title     String
-  value     String
+  value     String   @db.Text
 
   comments   ArticleComments[]
   authorId   Int
@@ -177,7 +177,7 @@ model Article {
 
 model ArticleComments {
   id        Int      @id @default(autoincrement())
-  value     String
+  value     String   @db.Text
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

@@ -12,7 +12,7 @@ export async function GET(
       },
     });
     return NextResponse.json(forum, { status: 200 });
-  } catch {
-    return NextResponse.error();
+  } catch (error) {
+    return NextResponse.json(error, { status: 500 });
   }
 }

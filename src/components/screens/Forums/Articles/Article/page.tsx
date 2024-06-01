@@ -19,9 +19,9 @@ export default function Article(props: Article) {
   return (
     <Section className={styles.article} padding="10px">
       <div className={styles.aboutArticle}>
-        <a href="" className={styles.title}>
+        <Link href={`/articles/${props.article.id}`} className={styles.title}>
           {props.article.title}
-        </a>
+        </Link>
         <div>
           <Link href={`/users/${props.article.author.id}`}>
             {props.article.author.name}

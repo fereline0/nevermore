@@ -42,8 +42,8 @@ export async function GET(
     });
 
     return NextResponse.json(userNotification, { status: 200 });
-  } catch {
-    return NextResponse.error();
+  } catch (error) {
+    return NextResponse.json(error, { status: 500 });
   }
 }
 

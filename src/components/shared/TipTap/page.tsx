@@ -7,8 +7,13 @@ import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import TextAlign from "@tiptap/extension-text-align";
 import Section from "@/components/shared/Content/Section/page";
+import { useEffect } from "react";
 
-export default () => {
+interface ITipTap {
+  setHTML: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export default function TipTap(props: ITipTap) {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -23,6 +28,19 @@ export default () => {
     },
   });
 
+  useEffect(() => {
+    if (editor) {
+      const handleUpdateText = () => {
+        const html = editor.getHTML();
+        props.setHTML(html);
+      };
+      editor.on("update", handleUpdateText);
+      return () => {
+        editor.off("update", handleUpdateText);
+      };
+    }
+  }, [editor, props.setHTML]);
+
   if (!editor) {
     return null;
   }
@@ -33,4 +51,4 @@ export default () => {
       <EditorContent editor={editor} />
     </Section>
   );
-};
+}

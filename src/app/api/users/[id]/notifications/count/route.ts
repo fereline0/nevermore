@@ -14,7 +14,7 @@ export async function GET(
     });
 
     return NextResponse.json(count, { status: 200 });
-  } catch {
-    return NextResponse.error();
+  } catch (error) {
+    return NextResponse.json(error, { status: 500 });
   }
 }

@@ -44,7 +44,7 @@ export default function Comments(props: IComments) {
       {status == "authenticated" && (
         <Form
           onSubmit={handleSubmit}
-          submitValue={t("screens:comments:publish")}
+          submitValue={t("screens:comments:submitValue")}
         >
           <TextArea name="comment" />
         </Form>

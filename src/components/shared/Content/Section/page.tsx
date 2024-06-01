@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 
 interface ISection extends HTMLAttributes<HTMLDivElement> {
   padding: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export default function Section(props: ISection) {

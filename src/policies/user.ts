@@ -6,7 +6,7 @@ export function pageBelong(userId: number, currentUserId?: number) {
 }
 
 export function roleBenefits(roleId: number, currentRoleId?: number) {
-  return currentRoleId !== undefined ? roleId < currentRoleId : false;
+  return currentRoleId ? roleId < currentRoleId : false;
 }
 
 export function userCan(abilities: IAbility[] | undefined, action: string) {

@@ -24,12 +24,7 @@ export async function getUser(id: number, page: number, limit: number) {
 }
 
 export async function deleteUser(id: number) {
-  const res = await serverFetcher(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}`,
-    {
-      method: "DELETE",
-    }
-  );
-
-  return res.json();
+  await serverFetcher(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}`, {
+    method: "DELETE",
+  });
 }

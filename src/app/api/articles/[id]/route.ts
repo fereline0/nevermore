@@ -30,6 +30,11 @@ export async function GET(
             },
           },
         },
+        category: {
+          select: {
+            supervisors: true,
+          },
+        },
         _count: {
           select: {
             comments: true,
@@ -43,10 +48,24 @@ export async function GET(
       },
     });
     return NextResponse.json(article, { status: 200 });
-  } catch {
-    return NextResponse.json(
-      { error: "Failed to fetch data" },
-      { status: 500 }
-    );
+  } catch (error) {
+    return NextResponse.json(error, { status: 500 });
+  }
+}
+
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: number } }
+) {
+  try {
+    const article = await prisma.article.delete({
+      where: {
+        id: Number(params.id),
+      },
+    });
+
+    return NextResponse.json(article, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(error, { status: 500 });
   }
 }

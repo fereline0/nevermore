@@ -30,11 +30,15 @@ export default function General({ user }: IGeneral) {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     const updatedData = await editGeneral(user.id, event);
-    if (updatedData) {
-      setUserData(updatedData);
-      toast.success(t("screens:users:edit:successfulChange"));
-      router.refresh();
+    const updatedDataToJSON = await updatedData?.json();
+
+    if (!updatedData?.ok) {
+      return toast.error(t("edit:errorWhenChanging"));
     }
+
+    setUserData(updatedDataToJSON);
+    toast.success(t("edit:successfulChange"));
+    router.refresh();
   };
 
   return (
@@ -43,7 +47,7 @@ export default function General({ user }: IGeneral) {
         <h1>{t("screens:users:edit:general:title")}</h1>
         <p>{t("screens:users:edit:general:description")}</p>
       </Section>
-      <Form onSubmit={handleSubmit} submitValue={t("screens:users:edit:save")}>
+      <Form onSubmit={handleSubmit} submitValue={t("edit:save")}>
         <MarginBottom gap={10}>
           <Input
             placeholder={t("screens:users:edit:general:inputs:name")}

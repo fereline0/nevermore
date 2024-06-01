@@ -9,5 +9,5 @@ export default async function createArticle({
 }) {
   const category: ICategory = await getCategory(params.id);
 
-  return <CreateArticle />;
+  return <CreateArticle category={category} />;
 }

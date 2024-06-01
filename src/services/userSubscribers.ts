@@ -44,7 +44,7 @@ export async function subscribe(userId: number, subscriberId: number) {
 
   formData.append("subscriberId", subscriberId.toString());
 
-  const res = await serverFetcher(
+  await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}/subscribed`,
     {
       method: "POST",
@@ -58,7 +58,7 @@ export async function unSubscribe(userId: number, subscriberId: number) {
 
   formData.append("subscriberId", subscriberId.toString());
 
-  const res = await serverFetcher(
+  await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userId}/subscribed`,
     {
       method: "DELETE",

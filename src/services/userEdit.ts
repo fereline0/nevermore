@@ -41,5 +41,5 @@ export async function editGeneral(
     { method: "POST", body: formData }
   );
 
-  return res.json();
+  return res;
 }

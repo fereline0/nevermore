@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
     const res = { sections, count };
 
     return NextResponse.json(res, { status: 200 });
-  } catch {
-    return NextResponse.error();
+  } catch (error) {
+    return NextResponse.json(error, { status: 500 });
   }
 }
