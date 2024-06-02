@@ -1,5 +1,5 @@
 datasource db {
-  provider = "mysql"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
@@ -59,8 +59,6 @@ model User {
   sessions               Session[]
   writerArticleComments  ArticleComments[]
   administeredCategories Category[]
-
-  @@fulltext(name)
 }
 
 model UserBans {
@@ -172,8 +170,6 @@ model Article {
   author     User              @relation(fields: [authorId], references: [id], onDelete: Cascade)
   category   Category          @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId Int
-
-  @@fulltext([title, value])
 }
 
 model ArticleComments {

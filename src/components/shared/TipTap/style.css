@@ -2,6 +2,10 @@
   margin-top: 0.75em;
 }
 
+.tiptap a {
+  cursor: pointer;
+}
+
 .tiptap ul,
 .tiptap ol {
   padding: 0 1rem;

@@ -7,6 +7,7 @@ import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import TextAlign from "@tiptap/extension-text-align";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
+import Link from "@tiptap/extension-link";
 import css from "highlight.js/lib/languages/css";
 import php from "highlight.js/lib/languages/php";
 import js from "highlight.js/lib/languages/javascript";
@@ -42,6 +43,7 @@ export default function TipTap(props: ITipTap) {
       CodeBlockLowlight.configure({
         lowlight,
       }),
+      Link,
     ],
     editorProps: {
       attributes: {

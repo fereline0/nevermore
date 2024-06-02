@@ -28,7 +28,7 @@ export async function createUserComment(
 
   formData.append("userId", userId.toString());
   formData.append("writerId", currentUserId.toString());
-  parentId ? formData.append("parentId", parentId.toString()) : null;
+  parentId && formData.append("parentId", parentId.toString());
 
   const formObject: { [key: string]: string } = {};
   formData.forEach((value, key) => {
