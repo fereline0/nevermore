@@ -161,7 +161,7 @@ model Article {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  published Boolean  @default(false)
+  published Boolean
   title     String
   value     String   @db.Text
 

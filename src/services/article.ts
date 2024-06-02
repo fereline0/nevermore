@@ -18,7 +18,8 @@ export async function createArticle(
   event: FormEvent<HTMLFormElement>,
   value: string,
   authorId: number,
-  categoryId: number
+  categoryId: number,
+  published: boolean
 ) {
   event.preventDefault();
   const formData = new FormData(event.currentTarget);
@@ -26,6 +27,7 @@ export async function createArticle(
   formData.append("value", value.toString());
   formData.append("authorId", authorId.toString());
   formData.append("categoryId", categoryId.toString());
+  formData.append("published", published.toString());
 
   const formObject: { [key: string]: string } = {};
   formData.forEach((value, key) => {

@@ -8,6 +8,8 @@ import FitContent from "@/components/shared/FitContent/page";
 import Form from "@/components/shared/Form/page";
 import MarginBottom from "@/components/shared/MarginBottom/page";
 import Tiptap from "@/components/shared/TipTap/page";
+import { userIsSupervisor } from "@/policies/article";
+import { userCan } from "@/policies/user";
 import { createArticle } from "@/services/article";
 import ICategory from "@/types/category.type";
 import { useSession } from "next-auth/react";
@@ -34,7 +36,9 @@ export default function CreateArticle(props: ICreateArticle) {
       event,
       HTML,
       session?.user.id,
-      props.category.id
+      props.category.id,
+      userCan(session?.user.role.abilities, "superviseForum") ||
+        userIsSupervisor(props.category.supervisors, session?.user.id)
     );
 
     if (article) {

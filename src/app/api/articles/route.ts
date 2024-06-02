@@ -10,6 +10,7 @@ export async function POST(req: NextRequest) {
       value: body.get("value") as string,
       authorId: Number(body.get("authorId")),
       categoryId: Number(body.get("categoryId")),
+      published: body.get("published") === "true",
     };
 
     const article = await prisma.article.create({

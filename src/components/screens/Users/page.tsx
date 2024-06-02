@@ -48,8 +48,8 @@ export default function Users(props: IUsers) {
         <Search />
         {props.users?.map((user: IUser) => {
           return (
-            <Section padding="10px 10px">
-              <Member key={user.id} member={user} detail={user.role.name} />
+            <Section key={user.id} padding="10px 10px">
+              <Member member={user} detail={user.role.name} />
             </Section>
           );
         })}
