@@ -20,7 +20,9 @@ import Section from "@/components/shared/Content/Section/page";
 import { useEffect } from "react";
 
 interface ITipTap {
-  setHTML: React.Dispatch<React.SetStateAction<string>>;
+  setHTML?: React.Dispatch<React.SetStateAction<string>>;
+  content?: string;
+  readOnly?: boolean;
 }
 
 export default function TipTap(props: ITipTap) {
@@ -50,13 +52,15 @@ export default function TipTap(props: ITipTap) {
         class: styles.editorContent,
       },
     },
+    editable: !props.readOnly,
+    content: props.content,
   });
 
   useEffect(() => {
-    if (editor) {
+    if (props.setHTML && editor) {
       const handleUpdateText = () => {
         const html = editor.getHTML();
-        props.setHTML(html);
+        props.setHTML?.(html);
       };
       editor.on("update", handleUpdateText);
       return () => {
@@ -71,7 +75,7 @@ export default function TipTap(props: ITipTap) {
 
   return (
     <Section padding="10px 10px">
-      <MenuBar editor={editor} />
+      {!props.readOnly && <MenuBar editor={editor} />}
       <EditorContent editor={editor} />
     </Section>
   );

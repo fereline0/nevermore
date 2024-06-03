@@ -9,6 +9,7 @@ import IArticle from "@/types/article.type";
 import Actions from "./Actions/page";
 import { formatDistance } from "date-fns";
 import { currentLocale } from "@/utils/currentLocale";
+import TipTap from "@/components/shared/TipTap/page";
 
 interface Article {
   article: IArticle;
@@ -20,9 +21,9 @@ export default function Article(props: Article) {
   return (
     <Content>
       <Main>
-        <Section padding="5px 10px" className={styles.heading}>
-          <div className={styles.title}>
-            <div>
+        <div className={styles.aboutArticle}>
+          <Section padding="5px 10px" className={styles.general}>
+            <div className={styles.title}>
               <h2>{props.article.title}</h2>
               <p>
                 {formatDistance(props.article.createdAt, new Date(), {
@@ -32,18 +33,18 @@ export default function Article(props: Article) {
                 })}
               </p>
             </div>
-            <Actions article={props.article} />
-          </div>
-          <MemberInfo
-            member={props.article.author}
-            detail={props.article.author.role.name}
-          />
-        </Section>
-        <Section
-          className="tiptap"
-          padding="10px 10px"
-          dangerouslySetInnerHTML={{ __html: props.article.value }}
-        />
+            <div className={styles.actions}>
+              <Actions article={props.article} />
+            </div>
+          </Section>
+          <Section padding="5px 10px">
+            <MemberInfo
+              member={props.article.author}
+              detail={props.article.author.role.name}
+            />
+          </Section>
+        </div>
+        <TipTap readOnly={true} content={props.article.value} />
       </Main>
     </Content>
   );

@@ -2,6 +2,8 @@ import Forums from "@/components/screens/Forums/layout";
 import { getSections } from "@/services/forum";
 import ISection from "@/types/section.type";
 
+export const dynamic = "force-dynamic";
+
 interface ILayout {
   children: React.ReactNode;
 }

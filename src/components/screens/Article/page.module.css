@@ -1,22 +1,29 @@
-.heading {
+.aboutArticle {
   display: flex;
   gap: 10px;
 }
 
-.title {
-  width: 100%;
+.general {
   display: flex;
+  width: 100%;
   gap: 10px;
-  position: relative;
   justify-content: space-between;
 }
 
+.actions {
+  position: relative;
+}
+
+.title {
+  overflow: hidden;
+}
+
 @media screen and (max-width: 800px) {
-  .heading {
+  .aboutArticle {
     display: block;
   }
 
-  .heading > div:not(:last-child) {
+  .aboutArticle > div:not(:last-child) {
     margin-bottom: 10px;
   }
 }
