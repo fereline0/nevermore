@@ -11,8 +11,11 @@ import { ITab } from "@/types/tab.type";
 import Notification from "./Notification/page";
 import { getUserNotificationsCount } from "@/services/userNotification";
 import AlightItems from "@/components/shared/AlightItems/page";
+import Avatar from "@/components/shared/Avatar/page";
+import { useTranslation } from "react-i18next";
 
 export default function Header() {
+  const { t } = useTranslation();
   const { data: session, status } = useSession();
 
   const [stateVisibility, setStateVisibility] = useState(false);
@@ -34,8 +37,8 @@ export default function Header() {
     active: stateVisibility,
   });
 
-  const navigation = cx({
-    navigation: true,
+  const menu = cx({
+    menu: true,
     active: stateVisibility,
   });
 
@@ -46,46 +49,40 @@ export default function Header() {
       <div className={overlay} onClick={closeWindow} />
       <header className={styles.header}>
         <div className={styles.elements}>
-          <IoMenu size="1.7em" className={styles.menu} onClick={openWindow} />
+          <IoMenu
+            size="1.7em"
+            className={styles.menuIcon}
+            onClick={openWindow}
+          />
           <Link href="/">
             <h2>Nevermore</h2>
           </Link>
-          <nav className={navigation}>
-            <ul>
+          <div className={menu}>
+            <nav className={styles.navigation}>
               {menuItems.map((element: ITab, index) => {
                 return (
-                  <li key={index} className={styles.link}>
-                    <Link href={element.link} onClick={closeWindow}>
-                      {element.name}
-                    </Link>
-                  </li>
+                  <Link key={index} href={element.link} onClick={closeWindow}>
+                    {element.name}
+                  </Link>
                 );
               })}
-            </ul>
-          </nav>
-          <nav>
-            <ul>
-              {status == "authenticated" ? (
-                <AlightItems>
-                  {count != undefined && (
-                    <li className={styles.link}>
-                      <Link href={`/users/${session.user?.id}/notifications`}>
-                        <Notification count={count} />
-                      </Link>
-                    </li>
-                  )}
-                  <li className={styles.link}>
-                    <Link href={`/users/${session.user?.id}`}>
-                      {session.user.name}
-                    </Link>
-                  </li>
-                </AlightItems>
-              ) : (
-                <li className={styles.link}>
-                  <Link href="/signIn">Sign in</Link>
-                </li>
-              )}
-            </ul>
+            </nav>
+          </div>
+          <nav className={styles.navigation}>
+            {status == "loading" ? (
+              t("screens:header:loading")
+            ) : status === "authenticated" ? (
+              <AlightItems gap={20}>
+                <Link href={`/users/${session.user?.id}/notifications`}>
+                  <Notification count={count} />
+                </Link>
+                <Link href={`/users/${session.user?.id}`}>
+                  <Avatar url={session.user.image} size={35} />
+                </Link>
+              </AlightItems>
+            ) : (
+              <Link href="/signIn">{t("signIn:value")}</Link>
+            )}
           </nav>
         </div>
       </header>

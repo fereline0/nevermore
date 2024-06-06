@@ -36,5 +36,5 @@ export default function Dropdown(props: IDropdown) {
     active: props.visibility,
   });
 
-  return <ul className={className}>{props.children}</ul>;
+  return <div className={className}>{props.children}</div>;
 }

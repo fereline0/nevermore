@@ -1,12 +1,12 @@
 "use client";
 
+import styles from "./page.module.css";
 import Main from "@/components/shared/Content/Main/page";
 import Section from "@/components/shared/Content/Section/page";
 import SecondaryContent from "@/components/shared/Content/SecondaryContent/page";
 import SideBar from "@/components/shared/Content/SideBar/page";
 import Content from "@/components/shared/Content/page";
 import Member from "@/components/shared/Member/page";
-import MemberInfo from "@/components/shared/MemberInfo/page";
 import Pagination from "@/components/shared/Pagination/page";
 import Search from "@/components/shared/Search/page";
 import IPagination from "@/types/pagination.type";
@@ -14,10 +14,13 @@ import IUser from "@/types/user.type";
 import { currentLocale } from "@/utils/currentLocale";
 import { formatDistance } from "date-fns";
 import { useTranslation } from "react-i18next";
+import Counter from "@/components/shared/Counter/page";
+import { BiCommentDetail } from "react-icons/bi";
+import { TbArticle } from "react-icons/tb";
 
 interface IUsers extends IPagination {
-  newUsers?: IUser[];
-  users?: IUser[];
+  newUsers: IUser[];
+  users: IUser[];
 }
 
 export default function Users(props: IUsers) {
@@ -31,7 +34,7 @@ export default function Users(props: IUsers) {
         <SecondaryContent title={t("screens:users:newUsers")}>
           {props.newUsers?.map((user: IUser) => {
             return (
-              <MemberInfo
+              <Member
                 key={user.id}
                 member={user}
                 detail={formatDistance(user.createdAt, new Date(), {
@@ -47,9 +50,21 @@ export default function Users(props: IUsers) {
       <Main>
         <Search />
         {props.users?.map((user: IUser) => {
+          const commentsCount =
+            user._count.writerComments + user._count.writerArticleComments;
+
           return (
             <Section key={user.id} padding="10px 10px">
-              <Member member={user} detail={user.role.name} />
+              <Member member={user} detail={user.role.name}>
+                <div className={styles.counters}>
+                  <Counter count={commentsCount}>
+                    <BiCommentDetail />
+                  </Counter>
+                  <Counter count={user._count.articles}>
+                    <TbArticle />
+                  </Counter>
+                </div>
+              </Member>
             </Section>
           );
         })}

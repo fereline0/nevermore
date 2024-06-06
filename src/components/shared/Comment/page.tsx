@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./page.module.css";
-import MemberInfo from "@/components/shared/MemberInfo/page";
+import Member from "@/components/shared/Member/page";
 import IComment from "@/types/comment.type";
 import { currentLocale } from "@/utils/currentLocale";
 import { formatDistance } from "date-fns";
@@ -20,7 +20,7 @@ export default function Comment(props: Comment) {
     <Section padding="10px">
       <MarginBottom gap={5}>
         <div className={styles.aboutWriter}>
-          <MemberInfo
+          <Member
             member={props.comment.writer}
             detail={formatDistance(props.comment.createdAt, new Date(), {
               includeSeconds: true,

@@ -6,7 +6,7 @@ import Main from "@/components/shared/Content/Main/page";
 import Preview from "@/components/screens/User/Preview/page";
 import About from "@/components/screens/User/About/page";
 import SecondaryContent from "@/components/shared/Content/SecondaryContent/page";
-import MemberInfo from "@/components/shared/MemberInfo/page";
+import Member from "@/components/shared/Member/page";
 import IUser from "@/types/user.type";
 import UserComments from "@/components/screens/User/Comments/page";
 import { useTranslation } from "react-i18next";
@@ -36,7 +36,7 @@ export default function User(props: User) {
           {props.user.subscribers.length > 0
             ? props.user.subscribers.map(
                 (subscriber: { subscriber: IUser }) => (
-                  <MemberInfo
+                  <Member
                     key={subscriber.subscriber.id}
                     member={subscriber.subscriber}
                     detail={subscriber.subscriber.role.name}
@@ -52,7 +52,7 @@ export default function User(props: User) {
         >
           {props.user.subscribed.length > 0
             ? props.user.subscribed.map((subscriber: { user: IUser }) => (
-                <MemberInfo
+                <Member
                   key={subscriber.user.id}
                   member={subscriber.user}
                   detail={subscriber.user.role.name}

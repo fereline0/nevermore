@@ -7,11 +7,15 @@
     "errorWhenChanging": "При сохранении данных произошла ошибка на стороне сервера",
     "save": "Сохранить"
   },
+  "signIn": {
+    "value": "Войти"
+  },
   "screens": {
     "header": {
       "forum": "Форум",
       "market": "Маркет",
-      "support": "Поддержка"
+      "support": "Поддержка",
+      "loading": "Загрузка"
     },
     "forum": {
       "actions": {

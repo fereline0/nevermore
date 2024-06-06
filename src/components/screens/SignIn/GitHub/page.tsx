@@ -9,13 +9,11 @@ export default function GitHub() {
   const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   return (
-    <div>
-      <button
-        className={styles.gitHub}
-        onClick={() => signIn("github", { callbackUrl })}
-      >
-        Sign in with GitHub
-      </button>
-    </div>
+    <button
+      className={styles.gitHub}
+      onClick={() => signIn("github", { callbackUrl })}
+    >
+      GitHub
+    </button>
   );
 }

@@ -2,7 +2,7 @@
 
 import styles from "./page.module.css";
 import Section from "@/components/shared/Content/Section/page";
-import MemberInfo from "@/components/shared/MemberInfo/page";
+import Member from "@/components/shared/Member/page";
 import TextSeparator from "@/components/shared/TextSeparator/page";
 import INotification from "@/types/notification.type";
 import { currentLocale } from "@/utils/currentLocale";
@@ -42,7 +42,7 @@ export default function Notification(props: Notification) {
               : t("screens:notifications:readStatuses:new")}
           </p>
         </div>
-        <MemberInfo
+        <Member
           member={props.notification.writer}
           detail={t(props.notification.writer.role.name)}
         />

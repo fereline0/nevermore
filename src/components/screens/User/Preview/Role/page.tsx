@@ -32,7 +32,7 @@ export default function Role(props: Role) {
 
   return (
     <div className={styles.roleContainter} ref={actionsRef}>
-      <AlightItems>
+      <AlightItems gap={5}>
         <h3
           className={styles.role}
           style={{

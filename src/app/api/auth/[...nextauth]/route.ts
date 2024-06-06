@@ -28,6 +28,7 @@ const handler = NextAuth({
     async session({ session, user }) {
       if (session.user) {
         session.user.id = Number(user.id);
+        session.user.image = user.image;
       }
       return session;
     },
@@ -64,10 +65,8 @@ const handler = NextAuth({
         },
       });
 
-      if (session.user) {
-        session.user.role = user?.role;
-        session.user.bans = user?.bans;
-      }
+      session.user.role = user?.role;
+      session.user.bans = user?.bans;
     },
   },
 });

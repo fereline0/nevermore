@@ -27,22 +27,20 @@ export default function CreateArticle(props: ICreateArticle) {
   const router = useRouter();
   const { t } = useTranslation();
 
-  if (status != "authenticated") {
-    return null;
-  }
-
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    const article = await createArticle(
-      event,
-      HTML,
-      session?.user.id,
-      props.category.id,
-      userCan(session?.user.role.abilities, "superviseForum") ||
-        userIsSupervisor(props.category.supervisors, session?.user.id)
-    );
+    if (status == "authenticated") {
+      const article = await createArticle(
+        event,
+        HTML,
+        session?.user.id,
+        props.category.id,
+        userCan(session?.user.role.abilities, "superviseForum") ||
+          userIsSupervisor(props.category.supervisors, session?.user.id)
+      );
 
-    if (article) {
-      router.push(`/forums/${props.category.id}`);
+      if (article) {
+        router.push(`/forums/${props.category.id}`);
+      }
     }
   };
 
@@ -53,21 +51,23 @@ export default function CreateArticle(props: ICreateArticle) {
           {t("screens:forum:createArticle:title")} {props.category.name}
         </p>
       </Section>
-      <Form
-        onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmit(event)}
-        className={styles.form}
-      >
-        <Input
-          placeholder={t("screens:forum:createArticle:form:title")}
-          name="title"
-        />
-        <FitContent>
-          <Button
-            type="submit"
-            value={t("screens:forum:createArticle:form:submitValue")}
+      {status == "authenticated" && (
+        <Form
+          onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmit(event)}
+          className={styles.form}
+        >
+          <Input
+            placeholder={t("screens:forum:createArticle:form:title")}
+            name="title"
           />
-        </FitContent>
-      </Form>
+          <FitContent>
+            <Button
+              type="submit"
+              value={t("screens:forum:createArticle:form:submitValue")}
+            />
+          </FitContent>
+        </Form>
+      )}
       <Tiptap setHTML={setHTML} />
     </MarginBottom>
   );

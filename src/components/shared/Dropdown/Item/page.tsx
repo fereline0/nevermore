@@ -2,13 +2,13 @@ import styles from "./page.module.css";
 
 interface IItem {
   value: string;
-  func: React.MouseEventHandler<HTMLLIElement>;
+  func: React.MouseEventHandler<HTMLDivElement>;
 }
 
 export default function Item(props: IItem) {
   return (
-    <li onClick={props.func} className={styles.item}>
+    <div onClick={props.func} className={styles.item}>
       {props.value}
-    </li>
+    </div>
   );
 }

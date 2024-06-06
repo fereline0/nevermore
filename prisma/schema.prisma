@@ -83,7 +83,7 @@ model UserNotifications {
 
   writer   User @relation("writer", fields: [writerId], references: [id], onDelete: Cascade)
   writerId Int
-  User     User @relation("user", fields: [userId], references: [id], onDelete: Cascade)
+  user     User @relation("user", fields: [userId], references: [id], onDelete: Cascade)
   userId   Int
 }
 

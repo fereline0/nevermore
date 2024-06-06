@@ -14,9 +14,9 @@ export default function DangerItem(props: IAbility) {
 
   return (
     <>
-      <li onClick={() => setVisibility(true)} className={styles.dangerItem}>
+      <div onClick={() => setVisibility(true)} className={styles.dangerItem}>
         {props.value}
-      </li>
+      </div>
       <ModalWindow
         title={props.value}
         description={props.description}

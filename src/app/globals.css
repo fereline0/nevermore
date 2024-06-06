@@ -9,10 +9,6 @@
   color: black;
 }
 
-li {
-  list-style: none;
-}
-
 input,
 textarea {
   all: unset;

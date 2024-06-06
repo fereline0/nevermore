@@ -31,6 +31,7 @@ export async function GET(
                 role: true,
               },
             },
+            user: true,
           },
         },
         _count: {

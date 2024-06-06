@@ -1,0 +1,14 @@
+.gitHub {
+  width: 100%;
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.gitHub:hover {
+  background-color: #717171;
+}

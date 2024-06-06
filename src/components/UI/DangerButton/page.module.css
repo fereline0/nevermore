@@ -11,7 +11,4 @@
 
 .dangerButton:hover {
   background-color: #ff6e6e;
-  color: white;
-  border: none;
-  padding: 5px 10px;
 }

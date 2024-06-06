@@ -9,13 +9,11 @@ export default function Discord() {
   const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   return (
-    <div>
-      <button
-        className={styles.discord}
-        onClick={() => signIn("discord", { callbackUrl })}
-      >
-        Sign in with Discord
-      </button>
-    </div>
+    <button
+      className={styles.discord}
+      onClick={() => signIn("discord", { callbackUrl })}
+    >
+      Discord
+    </button>
   );
 }

@@ -11,10 +11,6 @@
   padding: 0 1rem;
 }
 
-.tiptap li {
-  list-style: unset;
-}
-
 .tiptap pre {
   text-wrap: wrap;
   font-family: "JetBrainsMono", monospace;

@@ -11,7 +11,7 @@ import Main from "@/components/shared/Content/Main/page";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { useSession } from "next-auth/react";
-import MemberInfo from "@/components/shared/MemberInfo/page";
+import Member from "@/components/shared/Member/page";
 import IUser from "@/types/user.type";
 import SecondaryContent from "@/components/shared/Content/SecondaryContent/page";
 
@@ -47,7 +47,7 @@ export default function Forum(props: IForum) {
       <SecondaryContent title={t("screens:forum:supervisors")}>
         {props.category.supervisors.length > 0
           ? props.category.supervisors.map((user: IUser) => (
-              <MemberInfo key={user.id} member={user} detail={user.role.name} />
+              <Member key={user.id} member={user} detail={user.role.name} />
             ))
           : null}
       </SecondaryContent>

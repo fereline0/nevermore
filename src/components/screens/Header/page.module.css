@@ -4,6 +4,7 @@
 
 .elements {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -12,15 +13,12 @@
   margin: 0 auto;
 }
 
-.link {
-  float: left;
+.navigation {
+  display: flex;
+  gap: 35px;
 }
 
-.link:not(:last-child) {
-  margin-right: 40px;
-}
-
-.menu {
+.menuIcon {
   display: none;
 }
 
@@ -44,13 +42,14 @@
     opacity: 1;
   }
 
-  .navigation {
+  .menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     visibility: hidden;
     transform: translateX(-100%);
     position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     top: 0;
     bottom: 0;
     left: 0;
@@ -60,26 +59,24 @@
     transition: 0.3s;
   }
 
-  .navigation.active {
+  .menu .navigation {
+    gap: 5px;
+    flex-flow: column;
+    align-items: center;
+  }
+
+  .menu.active {
     visibility: visible;
     transform: translateX(0);
   }
 
-  .navigation .link {
-    float: none;
-  }
-
-  .navigation .link:not(:last-child) {
-    margin-bottom: 10px;
-  }
-
-  .menu {
+  .menuIcon {
     display: block;
   }
 }
 
 @media screen and (max-width: 375px) {
-  .navigation {
+  .menu {
     width: 80%;
   }
 }

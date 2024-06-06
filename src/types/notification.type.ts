@@ -7,5 +7,6 @@ export default interface INotification {
   sourceLink: string;
   createdAt: string;
   updatedAt: string;
+  user: IUser;
   writer: IUser;
 }

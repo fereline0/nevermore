@@ -1,6 +1,6 @@
 "use client";
 
-import MemberInfo from "@/components/shared/MemberInfo/page";
+import Member from "@/components/shared/Member/page";
 import styles from "./page.module.css";
 import Link from "next/link";
 import Separator from "@/components/shared/TextSeparator/page";
@@ -45,7 +45,7 @@ export default function Article(props: Article) {
         </div>
       </div>
       <div className={styles.aboutLastWriter}>
-        <MemberInfo
+        <Member
           member={
             props.article.comments[0]
               ? props.article.comments[0].writer

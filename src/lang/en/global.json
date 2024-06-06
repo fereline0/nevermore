@@ -7,11 +7,15 @@
     "errorWhenChanging": "An error occurred on the server side while saving data",
     "save": "Save"
   },
+  "signIn": {
+    "value": "Войти"
+  },
   "screens": {
     "header": {
       "forum": "Forum",
       "market": "Market",
-      "support": "Support"
+      "support": "Support",
+      "loading": "Loading"
     },
     "forum": {
       "actions": {

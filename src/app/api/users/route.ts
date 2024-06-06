@@ -28,6 +28,8 @@ export async function GET(req: NextRequest) {
         _count: {
           select: {
             writerComments: true,
+            writerArticleComments: true,
+            articles: true,
           },
         },
       },
