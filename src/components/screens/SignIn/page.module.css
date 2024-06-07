@@ -1,5 +1,6 @@
 .signIn {
-  width: 180px;
+  width: 240px;
+  word-wrap: break-word;
   text-align: center;
   position: fixed;
   top: 50%;

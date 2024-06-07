@@ -4,9 +4,9 @@ import { notFound } from "next/navigation";
 import { FormEvent } from "react";
 import toast from "react-hot-toast";
 
-export async function getArticle(id: number) {
+export async function getArticle(id: number, page: number, limit: number) {
   const res = await serverFetcher(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/articles/${id}`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/articles/${id}?page=${page}&limit=${limit}`
   );
 
   if (!res.ok) notFound();

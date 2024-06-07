@@ -12,4 +12,5 @@ export default interface IArticle {
   author: IUser;
   category: ICategory;
   comments: IComment[];
+  _count: any;
 }

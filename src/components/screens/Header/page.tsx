@@ -70,7 +70,7 @@ export default function Header() {
           </div>
           <nav className={styles.navigation}>
             {status == "loading" ? (
-              t("screens:header:loading")
+              <span>{t("screens:header:loading")}</span>
             ) : status === "authenticated" ? (
               <AlightItems gap={20}>
                 <Link href={`/users/${session.user?.id}/notifications`}>

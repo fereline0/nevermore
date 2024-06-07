@@ -60,7 +60,7 @@
   }
 
   .menu .navigation {
-    gap: 5px;
+    gap: 10px;
     flex-flow: column;
     align-items: center;
   }

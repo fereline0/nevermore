@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
     const parentId = body.get("parentId");
     const data: any = {
       value: body.get("comment") as string,
-      userId: Number(body.get("userId")),
+      articleId: Number(body.get("articleId")),
       writerId: Number(body.get("writerId")),
     };
 
@@ -16,11 +16,11 @@ export async function POST(req: NextRequest) {
       data.parentId = Number(parentId);
     }
 
-    const userComment = await prisma.userComments.create({
+    const articleComment = await prisma.articleComments.create({
       data: data,
     });
 
-    return NextResponse.json(userComment, { status: 200 });
+    return NextResponse.json(articleComment, { status: 200 });
   } catch (error) {
     return NextResponse.json(error, { status: 500 });
   }

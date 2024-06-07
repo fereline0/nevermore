@@ -1,7 +1,6 @@
 .discord {
   width: 100%;
   background-color: #586aea;
-  color: white;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
@@ -11,4 +10,8 @@
 
 .discord:hover {
   background-color: #99a4ff;
+}
+
+.label {
+  color: white;
 }

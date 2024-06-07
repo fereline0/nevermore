@@ -8,7 +8,6 @@ import Comment from "@/components/shared/Comment/page";
 import Actions from "./Actions/page";
 import TextArea from "@/components/UI/TextArea/page";
 import { useSession } from "next-auth/react";
-import { createUserComment } from "@/services/userComment";
 import Form from "@/components/shared/Form/page";
 import { useTranslation } from "react-i18next";
 import MarginBottom from "@/components/shared/MarginBottom/page";
@@ -17,9 +16,11 @@ import EmptyList from "@/components/shared/EmptyList/page";
 import { useRouter } from "next/navigation";
 import FitContent from "@/components/shared/FitContent/page";
 import Button from "@/components/UI/Button/page";
+import { createArticleComment } from "@/services/articleComment";
+import IArticle from "@/types/article.type";
 
 interface IComments extends IPagination {
-  userId: number;
+  article: IArticle;
   writerId?: number;
   parentId?: number;
   comments: IComment[];
@@ -32,11 +33,10 @@ export default function Comments(props: IComments) {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     if (status === "authenticated") {
-      await createUserComment(
+      await createArticleComment(
         event,
-        props.userId,
+        props.article.id,
         session.user.id,
-        props.writerId,
         props.parentId
       );
       router.refresh();
@@ -58,7 +58,10 @@ export default function Comments(props: IComments) {
           {props.comments.map((comment: IComment) => {
             return (
               <Comment key={comment.id} comment={comment}>
-                <Actions comment={comment} />
+                <Actions
+                  comment={comment}
+                  supervisors={props.article.category.supervisors}
+                />
               </Comment>
             );
           })}

@@ -12,6 +12,7 @@ import MarginBottom from "@/components/shared/MarginBottom/page";
 
 interface Article {
   article: IArticle;
+  children: React.ReactNode;
 }
 
 export default function Article(props: Article) {
@@ -43,6 +44,7 @@ export default function Article(props: Article) {
         </Section>
       </div>
       <TipTap readOnly={true} content={props.article.value} />
+      {props.children}
     </MarginBottom>
   );
 }

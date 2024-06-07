@@ -6,6 +6,7 @@ import Input from "@/components/UI/Input/page";
 import Section from "@/components/shared/Content/Section/page";
 import FitContent from "@/components/shared/FitContent/page";
 import Form from "@/components/shared/Form/page";
+import Loading from "@/components/shared/Loading/page";
 import MarginBottom from "@/components/shared/MarginBottom/page";
 import Tiptap from "@/components/shared/TipTap/page";
 import { userIsSupervisor } from "@/policies/article";
@@ -22,7 +23,9 @@ interface ICreateArticle {
 }
 
 export default function CreateArticle(props: ICreateArticle) {
-  const { data: session, status } = useSession();
+  const { data: session, status } = useSession({
+    required: true,
+  });
   const [HTML, setHTML] = useState("");
   const router = useRouter();
   const { t } = useTranslation();
@@ -44,6 +47,10 @@ export default function CreateArticle(props: ICreateArticle) {
     }
   };
 
+  if (status == "loading") {
+    return <Loading />;
+  }
+
   return (
     <MarginBottom gap={10}>
       <Section padding="5px 10px">
@@ -51,23 +58,21 @@ export default function CreateArticle(props: ICreateArticle) {
           {t("screens:forum:createArticle:title")} {props.category.name}
         </p>
       </Section>
-      {status == "authenticated" && (
-        <Form
-          onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmit(event)}
-          className={styles.form}
-        >
-          <Input
-            placeholder={t("screens:forum:createArticle:form:title")}
-            name="title"
+      <Form
+        onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmit(event)}
+        className={styles.form}
+      >
+        <Input
+          placeholder={t("screens:forum:createArticle:form:title")}
+          name="title"
+        />
+        <FitContent>
+          <Button
+            type="submit"
+            value={t("screens:forum:createArticle:form:submitValue")}
           />
-          <FitContent>
-            <Button
-              type="submit"
-              value={t("screens:forum:createArticle:form:submitValue")}
-            />
-          </FitContent>
-        </Form>
-      )}
+        </FitContent>
+      </Form>
       <Tiptap setHTML={setHTML} />
     </MarginBottom>
   );

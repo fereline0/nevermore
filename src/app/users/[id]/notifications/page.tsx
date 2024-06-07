@@ -30,6 +30,7 @@ export default async function notifications({
   return (
     <Suspense fallback={<Loading />}>
       <Notifications
+        id={params.id}
         notifications={res.notifications}
         total={res._count.notifications}
         pastPagesCount={2}

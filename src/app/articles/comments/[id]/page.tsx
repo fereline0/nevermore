@@ -2,19 +2,18 @@ import Main from "@/components/shared/Content/Main/page";
 import Content from "@/components/shared/Content/page";
 import Comment from "@/components/shared/Comment/page";
 import Actions from "@/components/screens/User/Comments/Actions/page";
-import { getUserComment } from "@/services/userComment";
-import Comments from "@/components/screens/User/Comments/page";
+import Comments from "@/components/screens/Article/Comments/page";
 import { Suspense } from "react";
 import Loading from "@/components/shared/Loading/page";
-import { updateStatusUserNotification } from "@/services/userNotification";
 import IComment from "@/types/comment.type";
-import IUser from "@/types/user.type";
+import { getArticleComment } from "@/services/articleComment";
+import IArticle from "@/types/article.type";
 
 export const dynamic = "force-dynamic";
 
-interface IUserComment extends IComment {
-  userId: number;
-  user: IUser;
+interface IArticleComment extends IComment {
+  articleId: number;
+  article: IArticle;
 }
 
 export default async function comment({
@@ -26,9 +25,10 @@ export default async function comment({
 }) {
   const page = searchParams.page || 1;
   const limit = 20;
-  const comment: IUserComment = await getUserComment(params.id, page, limit);
-  const updateStatus = await updateStatusUserNotification(
-    `/users/comments/${params.id}`
+  const comment: IArticleComment = await getArticleComment(
+    params.id,
+    page,
+    limit
   );
 
   return (
@@ -43,7 +43,7 @@ export default async function comment({
             limit={limit}
             pastPagesCount={2}
             futurePagesCount={4}
-            userId={comment.userId}
+            article={comment.article}
             writerId={comment.writerId}
             comments={comment.childs}
             parentId={comment.id}

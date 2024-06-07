@@ -1,7 +1,6 @@
 .gitHub {
   width: 100%;
   background-color: black;
-  color: white;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
@@ -11,4 +10,8 @@
 
 .gitHub:hover {
   background-color: #717171;
+}
+
+.label {
+  color: white;
 }
