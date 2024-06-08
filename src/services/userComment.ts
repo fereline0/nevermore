@@ -5,6 +5,16 @@ import { createUserNotification } from "./userNotification";
 import { notFound } from "next/navigation";
 import { serverFetcher } from "@/utils/fetcher";
 
+export async function getUserComments(id: number, page: number, limit: number) {
+  const res = await serverFetcher(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}/comments?page=${page}&limit=${limit}`
+  );
+
+  if (!res.ok) notFound();
+
+  return res.json();
+}
+
 export async function getUserComment(id: number, page: number, limit: number) {
   const res = await serverFetcher(
     `${process.env.NEXT_PUBLIC_API_URL}/api/users/comments/${id}?page=${page}&limit=${limit}`

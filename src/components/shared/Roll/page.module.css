@@ -1,0 +1,10 @@
+.rollContainer {
+  position: relative;
+}
+
+.roll {
+  display: flex;
+  overflow: auto;
+  scrollbar-width: none;
+  gap: 5px;
+}

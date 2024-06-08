@@ -68,12 +68,7 @@
           }
         }
       },
-      "alertAboutBan": {
-        "alert": "This user is blocked, we do not recommend conducting transactions with him at the time of blocking, if the user has already deceived you in any way, contact support so that we can solve the problem as soon as possible",
-        "reason": "Reason",
-        "initiator": "Initiator",
-        "expires": "Expires"
-      },
+      "alertAboutBan": "This user is blocked, we do not recommend conducting transactions with him at the time of blocking, if the user has already deceived you in any way, contact support so that we can solve the problem as soon as possible",
       "about": {
         "detailInformation": {
           "aboutMe": "About me",
@@ -82,6 +77,11 @@
           "gender": "Gender",
           "bithday": "Bithday"
         }
+      },
+      "comments": "Comments",
+      "bans": {
+        "value": "Ban history",
+        "emptyList": "Ban history is empty"
       },
       "subscribers": {
         "value": "Subscribers",
@@ -116,7 +116,7 @@
         "newMessage": "New comment has been posted on your profile page",
         "reply": "Reply to your comment has been posted"
       },
-      "emptyList": "There should be comments here, but there aren't any yet",
+      "emptyList": "Comment list is empty",
       "actions": {
         "replys": "Replys",
         "delete": {
@@ -130,10 +130,20 @@
         "read": "Read",
         "new": "New"
       },
-      "emptyList": "There should be notifications here, but there aren't any yet"
+      "emptyList": "Notification list is empty"
     }
   },
   "shared": {
+    "ban": {
+      "reason": "Reason",
+      "initiator": "Initiator",
+      "activity": {
+        "value": "Activity",
+        "yes": "yes",
+        "no": "no"
+      },
+      "expires": "Expires"
+    },
     "search": "Search",
     "modalWindow": {
       "cancel": "Cancel"

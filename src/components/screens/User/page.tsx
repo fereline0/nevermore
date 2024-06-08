@@ -8,17 +8,30 @@ import About from "@/components/screens/User/About/page";
 import SecondaryContent from "@/components/shared/Content/SecondaryContent/page";
 import Member from "@/components/shared/Member/page";
 import IUser from "@/types/user.type";
-import UserComments from "@/components/screens/User/Comments/page";
 import { useTranslation } from "react-i18next";
-import IPagination from "@/types/pagination.type";
 import AlertAboutBan from "./AlertAboutBan/page";
+import Roll from "@/components/shared/Roll/page";
+import { ITab } from "@/types/tab.type";
+import Tab from "@/components/shared/Tab/page";
 
-interface User extends IPagination {
+interface User {
   user: IUser;
+  children: React.ReactNode;
 }
 
 export default function User(props: User) {
   const { t } = useTranslation();
+
+  const tabs = [
+    {
+      name: t("screens:user:comments"),
+      link: `/users/${props.user.id}`,
+    },
+    {
+      name: t("screens:user:bans:value"),
+      link: `/users/${props.user.id}/bans`,
+    },
+  ];
 
   const ban = props.user.bans.find(
     (ban) => new Date(ban.expires) > new Date() && ban.activity
@@ -64,14 +77,12 @@ export default function User(props: User) {
       <Main>
         <About user={props.user} />
         {ban && <AlertAboutBan ban={ban} />}
-        <UserComments
-          userId={props.user.id}
-          comments={props.user.comments}
-          total={props.total}
-          limit={props.limit}
-          pastPagesCount={props.pastPagesCount}
-          futurePagesCount={props.futurePagesCount}
-        />
+        <Roll>
+          {tabs.map((tab: ITab, index) => {
+            return <Tab key={index} name={tab.name} link={tab.link} />;
+          })}
+        </Roll>
+        {props.children}
       </Main>
     </Content>
   );

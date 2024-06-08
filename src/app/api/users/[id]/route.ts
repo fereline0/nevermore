@@ -44,23 +44,6 @@ export async function GET(
           },
         },
         role: true,
-        comments: {
-          where: {
-            parent: null,
-          },
-          orderBy: {
-            createdAt: "desc",
-          },
-          skip: pageToSkip,
-          take: limit,
-          include: {
-            writer: {
-              include: {
-                role: true,
-              },
-            },
-          },
-        },
         bans: {
           include: {
             initiator: {
@@ -72,7 +55,6 @@ export async function GET(
         },
         _count: {
           select: {
-            comments: true,
             subscribers: true,
             subscribed: true,
           },

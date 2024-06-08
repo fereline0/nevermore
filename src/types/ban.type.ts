@@ -8,4 +8,5 @@ export default interface IBan {
   activity: boolean;
   expires: string;
   initiator: IUser;
+  _count: any;
 }

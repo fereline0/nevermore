@@ -13,9 +13,9 @@ export async function getUsers(page: number, limit: number, query: string) {
   return res.json();
 }
 
-export async function getUser(id: number, page: number, limit: number) {
+export async function getUser(id: number) {
   const res = await serverFetcher(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}?page=${page}&limit=${limit}`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}`
   );
 
   if (!res.ok) notFound();

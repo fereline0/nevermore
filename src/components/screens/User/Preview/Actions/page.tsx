@@ -56,6 +56,10 @@ export default function Actions(props: IActions) {
   const actionsRef = useRef(null);
   const [visibility, setVisibility] = useState(false);
 
+  if (status != "authenticated") {
+    return null;
+  }
+
   return (
     <MarginBottom gap={5}>
       {(belongsToUser || (canEdit && userRoleBenefits)) && (
@@ -65,8 +69,7 @@ export default function Actions(props: IActions) {
           onClick={() => router.push(`/users/${props.user.id}/edit/general`)}
         />
       )}
-      {status === "authenticated" &&
-        !belongsToUser &&
+      {!belongsToUser &&
         (userIsSubscribed ? (
           <DangerAction
             value={t("screens:user:preview:actions:unSubscribe:value")}
@@ -88,82 +91,75 @@ export default function Actions(props: IActions) {
             }}
           />
         ))}
-      {status === "authenticated" &&
-        canBan &&
-        !belongsToUser &&
-        userRoleBenefits && (
-          <div className={styles.banContainer} ref={actionsRef}>
-            {props.ban ? (
-              <DangerAction
-                value={t("screens:user:preview:actions:unBan:value")}
-                description={t(
-                  "screens:user:preview:actions:unBan:description"
-                )}
-                func={async () => {
-                  await deleteUserBans(props.user.id);
-                  router.refresh();
-                }}
+      {canBan && !belongsToUser && userRoleBenefits && (
+        <div className={styles.banContainer} ref={actionsRef}>
+          {props.ban ? (
+            <DangerAction
+              value={t("screens:user:preview:actions:unBan:value")}
+              description={t("screens:user:preview:actions:unBan:description")}
+              func={async () => {
+                await deleteUserBans(props.user.id);
+                router.refresh();
+              }}
+            />
+          ) : (
+            <>
+              <DangerButton
+                value={t("screens:user:preview:actions:ban:value")}
+                onClick={() => setVisibility(true)}
               />
-            ) : (
-              <>
-                <DangerButton
-                  value={t("screens:user:preview:actions:ban:value")}
-                  onClick={() => setVisibility(true)}
-                />
-                <ModalWindow
-                  title={t("screens:user:preview:actions:ban:value")}
-                  description={t(
-                    "screens:user:preview:actions:ban:description"
-                  )}
-                  visibility={visibility}
-                  setVisibility={setVisibility}
+              <ModalWindow
+                title={t("screens:user:preview:actions:ban:value")}
+                description={t("screens:user:preview:actions:ban:description")}
+                visibility={visibility}
+                setVisibility={setVisibility}
+              >
+                <Form
+                  onSubmit={async (event: FormEvent<HTMLFormElement>) => {
+                    await userBan(event, props.user.id, session.user.id);
+                    router.refresh();
+                  }}
                 >
-                  <Form
-                    onSubmit={async (event: FormEvent<HTMLFormElement>) => {
-                      await userBan(event, props.user.id, session.user.id);
-                      router.refresh();
-                    }}
-                  >
-                    <Input
-                      name="reason"
-                      placeholder={t("screens:user:preview:actions:ban:reason")}
+                  <Input
+                    name="reason"
+                    placeholder={t("screens:user:preview:actions:ban:reason")}
+                  />
+                  <Select name="expires">
+                    {ban.map((ban, index) => {
+                      const formattedDistance = formatDistanceToNow(
+                        stringToCurrentDate(ban),
+                        { locale }
+                      );
+                      const capitalizedValue =
+                        formattedDistance.charAt(0).toUpperCase() +
+                        formattedDistance.slice(1);
+                      return (
+                        <option
+                          key={index}
+                          value={stringToCurrentDate(ban).toString()}
+                        >
+                          {capitalizedValue}
+                        </option>
+                      );
+                    })}
+                  </Select>
+                  <div className={styles.solution}>
+                    <DangerButton
+                      value={t("screens:user:preview:actions:ban:value")}
+                      type="submit"
                     />
-                    <Select name="expires">
-                      {ban.map((ban, index) => {
-                        const formattedDistance = formatDistanceToNow(
-                          stringToCurrentDate(ban),
-                          { locale }
-                        );
-                        const capitalizedValue =
-                          formattedDistance.charAt(0).toUpperCase() +
-                          formattedDistance.slice(1);
-                        return (
-                          <option
-                            key={index}
-                            value={stringToCurrentDate(ban).toString()}
-                          >
-                            {capitalizedValue}
-                          </option>
-                        );
-                      })}
-                    </Select>
-                    <div className={styles.solution}>
-                      <DangerButton
-                        value={t("screens:user:preview:actions:ban:value")}
-                        type="submit"
-                      />
-                      <Button
-                        value={t("shared:modalWindow:cancel")}
-                        type="button"
-                        onClick={() => setVisibility(false)}
-                      />
-                    </div>
-                  </Form>
-                </ModalWindow>
-              </>
-            )}
-          </div>
-        )}
+                    <Button
+                      value={t("shared:modalWindow:cancel")}
+                      type="button"
+                      onClick={() => setVisibility(false)}
+                    />
+                  </div>
+                </Form>
+              </ModalWindow>
+            </>
+          )}
+        </div>
+      )}
       {canDelete && !belongsToUser && userRoleBenefits && (
         <DangerAction
           value={t("screens:user:preview:actions:deleteAccount:value")}

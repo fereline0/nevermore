@@ -1,0 +1,22 @@
+.button {
+  position: absolute;
+  height: 100%;
+  width: 25px;
+  background: linear-gradient(90deg, #f3f4f6 40%, #ffffff00);
+  outline: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+.button.right {
+  background: linear-gradient(90deg, #ffffff00, #f3f4f6 60%);
+  right: 0;
+}
+
+.button.active {
+  opacity: 1;
+  visibility: visible;
+}

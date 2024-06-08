@@ -5,7 +5,6 @@ import { useState } from "react";
 import classNames from "classnames/bind";
 import Link from "next/link";
 import styles from "./page.module.css";
-import header from "./header";
 import { useSession } from "next-auth/react";
 import { ITab } from "@/types/tab.type";
 import Notification from "./Notification/page";
@@ -42,7 +41,20 @@ export default function Header() {
     active: stateVisibility,
   });
 
-  const menuItems = header();
+  const tabs = [
+    {
+      name: t("screens:header:forum"),
+      link: "/forums",
+    },
+    {
+      name: t("screens:header:support"),
+      link: "/support",
+    },
+    {
+      name: t("screens:header:market"),
+      link: "/market",
+    },
+  ];
 
   return (
     <>
@@ -59,10 +71,10 @@ export default function Header() {
           </Link>
           <div className={menu}>
             <nav className={styles.navigation}>
-              {menuItems.map((element: ITab, index) => {
+              {tabs.map((tab: ITab, index) => {
                 return (
-                  <Link key={index} href={element.link} onClick={closeWindow}>
-                    {element.name}
+                  <Link key={index} href={tab.link} onClick={closeWindow}>
+                    {tab.name}
                   </Link>
                 );
               })}

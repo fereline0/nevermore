@@ -4,7 +4,6 @@ import Tab from "@/components/shared/Tab/page";
 import Main from "@/components/shared/Content/Main/page";
 import SideBar from "@/components/shared/Content/SideBar/page";
 import Content from "@/components/shared/Content/page";
-import edit from "./edit";
 import { ITab } from "@/types/tab.type";
 import MarginBottom from "@/components/shared/MarginBottom/page";
 import IUser from "@/types/user.type";
@@ -13,6 +12,7 @@ import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Loading from "@/components/shared/Loading/page";
+import { useTranslation } from "react-i18next";
 
 interface IEdit {
   user: IUser;
@@ -20,11 +20,27 @@ interface IEdit {
 }
 
 export default function Edit(props: IEdit) {
-  const menuItems = edit();
+  const { t } = useTranslation();
   const { data: session, status } = useSession({
     required: true,
   });
+
   const router = useRouter();
+
+  const tabs = [
+    {
+      name: t("screens:users:edit:general:title"),
+      link: "general",
+    },
+    {
+      name: t("screens:users:edit:security"),
+      link: "security",
+    },
+    {
+      name: t("screens:users:edit:detailInformation"),
+      link: "detailInformation",
+    },
+  ];
 
   const canEdit = userCan(session?.user?.role?.abilities, "editUser");
   const belongsToUser = pageBelong(props.user.id, session?.user.id);
@@ -50,12 +66,12 @@ export default function Edit(props: IEdit) {
     <Content>
       <SideBar>
         <MarginBottom gap={5}>
-          {menuItems.map((element: ITab, index) => {
+          {tabs.map((tab: ITab, index) => {
             return (
               <Tab
                 key={index}
-                name={element.name}
-                link={`/users/${props.user.id}/edit/${element.link}`}
+                name={tab.name}
+                link={`/users/${props.user.id}/edit/${tab.link}`}
               />
             );
           })}

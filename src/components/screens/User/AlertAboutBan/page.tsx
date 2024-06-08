@@ -18,20 +18,20 @@ export default function AlertAboutBan(props: IAlertAboutBan) {
   return (
     <AlertSection padding="5px 10px">
       <MarginBottom gap={10}>
-        <p>{t("screens:user:alertAboutBan:alert")}</p>
+        <p>{t("screens:user:alertAboutBan")}</p>
         <PairsJustified
           data={[
             {
-              label: t("screens:user:alertAboutBan:initiator"),
+              label: t("shared:ban:initiator"),
               link: `/users/${props.ban.initiator.id}`,
               value: props.ban.initiator.name,
             },
             {
-              label: t("screens:user:alertAboutBan:reason"),
+              label: t("shared:ban:reason"),
               value: props.ban.reason,
             },
             {
-              label: t("screens:user:alertAboutBan:expires"),
+              label: t("shared:ban:expires"),
               value: formatDistance(props.ban.expires, new Date(), {
                 includeSeconds: true,
                 addSuffix: true,
