@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./page.module.css";
 
 interface IAlightItems extends React.HTMLAttributes<HTMLDivElement> {
-  gap: number;
+  gap?: number;
   children: React.ReactNode;
 }
 
