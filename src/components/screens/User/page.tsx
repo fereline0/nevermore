@@ -28,6 +28,10 @@ export default function User(props: User) {
       link: `/users/${props.user.id}`,
     },
     {
+      name: t("screens:user:articles"),
+      link: `/users/${props.user.id}/articles`,
+    },
+    {
       name: t("screens:user:bans:value"),
       link: `/users/${props.user.id}/bans`,
     },

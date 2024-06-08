@@ -14,7 +14,7 @@ export async function GET(
       where: {
         id: Number(params.id),
       },
-      include: {
+      select: {
         bans: {
           orderBy: {
             createdAt: "desc",

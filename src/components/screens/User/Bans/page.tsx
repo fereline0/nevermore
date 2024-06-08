@@ -22,8 +22,8 @@ export default function Bans(props: IBans) {
         <MarginBottom gap={10}>
           {props.bans.map((ban: IBan, index) => {
             return (
-              <Section padding="5px 10px">
-                <Ban key={index} ban={ban} />
+              <Section key={index} padding="5px 10px">
+                <Ban ban={ban} />
               </Section>
             );
           })}
