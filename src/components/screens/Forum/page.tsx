@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./page.module.css";
-import Articles from "@/components/screens/Forums/Articles/page";
+import Articles from "@/components/screens/Articles/page";
 import Search from "@/components/shared/Search/page";
 import Button from "@/components/UI/Button/page";
 import FitContent from "@/components/shared/FitContent/page";

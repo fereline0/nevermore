@@ -1,4 +1,4 @@
-import Articles from "@/components/screens/Forums/Articles/page";
+import Articles from "@/components/screens/Articles/page";
 import Loading from "@/components/shared/Loading/page";
 import { getUserArticles } from "@/services/article";
 import IUser from "@/types/user.type";

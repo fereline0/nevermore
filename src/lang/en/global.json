@@ -17,6 +17,9 @@
       "support": "Support",
       "loading": "Loading"
     },
+    "articles": {
+      "emptyList": "Article list is empty"
+    },
     "forum": {
       "actions": {
         "createArticle": "Create article",

@@ -17,6 +17,9 @@
       "support": "Поддержка",
       "loading": "Загрузка"
     },
+    "articles": {
+      "emptyList": "Список статей пуст"
+    },
     "forum": {
       "actions": {
         "createArticle": "Создать статью",

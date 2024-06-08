@@ -1,5 +1,5 @@
 import { getForums } from "@/services/forum";
-import Articles from "@/components/screens/Forums/Articles/page";
+import Articles from "@/components/screens/Articles/page";
 import IArticle from "@/types/article.type";
 import Loading from "@/components/shared/Loading/page";
 import { Suspense } from "react";
