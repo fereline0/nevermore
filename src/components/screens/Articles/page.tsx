@@ -1,7 +1,7 @@
 "use client";
 
 import IArticle from "@/types/article.type";
-import Article from "./Article/page";
+import Article from "@/components/shared/Article/page";
 import Pagination from "@/components/shared/Pagination/page";
 import IPagination from "@/types/pagination.type";
 import MarginBottom from "@/components/shared/MarginBottom/page";

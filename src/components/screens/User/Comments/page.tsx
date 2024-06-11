@@ -3,7 +3,6 @@
 import styles from "./page.module.css";
 import Pagination from "@/components/shared/Pagination/page";
 import IPagination from "@/types/pagination.type";
-import IComment from "@/types/comment.type";
 import Comment from "@/components/shared/Comment/page";
 import Actions from "./Actions/page";
 import TextArea from "@/components/UI/TextArea/page";
@@ -17,12 +16,13 @@ import EmptyList from "@/components/shared/EmptyList/page";
 import { useRouter } from "next/navigation";
 import FitContent from "@/components/shared/FitContent/page";
 import Button from "@/components/UI/Button/page";
+import { IUserComment } from "@/types/userComment";
 
 interface IComments extends IPagination {
   userId: number;
   writerId?: number;
   parentId?: number;
-  comments: IComment[];
+  comments: IUserComment[];
 }
 
 export default function Comments(props: IComments) {
@@ -55,7 +55,7 @@ export default function Comments(props: IComments) {
       )}
       {props.comments.length > 0 ? (
         <MarginBottom gap={10}>
-          {props.comments.map((comment: IComment) => {
+          {props.comments.map((comment: IUserComment) => {
             return (
               <Comment key={comment.id} comment={comment}>
                 <Actions comment={comment} />

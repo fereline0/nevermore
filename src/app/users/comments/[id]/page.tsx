@@ -7,15 +7,9 @@ import Comments from "@/components/screens/User/Comments/page";
 import { Suspense } from "react";
 import Loading from "@/components/shared/Loading/page";
 import { updateStatusUserNotification } from "@/services/userNotification";
-import IComment from "@/types/comment.type";
-import IUser from "@/types/user.type";
+import { IUserComment } from "@/types/userComment";
 
 export const dynamic = "force-dynamic";
-
-interface IUserComment extends IComment {
-  userId: number;
-  user: IUser;
-}
 
 export default async function comment({
   params,

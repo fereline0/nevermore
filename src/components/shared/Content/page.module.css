@@ -3,10 +3,6 @@
   gap: 10px;
 }
 
-.content > div {
-  word-wrap: break-word;
-}
-
 @media screen and (max-width: 800px) {
   .content {
     display: block;

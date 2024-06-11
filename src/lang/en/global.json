@@ -81,6 +81,19 @@
           "bithday": "Bithday"
         }
       },
+      "articles": "Articles",
+      "selfComments": {
+        "value": "Recent comments",
+        "replyToComment": "Reply to comment",
+        "comment": "Comment",
+        "inProfile": "in profile"
+      },
+      "selfArticleComments": {
+        "value": "Recent article commenting",
+        "replyToComment": "Reply to comment",
+        "comment": "Comment",
+        "toArticle": "to article"
+      },
       "comments": "Comments",
       "bans": {
         "value": "Ban history",

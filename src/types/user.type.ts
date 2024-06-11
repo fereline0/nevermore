@@ -1,8 +1,9 @@
 import IArticle from "./article.type";
+import { IArticleComment } from "./articleComment";
 import IBan from "./ban.type";
 import ICategory from "./category.type";
-import IComment from "./comment.type";
 import IRole from "./role.type";
+import { IUserComment } from "./userComment";
 
 export default interface IUser {
   id: number;
@@ -15,7 +16,9 @@ export default interface IUser {
   role: IRole;
   subscribers: any[];
   subscribed: any[];
-  comments: IComment[];
+  comments: IUserComment[];
+  writerComments: IUserComment[];
+  writerArticleComments: IArticleComment[];
   administeredCategories: ICategory[];
   articles: IArticle[];
   bans: IBan[];

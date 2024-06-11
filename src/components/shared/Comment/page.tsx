@@ -20,14 +20,16 @@ export default function Comment(props: Comment) {
     <Section padding="10px">
       <MarginBottom gap={5}>
         <div className={styles.aboutWriter}>
-          <Member
-            member={props.comment.writer}
-            detail={formatDistance(props.comment.createdAt, new Date(), {
-              includeSeconds: true,
-              addSuffix: true,
-              locale,
-            })}
-          />
+          <div className={styles.writer}>
+            <Member
+              member={props.comment.writer}
+              detail={formatDistance(props.comment.createdAt, new Date(), {
+                includeSeconds: true,
+                addSuffix: true,
+                locale,
+              })}
+            />
+          </div>
           {props.children}
         </div>
         <div className={styles.value}>{props.comment.value}</div>

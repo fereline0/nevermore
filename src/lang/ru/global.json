@@ -82,6 +82,18 @@
         }
       },
       "articles": "Статьи",
+      "selfComments": {
+        "value": "Недавнее комментировние",
+        "replyToComment": "Ответ на комментарий",
+        "comment": "Комментарий",
+        "inProfile": "в профиле"
+      },
+      "selfArticleComments": {
+        "value": "Недавнее комментирование статей",
+        "replyToComment": "Ответ на комментарий",
+        "comment": "Комментарий",
+        "toArticle": "к статье"
+      },
       "comments": "Комментарии",
       "bans": {
         "value": "История блокировок",

@@ -6,5 +6,6 @@
   display: flex;
   overflow: auto;
   scrollbar-width: none;
+  white-space: nowrap;
   gap: 5px;
 }

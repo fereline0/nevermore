@@ -1,5 +1,5 @@
+import { IArticleComment } from "./articleComment";
 import ICategory from "./category.type";
-import IComment from "./comment.type";
 import IUser from "./user.type";
 
 export default interface IArticle {
@@ -11,6 +11,6 @@ export default interface IArticle {
   value: string;
   author: IUser;
   category: ICategory;
-  comments: IComment[];
+  comments: IArticleComment[];
   _count: any;
 }

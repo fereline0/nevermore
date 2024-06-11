@@ -1,20 +1,14 @@
 import Main from "@/components/shared/Content/Main/page";
 import Content from "@/components/shared/Content/page";
 import Comment from "@/components/shared/Comment/page";
-import Actions from "@/components/screens/User/Comments/Actions/page";
+import Actions from "@/components/screens/Article/Comments/Actions/page";
 import Comments from "@/components/screens/Article/Comments/page";
 import { Suspense } from "react";
 import Loading from "@/components/shared/Loading/page";
-import IComment from "@/types/comment.type";
 import { getArticleComment } from "@/services/articleComment";
-import IArticle from "@/types/article.type";
+import { IArticleComment } from "@/types/articleComment";
 
 export const dynamic = "force-dynamic";
-
-interface IArticleComment extends IComment {
-  articleId: number;
-  article: IArticle;
-}
 
 export default async function comment({
   params,
@@ -36,7 +30,10 @@ export default async function comment({
       <Content>
         <Main>
           <Comment comment={comment}>
-            <Actions comment={comment} />
+            <Actions
+              comment={comment}
+              supervisors={comment.article.category.supervisors}
+            />
           </Comment>
           <Comments
             total={comment._count.childs}
@@ -44,7 +41,6 @@ export default async function comment({
             pastPagesCount={2}
             futurePagesCount={4}
             article={comment.article}
-            writerId={comment.writerId}
             comments={comment.childs}
             parentId={comment.id}
           />

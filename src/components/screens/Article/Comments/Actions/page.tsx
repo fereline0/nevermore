@@ -8,7 +8,6 @@ import DangerItem from "@/components/shared/Dropdown/DangerItem/page";
 import { usePathname, useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { useSession } from "next-auth/react";
-import IComment from "@/types/comment.type";
 import { useTranslation } from "react-i18next";
 import Separated from "@/components/shared/Dropdown/Separated/page";
 import { canRedirectToReplys } from "@/policies/comment";
@@ -16,9 +15,10 @@ import { pageBelong, roleBenefits, userCan } from "@/policies/user";
 import { deleteArticleComment } from "@/services/articleComment";
 import IUser from "@/types/user.type";
 import { userIsSupervisor } from "@/policies/article";
+import { IArticleComment } from "@/types/articleComment";
 
 interface IActions {
-  comment: IComment;
+  comment: IArticleComment;
   supervisors: IUser[];
 }
 

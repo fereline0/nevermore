@@ -9,14 +9,14 @@ import { deleteUserComment } from "@/services/userComment";
 import { usePathname, useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { useSession } from "next-auth/react";
-import IComment from "@/types/comment.type";
 import { useTranslation } from "react-i18next";
 import Separated from "@/components/shared/Dropdown/Separated/page";
 import { canRedirectToReplys } from "@/policies/comment";
 import { pageBelong, roleBenefits, userCan } from "@/policies/user";
+import { IUserComment } from "@/types/userComment";
 
 interface IActions {
-  comment: IComment;
+  comment: IUserComment;
 }
 
 export default function Actions(props: IActions) {
