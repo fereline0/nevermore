@@ -86,13 +86,15 @@
         "value": "Recent comments",
         "replyToComment": "Reply to comment",
         "comment": "Comment",
-        "inProfile": "in profile"
+        "inProfile": "in profile",
+        "emptyList": "The list of recent comments is empty"
       },
       "selfArticleComments": {
         "value": "Recent article commenting",
         "replyToComment": "Reply to comment",
         "comment": "Comment",
-        "toArticle": "to article"
+        "toArticle": "to article",
+        "emptyList": "The list of recent comments on articles is empty"
       },
       "comments": "Comments",
       "bans": {

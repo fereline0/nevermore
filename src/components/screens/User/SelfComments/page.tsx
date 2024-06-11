@@ -22,14 +22,14 @@ export default function SelfComments(props: ISelfComments) {
         <MarginBottom gap={10}>
           {props.comments.map((comment: IUserComment) => {
             return (
-              <Thread comment={comment}>
+              <Thread key={comment.id} comment={comment}>
                 <Actions comment={comment} />
               </Thread>
             );
           })}
         </MarginBottom>
       ) : (
-        <EmptyList value={t("screens:comments:emptyList")} />
+        <EmptyList value={t("screens:user:selfArticleComments:emptyList")} />
       )}
       <Pagination
         total={props.total}
